@@ -1,0 +1,1 @@
+class_name SaveResource0 extends Resource

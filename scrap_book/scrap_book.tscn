@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://obwawdcqq777"]
+
+[ext_resource type="Script" uid="uid://bvvi5uq0yiuh0" path="res://scrap_book/scrap_book_controler.gd" id="1_ovkrh"]
+[ext_resource type="Script" uid="uid://c2jjq7yux4h1p" path="res://scrap_book/scrap_book_view.gd" id="2_f1dwq"]
+
+[node name="ScrapBook" type="Node2D" unique_id=856058266]
+
+[node name="ScrapBookControler" type="Node" parent="." unique_id=1357970982 node_paths=PackedStringArray("_view", "_left_button", "_right_button", "_toggle_open")]
+script = ExtResource("1_ovkrh")
+_view = NodePath("../ScrapBookView")
+_left_button = NodePath("../Control/Left")
+_right_button = NodePath("../Control/Right")
+_toggle_open = NodePath("../Control/Toggle")
+
+[node name="Control" type="Control" parent="." unique_id=641258667]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Left" type="Button" parent="Control" unique_id=629969341]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 130.0
+offset_top = 369.0
+offset_right = 148.0
+offset_bottom = 400.0
+text = "<"
+
+[node name="Right" type="Button" parent="Control" unique_id=114955626]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 590.0
+offset_top = 372.0
+offset_right = 608.0
+offset_bottom = 403.0
+text = ">"
+
+[node name="Toggle" type="Button" parent="Control" unique_id=734385934]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 16.0
+offset_top = 603.0
+offset_right = 115.0
+offset_bottom = 634.0
+text = "toggle open"
+
+[node name="ScrapBookView" type="Node2D" parent="." unique_id=640678702]
+script = ExtResource("2_f1dwq")
