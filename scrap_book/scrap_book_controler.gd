@@ -12,8 +12,15 @@ func _ready() -> void:
 	_model = ScrapBookModel.new()
 	_model.setup.call_deferred()
 	if _view:
-		_view.set_spell_book_model(_model)
+		_view.set_spell_book_model.call_deferred(_model)
 	connect_buttons()
+
+func _input_blocked() -> bool:
+	if _model:
+		if _view:
+			return _view.is_animation_active()
+		return false
+	return true
 
 func connect_buttons() -> void:
 	if _toggle_open:
@@ -24,11 +31,13 @@ func connect_buttons() -> void:
 		_right_button.pressed.connect(_on_turn_page.bind(Vector2i.RIGHT))
 
 func _on_turn_page(direction: Vector2i) -> void:
-	if _model:
-		_model.turn_page(direction)
+	if _input_blocked(): return
+
+	_model.turn_page(direction)
 
 func _on_toggle_open() -> void:
-	print(_model)
+	if _input_blocked(): return
+
 	if _model.is_open():
 		_model.request_close()
 	else:

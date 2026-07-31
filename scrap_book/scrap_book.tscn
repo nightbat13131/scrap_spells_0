@@ -1,7 +1,33 @@
 [gd_scene format=3 uid="uid://obwawdcqq777"]
 
 [ext_resource type="Script" uid="uid://bvvi5uq0yiuh0" path="res://scrap_book/scrap_book_controler.gd" id="1_ovkrh"]
-[ext_resource type="Script" uid="uid://c2jjq7yux4h1p" path="res://scrap_book/scrap_book_view.gd" id="2_f1dwq"]
+[ext_resource type="Script" uid="uid://28ph827gtwev" path="res://scrap_book/scrap_book_view_1.gd" id="2_yjnuq"]
+[ext_resource type="Texture2D" uid="uid://8pqfocqavayg" path="res://assets/images/book_1.png" id="3_yjnuq"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_m73lt"]
+load_path = "res://.godot/imported/book_1.png-950081322619b4e5e4a1de0f03bcd4d6.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66end"]
+atlas = SubResource("CompressedTexture2D_m73lt")
+region = Rect2(0, 301, 600, 300)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yjnuq"]
+load_path = "res://.godot/imported/book_1.png-950081322619b4e5e4a1de0f03bcd4d6.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m73lt"]
+atlas = SubResource("CompressedTexture2D_yjnuq")
+region = Rect2(20, 610, 280, 280)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_66end"]
+load_path = "res://.godot/imported/book_1.png-950081322619b4e5e4a1de0f03bcd4d6.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bprli"]
+atlas = SubResource("CompressedTexture2D_66end")
+region = Rect2(301, 610, 280, 280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbeyj"]
+atlas = ExtResource("3_yjnuq")
+region = Rect2(301, 0, 300, 300)
 
 [node name="ScrapBook" type="Node2D" unique_id=856058266]
 
@@ -21,19 +47,19 @@ offset_bottom = 40.0
 [node name="Left" type="Button" parent="Control" unique_id=629969341]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 130.0
-offset_top = 369.0
-offset_right = 148.0
-offset_bottom = 400.0
+offset_left = 112.0
+offset_top = 401.0
+offset_right = 130.0
+offset_bottom = 432.0
 text = "<"
 
 [node name="Right" type="Button" parent="Control" unique_id=114955626]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 590.0
-offset_top = 372.0
-offset_right = 608.0
-offset_bottom = 403.0
+offset_left = 592.0
+offset_top = 397.0
+offset_right = 610.0
+offset_bottom = 428.0
 text = ">"
 
 [node name="Toggle" type="Button" parent="Control" unique_id=734385934]
@@ -46,4 +72,40 @@ offset_bottom = 634.0
 text = "toggle open"
 
 [node name="ScrapBookView" type="Node2D" parent="." unique_id=640678702]
-script = ExtResource("2_f1dwq")
+position = Vector2(339, 250)
+script = ExtResource("2_yjnuq")
+
+[node name="Open" type="Sprite2D" parent="ScrapBookView" unique_id=844590060]
+unique_name_in_owner = true
+texture = SubResource("AtlasTexture_66end")
+
+[node name="Page_Left" type="Sprite2D" parent="ScrapBookView/Open" unique_id=1000647088]
+unique_name_in_owner = true
+position = Vector2(-139, -5)
+texture = SubResource("AtlasTexture_m73lt")
+
+[node name="PageNum_Left" type="Label" parent="ScrapBookView/Open/Page_Left" unique_id=2097409136]
+unique_name_in_owner = true
+offset_left = -132.0
+offset_top = 119.0
+offset_right = -92.0
+offset_bottom = 142.0
+text = "X"
+
+[node name="Page_Right" type="Sprite2D" parent="ScrapBookView/Open" unique_id=703087067]
+unique_name_in_owner = true
+position = Vector2(140, -4)
+texture = SubResource("AtlasTexture_bprli")
+
+[node name="PageNum_Right" type="Label" parent="ScrapBookView/Open/Page_Right" unique_id=2062076475]
+unique_name_in_owner = true
+offset_left = 115.0
+offset_top = 119.0
+offset_right = 155.0
+offset_bottom = 142.0
+text = "X"
+
+[node name="Cover" type="Sprite2D" parent="ScrapBookView" unique_id=1985565558]
+unique_name_in_owner = true
+position = Vector2(-1, 21)
+texture = SubResource("AtlasTexture_hbeyj")
