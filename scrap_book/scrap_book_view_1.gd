@@ -4,8 +4,8 @@ const TWEEN_DURATION = .5
 
 @onready var sprite_open: Sprite2D = %Open
 @onready var sprite_cover: Sprite2D = %Cover
-@onready var sprite_page_left: Sprite2D = %Page_Left
-@onready var sprite_page_right: Sprite2D = %Page_Right
+@onready var sprite_page_left: Area2D = %Page_Left
+@onready var sprite_page_right: Area2D = %Page_Right
 @onready var page_num_left: Label = %PageNum_Left
 @onready var page_num_right: Label = %PageNum_Right
 @onready var page_text_left: RichTextLabel = %PageText_Left

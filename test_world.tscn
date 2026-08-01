@@ -1,8 +1,53 @@
 [gd_scene format=3 uid="uid://c0ripq2vl8b5q"]
 
 [ext_resource type="PackedScene" uid="uid://obwawdcqq777" path="res://scrap_book/scrap_book.tscn" id="1_dxppu"]
+[ext_resource type="Script" uid="uid://cs78dywijli4t" path="res://stickers/sticker.gd" id="2_1lwx6"]
+[ext_resource type="Script" uid="uid://cmwecrd28prqk" path="res://sticker_tray.gd" id="2_dsnr4"]
+[ext_resource type="Texture2D" uid="uid://dilw848ljs5ol" path="res://icon.svg" id="2_gy3sr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1lwx6"]
+size = Vector2(300, 500)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_1lwx6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dsnr4"]
+size = Vector2(128, 129)
 
 [node name="Holder" type="Node2D" unique_id=1284834048]
 
 [node name="ScrapBook" parent="." unique_id=856058266 instance=ExtResource("1_dxppu")]
 position = Vector2(-32, 90)
+
+[node name="StickerTray" type="Area2D" parent="." unique_id=1588191614]
+position = Vector2(972, 297)
+input_pickable = false
+script = ExtResource("2_dsnr4")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="StickerTray" unique_id=1771473522]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-1, 1.5258789e-05)
+scale = Vector2(2.40625, 3.9687502)
+texture = ExtResource("2_gy3sr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StickerTray" unique_id=1077577443]
+shape = SubResource("RectangleShape2D_1lwx6")
+
+[node name="Sticker" type="Area2D" parent="." unique_id=22608720]
+position = Vector2(1035, 147)
+script = ExtResource("2_1lwx6")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sticker" unique_id=1855426671]
+position = Vector2(-0.5, 0.4999962)
+scale = Vector2(133, 137)
+texture = SubResource("PlaceholderTexture2D_1lwx6")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sticker" unique_id=1901781629]
+texture = ExtResource("2_gy3sr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sticker" unique_id=575047983]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_dsnr4")
+
+[connection signal="input_event" from="Sticker" to="Sticker" method="_on_input_event"]

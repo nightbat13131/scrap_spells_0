@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bvvi5uq0yiuh0" path="res://scrap_book/scrap_book_controler.gd" id="1_ovkrh"]
 [ext_resource type="Script" uid="uid://28ph827gtwev" path="res://scrap_book/scrap_book_view_1.gd" id="2_yjnuq"]
+[ext_resource type="Script" uid="uid://bbeb8kryt0667" path="res://scrap_book/page_area.gd" id="3_hbeyj"]
 [ext_resource type="Texture2D" uid="uid://8pqfocqavayg" path="res://assets/images/book_1.png" id="3_yjnuq"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_m73lt"]
@@ -11,12 +12,18 @@ load_path = "res://.godot/imported/book_1.png-950081322619b4e5e4a1de0f03bcd4d6.c
 atlas = SubResource("CompressedTexture2D_m73lt")
 region = Rect2(0, 301, 600, 300)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yjnuq"]
+size = Vector2(273, 281)
+
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yjnuq"]
 load_path = "res://.godot/imported/book_1.png-950081322619b4e5e4a1de0f03bcd4d6.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m73lt"]
 atlas = SubResource("CompressedTexture2D_yjnuq")
 region = Rect2(20, 610, 280, 280)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hbeyj"]
+size = Vector2(272, 274)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_66end"]
 load_path = "res://.godot/imported/book_1.png-950081322619b4e5e4a1de0f03bcd4d6.ctex"
@@ -79,20 +86,29 @@ script = ExtResource("2_yjnuq")
 unique_name_in_owner = true
 texture = SubResource("AtlasTexture_66end")
 
-[node name="Page_Left" type="Sprite2D" parent="ScrapBookView/Open" unique_id=1000647088]
+[node name="Page_Left" type="Area2D" parent="ScrapBookView/Open" unique_id=528726482]
 unique_name_in_owner = true
+script = ExtResource("3_hbeyj")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ScrapBookView/Open/Page_Left" unique_id=350982313]
+position = Vector2(-140.5, -6.5)
+shape = SubResource("RectangleShape2D_yjnuq")
+
+[node name="Sprite2D" type="Sprite2D" parent="ScrapBookView/Open/Page_Left" unique_id=1000647088]
 position = Vector2(-139, -5)
 texture = SubResource("AtlasTexture_m73lt")
 
-[node name="PageText_Left" type="RichTextLabel" parent="ScrapBookView/Open/Page_Left" unique_id=916657273]
+[node name="PageText_Left" type="RichTextLabel" parent="ScrapBookView/Open/Page_Left/Sprite2D" unique_id=916657273]
 unique_name_in_owner = true
 offset_left = -118.0
 offset_top = -122.0
 offset_right = 113.0
 offset_bottom = 132.0
+mouse_filter = 2
 bbcode_enabled = true
 
-[node name="PageNum_Left" type="Label" parent="ScrapBookView/Open/Page_Left" unique_id=2097409136]
+[node name="PageNum_Left" type="Label" parent="ScrapBookView/Open/Page_Left/Sprite2D" unique_id=2097409136]
 unique_name_in_owner = true
 offset_left = -132.0
 offset_top = 119.0
@@ -100,20 +116,29 @@ offset_right = -92.0
 offset_bottom = 142.0
 text = "X"
 
-[node name="Page_Right" type="Sprite2D" parent="ScrapBookView/Open" unique_id=703087067]
+[node name="Page_Right" type="Area2D" parent="ScrapBookView/Open" unique_id=916295443]
 unique_name_in_owner = true
+script = ExtResource("3_hbeyj")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScrapBookView/Open/Page_Right" unique_id=704219259]
+position = Vector2(143, -4)
+shape = SubResource("RectangleShape2D_hbeyj")
+
+[node name="Sprite2D" type="Sprite2D" parent="ScrapBookView/Open/Page_Right" unique_id=703087067]
 position = Vector2(140, -4)
 texture = SubResource("AtlasTexture_bprli")
 
-[node name="PageText_Right" type="RichTextLabel" parent="ScrapBookView/Open/Page_Right" unique_id=267347182]
+[node name="PageText_Right" type="RichTextLabel" parent="ScrapBookView/Open/Page_Right/Sprite2D" unique_id=267347182]
 unique_name_in_owner = true
 offset_left = -117.0
 offset_top = -126.0
 offset_right = 114.0
 offset_bottom = 128.0
+mouse_filter = 2
 bbcode_enabled = true
 
-[node name="PageNum_Right" type="Label" parent="ScrapBookView/Open/Page_Right" unique_id=2062076475]
+[node name="PageNum_Right" type="Label" parent="ScrapBookView/Open/Page_Right/Sprite2D" unique_id=2062076475]
 unique_name_in_owner = true
 offset_left = 115.0
 offset_top = 119.0
