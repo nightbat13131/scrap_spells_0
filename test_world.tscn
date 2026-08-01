@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c0ripq2vl8b5q"]
+
+[ext_resource type="PackedScene" uid="uid://obwawdcqq777" path="res://scrap_book/scrap_book.tscn" id="1_dxppu"]
+
+[node name="Holder" type="Node2D" unique_id=1284834048]
+
+[node name="ScrapBook" parent="." unique_id=856058266 instance=ExtResource("1_dxppu")]
+position = Vector2(-32, 90)

@@ -40,11 +40,11 @@ func _update_page_view() -> void:
 	else:
 		sprite_page_left.show()
 		page_num_left.set_text(str(page.get_page_number()))
-		page_text_left.set_text(page.get_text())
+		page_text_left.set_text(page.get_page_text())
 	page = _model.get_page(_last_left_page +1)
 	if page == null:
 		sprite_page_right.hide()
 	else:
 		sprite_page_right.show()
 		page_num_right.set_text(str(page.get_page_number()))
-		page_text_right.set_text(page.get_text())
+		page_text_right.set_text(page.get_page_text())

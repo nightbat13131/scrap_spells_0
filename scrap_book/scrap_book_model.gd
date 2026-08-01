@@ -7,17 +7,20 @@ signal close_book
 var _left_page := 0 : set =_set_left_page, get = get_left_page
 var _is_open := true : set = _set_is_open, get = is_open
 
-@export var _paper_count := 3
+var _paper_count := -1
 var _pages: Array[PageModel]
 
-func setup() -> void:
+func from_save(data: SaveResource0) -> void:
+	if data == null:
+		data = SaveResource0.new()
+	_paper_count = data.get_paper_count()
 	var page_num := 0
 	var page: PageModel
 	while page_num < get_max_page():
 		page_num += 1
-		page = PageModel.new()
+		page = data.get_page_model(page_num)# PageModel.new()
 		_pages.append(page)
-		page.setup(self, page_num)
+		#page.setup(self, page_num)
 		print(self, page)
 	print(_pages.size())
 

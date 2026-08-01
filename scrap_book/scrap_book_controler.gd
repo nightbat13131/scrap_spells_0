@@ -10,7 +10,7 @@ var _model: ScrapBookModel
 
 func _ready() -> void:
 	_model = ScrapBookModel.new()
-	_model.setup.call_deferred()
+	_model.from_save.bind(null).call_deferred()
 	if _view:
 		_view.set_spell_book_model.call_deferred(_model)
 	connect_buttons()
