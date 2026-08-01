@@ -84,6 +84,14 @@ unique_name_in_owner = true
 position = Vector2(-139, -5)
 texture = SubResource("AtlasTexture_m73lt")
 
+[node name="PageText_Left" type="RichTextLabel" parent="ScrapBookView/Open/Page_Left" unique_id=916657273]
+unique_name_in_owner = true
+offset_left = -118.0
+offset_top = -122.0
+offset_right = 113.0
+offset_bottom = 132.0
+bbcode_enabled = true
+
 [node name="PageNum_Left" type="Label" parent="ScrapBookView/Open/Page_Left" unique_id=2097409136]
 unique_name_in_owner = true
 offset_left = -132.0
@@ -97,6 +105,14 @@ unique_name_in_owner = true
 position = Vector2(140, -4)
 texture = SubResource("AtlasTexture_bprli")
 
+[node name="PageText_Right" type="RichTextLabel" parent="ScrapBookView/Open/Page_Right" unique_id=267347182]
+unique_name_in_owner = true
+offset_left = -117.0
+offset_top = -126.0
+offset_right = 114.0
+offset_bottom = 128.0
+bbcode_enabled = true
+
 [node name="PageNum_Right" type="Label" parent="ScrapBookView/Open/Page_Right" unique_id=2062076475]
 unique_name_in_owner = true
 offset_left = 115.0
@@ -107,5 +123,6 @@ text = "X"
 
 [node name="Cover" type="Sprite2D" parent="ScrapBookView" unique_id=1985565558]
 unique_name_in_owner = true
+visible = false
 position = Vector2(-1, 21)
 texture = SubResource("AtlasTexture_hbeyj")

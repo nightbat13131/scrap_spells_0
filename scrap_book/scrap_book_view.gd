@@ -1,6 +1,5 @@
 class_name ScrapBookView extends Node2D
 
-
 var _model : ScrapBookModel
 var _last_left_page := -1
 var _next_left_page := -1
