@@ -22,8 +22,8 @@ func apply_page(page: PageModel) -> void:
 	
 	if side == Vector2i.LEFT:
 		page_num.set_horizontal_alignment(HORIZONTAL_ALIGNMENT_LEFT)
-		page_text.position.x = -225
+		page_text.position.x = Utilties.PAGE_SIZE.x - (Utilties.PAGE_SPINE*3)
 	else: # RIGHT
 		page_num.set_horizontal_alignment(HORIZONTAL_ALIGNMENT_RIGHT)
-		page_text.position.x = 25
+		page_text.position.x = Utilties.PAGE_SPINE
 	

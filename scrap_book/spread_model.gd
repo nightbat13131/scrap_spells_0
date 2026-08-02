@@ -37,3 +37,9 @@ func _to_string() -> String:
 	return out
 
 func get_stickers() -> Array[Sticker]: return _stickeres
+
+func get_spread_index() -> int:
+	if get_left_page():
+		@warning_ignore("integer_division")
+		return get_left_page().get_page_number()/2
+	return 0

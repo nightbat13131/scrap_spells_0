@@ -1,0 +1,1 @@
+class_name OutsideSpread extends Area2D

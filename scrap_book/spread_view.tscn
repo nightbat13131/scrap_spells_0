@@ -2,9 +2,23 @@
 
 [ext_resource type="Script" uid="uid://vqfqd8x1px0m" path="res://scrap_book/spread_view.gd" id="1_khe7u"]
 [ext_resource type="PackedScene" uid="uid://b4scieck1hatj" path="res://scrap_book/page_view.tscn" id="2_do0bi"]
+[ext_resource type="Script" uid="uid://tgknopvupvb4" path="res://scrap_book/outside_spread.gd" id="3_do0bi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yjnuq"]
 size = Vector2(576, 275)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_khe7u"]
+distance = -140.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_do0bi"]
+normal = Vector2(0, 1)
+distance = -140.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_r8anl"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gqff1"]
+normal = Vector2(-1, 0)
 
 [node name="SpreadView" type="Area2D" unique_id=796639388]
 script = ExtResource("1_khe7u")
@@ -19,4 +33,22 @@ metadata/_edit_lock_ = true
 
 [node name="PagesCollision" type="CollisionShape2D" parent="." unique_id=1877770137]
 unique_name_in_owner = true
+visible = false
 shape = SubResource("RectangleShape2D_yjnuq")
+
+[node name="AreaVoid" type="Area2D" parent="." unique_id=1292253019]
+script = ExtResource("3_do0bi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaVoid" unique_id=1167726449]
+shape = SubResource("WorldBoundaryShape2D_khe7u")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="AreaVoid" unique_id=465165711]
+shape = SubResource("WorldBoundaryShape2D_do0bi")
+
+[node name="Boundry_Left" type="CollisionShape2D" parent="AreaVoid" unique_id=110689975]
+unique_name_in_owner = true
+shape = SubResource("WorldBoundaryShape2D_r8anl")
+
+[node name="Boundry_Right" type="CollisionShape2D" parent="AreaVoid" unique_id=1462730269]
+unique_name_in_owner = true
+shape = SubResource("WorldBoundaryShape2D_gqff1")

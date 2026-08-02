@@ -3,6 +3,9 @@ class_name Utilties extends RefCounted
 
 
 
+const PAGE_SIZE := Vector2(280,280)
+const PAGE_SPINE := 25
+
 const FIRST_PAGE_TEXT = """[color="black"]I don't want a journal as some "parting gift" I want TO BE [b]HOME[/b][/color]
 [hr color="black" height=4]
 [hr color="black"]

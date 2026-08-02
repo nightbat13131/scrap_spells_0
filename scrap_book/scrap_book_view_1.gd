@@ -31,4 +31,3 @@ func _set_is_open(value: bool) -> void:
 
 func _update_page_view() -> void:
 	spread_view.apply_spread(_last_spread)
-	pass
