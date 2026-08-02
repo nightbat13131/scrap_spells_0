@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://b482cahy713vn"]
+
+[ext_resource type="Script" uid="uid://vqfqd8x1px0m" path="res://scrap_book/spread_view.gd" id="1_khe7u"]
+[ext_resource type="PackedScene" uid="uid://b4scieck1hatj" path="res://scrap_book/page_view.tscn" id="2_do0bi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yjnuq"]
+size = Vector2(576, 275)
+
+[node name="SpreadView" type="Area2D" unique_id=796639388]
+script = ExtResource("1_khe7u")
+
+[node name="Page_Left" parent="." unique_id=1458300418 instance=ExtResource("2_do0bi")]
+unique_name_in_owner = true
+metadata/_edit_lock_ = true
+
+[node name="Page_Right" parent="." unique_id=1110517814 instance=ExtResource("2_do0bi")]
+unique_name_in_owner = true
+metadata/_edit_lock_ = true
+
+[node name="PagesCollision" type="CollisionShape2D" parent="." unique_id=1877770137]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_yjnuq")

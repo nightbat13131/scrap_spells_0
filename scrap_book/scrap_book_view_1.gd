@@ -4,12 +4,8 @@ const TWEEN_DURATION = .5
 
 @onready var sprite_open: Sprite2D = %Open
 @onready var sprite_cover: Sprite2D = %Cover
-@onready var sprite_page_left: Area2D = %Page_Left
-@onready var sprite_page_right: Area2D = %Page_Right
-@onready var page_num_left: Label = %PageNum_Left
-@onready var page_num_right: Label = %PageNum_Right
-@onready var page_text_left: RichTextLabel = %PageText_Left
-@onready var page_text_right: RichTextLabel = %PageText_Right
+@onready var spread_view: SpreadView = %SpreadView
+
 
 
 func _ready() -> void:
@@ -34,17 +30,5 @@ func _set_is_open(value: bool) -> void:
 	_update_page_view()
 
 func _update_page_view() -> void:
-	var page := _model.get_page(_last_left_page)
-	if page == null:
-		sprite_page_left.hide()
-	else:
-		sprite_page_left.show()
-		page_num_left.set_text(str(page.get_page_number()))
-		page_text_left.set_text(page.get_page_text())
-	page = _model.get_page(_last_left_page +1)
-	if page == null:
-		sprite_page_right.hide()
-	else:
-		sprite_page_right.show()
-		page_num_right.set_text(str(page.get_page_number()))
-		page_text_right.set_text(page.get_page_text())
+	spread_view.apply_spread(_last_spread)
+	pass

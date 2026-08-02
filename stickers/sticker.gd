@@ -7,17 +7,18 @@ var _mouse_offset := Vector2.ZERO
 var _last_g_position := Vector2.ZERO
 
 func _ready() -> void:
-	pass
+	set_z_index(50)
 
 func _area_test() -> void:
 	var is_void := true
+	var has_void := false
 	for each in get_overlapping_areas():
 		if each is StickerTray:
 			print("home")
 			is_void = false
 			reparent(each, true)
-		elif each is Page:
-			print("page")
+		elif each is SpreadView:
+			print("spread")
 			is_void = false
 			reparent(each, true)
 	if is_void:

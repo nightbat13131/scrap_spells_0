@@ -4,54 +4,35 @@ signal page_turn
 signal open_book
 signal close_book
 
-var _left_page := 0 : set =_set_left_page, get = get_left_page
-var _is_open := true : set = _set_is_open, get = is_open
 
-var _paper_count := -1
-var _pages: Array[PageModel]
+var _spread_number := 0: set = _set_spread_num
+var _is_open := true : set = _set_is_open, get = is_open
+var _spreads : Array[SpreadModel]
+
 
 func from_save(data: SaveResource0) -> void:
 	if data == null:
 		data = SaveResource0.new()
-	_paper_count = data.get_paper_count()
-	var page_num := 0
-	var page: PageModel
-	while page_num < get_max_page():
-		page_num += 1
-		page = data.get_page_model(page_num)# PageModel.new()
-		_pages.append(page)
-		#page.setup(self, page_num)
-		print(self, page)
-	print(_pages.size())
+	var paper_count := data.get_paper_count()
+	for index in range(paper_count +1 ):
+		_spreads.append(data.get_spread_model(index))
 
-func _set_left_page(page: int) -> void:
+func get_current_spread() -> SpreadModel: return _spreads[_spread_number]
+
+func _set_spread_num(num: int) -> void:
 	if !_is_open:
 		_is_open = true
 		return
-	if page < 0 or page > get_max_page():
+	if num < 0 or num >= _spreads.size():
 		_is_open = false
 		return
-	page += page % 2
-	page = clamp(page, 0, get_max_page())
-	if page != _left_page:
-		_left_page = page
-		print(_left_page)
-		page_turn.emit()
+	_spread_number = num
+	page_turn.emit()
 
 func turn_page(direction: Vector2i) -> void:
-	var do := 2
+	var do := 1
 	if direction == Vector2i.LEFT: do *= -1
-	_left_page += do
-
-func get_left_page() -> int: return _left_page
-
-func get_page(page_num: int) -> PageModel:
-	if page_num <= 0 or page_num > _pages.size():
-		return null
-	page_num -= 1
-	return _pages.get(page_num)
-
-func get_max_page() -> int: return _paper_count *2
+	_spread_number += do
 
 func is_open() -> bool: return _is_open
 
@@ -65,7 +46,7 @@ func _set_is_open(value: bool) -> void:
 	if _is_open:
 		print("_book open")
 		open_book.emit()
-		
+		print(get_current_spread())
 	else:
 		print("_book close")
 		close_book.emit()

@@ -15,3 +15,8 @@ func _to_string() -> String: return str(_page_number)
 func set_page_text(text: String) -> void: _text = text
 
 func get_page_text() -> String: return _text
+
+func get_side() -> Vector2i: 
+	if _page_number%2 == 0:
+		return Vector2i.LEFT
+	return Vector2.RIGHT

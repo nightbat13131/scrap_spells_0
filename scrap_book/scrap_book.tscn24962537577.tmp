@@ -2,8 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bvvi5uq0yiuh0" path="res://scrap_book/scrap_book_controler.gd" id="1_ovkrh"]
 [ext_resource type="Script" uid="uid://28ph827gtwev" path="res://scrap_book/scrap_book_view_1.gd" id="2_yjnuq"]
-[ext_resource type="PackedScene" uid="uid://b482cahy713vn" path="res://scrap_book/spread_view.tscn" id="3_hbeyj"]
+[ext_resource type="Script" uid="uid://vqfqd8x1px0m" path="res://scrap_book/spread_view.gd" id="3_m73lt"]
 [ext_resource type="Texture2D" uid="uid://8pqfocqavayg" path="res://assets/images/book_1.png" id="3_yjnuq"]
+[ext_resource type="PackedScene" uid="uid://b4scieck1hatj" path="res://scrap_book/page_view.tscn" id="4_m73lt"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_m73lt"]
 load_path = "res://.godot/imported/book_1.png-950081322619b4e5e4a1de0f03bcd4d6.ctex"
@@ -28,42 +29,51 @@ _toggle_open = NodePath("../Control/Toggle")
 [node name="Control" type="Control" parent="." unique_id=641258667]
 layout_mode = 3
 anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="Left" type="Button" parent="Control" unique_id=629969341]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = -288.0
-offset_top = 157.0
-offset_right = -270.0
-offset_bottom = 188.0
+offset_left = 112.0
+offset_top = 401.0
+offset_right = 130.0
+offset_bottom = 432.0
 text = "<"
 
 [node name="Right" type="Button" parent="Control" unique_id=114955626]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 279.0
-offset_top = 157.0
-offset_right = 297.0
-offset_bottom = 188.0
+offset_left = 592.0
+offset_top = 397.0
+offset_right = 610.0
+offset_bottom = 428.0
 text = ">"
 
 [node name="Toggle" type="Button" parent="Control" unique_id=734385934]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = -53.0
-offset_top = -186.0
-offset_right = 46.0
-offset_bottom = -155.0
+offset_left = 291.0
+offset_top = 68.0
+offset_right = 390.0
+offset_bottom = 99.0
 text = "toggle open"
 
 [node name="ScrapBookView" type="Node2D" parent="." unique_id=640678702]
+position = Vector2(339, 250)
 script = ExtResource("2_yjnuq")
 
 [node name="Open" type="Sprite2D" parent="ScrapBookView" unique_id=844590060]
 unique_name_in_owner = true
 texture = SubResource("AtlasTexture_66end")
 
-[node name="SpreadView" parent="ScrapBookView/Open" unique_id=796639388 instance=ExtResource("3_hbeyj")]
+[node name="SpreadView" type="Node2D" parent="ScrapBookView/Open" unique_id=859157386]
+script = ExtResource("3_m73lt")
+
+[node name="Page_Left" parent="ScrapBookView/Open/SpreadView" unique_id=1412376800 instance=ExtResource("4_m73lt")]
+unique_name_in_owner = true
+
+[node name="Page_Right" parent="ScrapBookView/Open/SpreadView" unique_id=898617781 instance=ExtResource("4_m73lt")]
 unique_name_in_owner = true
 
 [node name="Cover" type="Sprite2D" parent="ScrapBookView" unique_id=1985565558]

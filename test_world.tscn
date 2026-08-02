@@ -16,7 +16,7 @@ size = Vector2(128, 129)
 [node name="Holder" type="Node2D" unique_id=1284834048]
 
 [node name="ScrapBook" parent="." unique_id=856058266 instance=ExtResource("1_dxppu")]
-position = Vector2(-32, 90)
+position = Vector2(323, 387)
 
 [node name="StickerTray" type="Area2D" parent="." unique_id=1588191614]
 position = Vector2(972, 297)
