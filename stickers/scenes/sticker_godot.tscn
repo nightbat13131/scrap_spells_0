@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dp3yhwlavt14t"]
 
 [ext_resource type="Script" uid="uid://cs78dywijli4t" path="res://stickers/sticker.gd" id="1_78oom"]
+[ext_resource type="Resource" uid="uid://bqym0jocf4716" path="res://stickers/resources/godot_sticker.tres" id="2_13gqs"]
 [ext_resource type="Texture2D" uid="uid://dilw848ljs5ol" path="res://icon.svg" id="2_nehm6"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_1lwx6"]
@@ -11,6 +12,7 @@ size = Vector2(128, 129)
 
 [node name="Sticker" type="Area2D" unique_id=1207061736]
 script = ExtResource("1_78oom")
+_info = ExtResource("2_13gqs")
 metadata/_edit_group_ = true
 
 [node name="SpriteOutline" type="Sprite2D" parent="." unique_id=1626618487]
@@ -22,6 +24,5 @@ texture = ExtResource("2_nehm6")
 
 [node name="StickerCollision" type="CollisionShape2D" parent="." unique_id=135357915]
 unique_name_in_owner = true
-visible = false
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_dsnr4")

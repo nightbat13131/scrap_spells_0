@@ -3,6 +3,7 @@ class_name SpreadView extends Area2D
 @onready var pages_collision: CollisionShape2D = %PagesCollision
 @onready var boundry_right: CollisionShape2D = %Boundry_Right
 @onready var boundry_left: CollisionShape2D = %Boundry_Left
+@onready var area_void: OutsideSpread = %AreaVoid
 
 
 @onready var page_left: Page = %Page_Left
@@ -10,45 +11,79 @@ class_name SpreadView extends Area2D
 
 var _spread: SpreadModel
 
+func _init() -> void:
+	child_entered_tree.connect(_on_child_entered_tree)
+	child_exiting_tree.connect(_on_child_exiting_tree)
+
 func apply_spread(spread: SpreadModel) -> void:
+	_before_spread_change() 
 	_spread = spread
 	_setup_collition_shape()
 	if spread:
 		show()
 		page_left.apply_page(_spread.get_left_page())
 		page_right.apply_page(_spread.get_right_page())
+		for each_child in get_children():
+			if each_child is Sticker:
+				each_child.activate_if_spread(_spread.get_spread_index())
 	else:
 		hide()
+		for each_child in get_children():
+			if each_child is Sticker:
+				each_child.deactivate()
+
+func _before_spread_change() -> void:
+	if !_spread:
+		return
+	var stickers : Array[Sticker]
 	for each_child in get_children():
 		if each_child is Sticker:
-			if each_child.is_fully_on_spread():
-				each_child.activate_if_spread(_spread.get_spread_index())
-			
-				
+			if each_child.match_spread(_spread.get_spread_index()):
+				if each_child.is_fully_on_spread():
+					stickers.append(each_child)
+				else:
+					each_child.spread_rejected()
+	_spread.sync_stickers(stickers)
 
 func try_to_stick(sticker: Sticker) -> void:
-	sticker.add_to_spread(_spread.get_spread_index())
+	sticker.set_spread(_spread.get_spread_index())
 	sticker.reparent(self, true)
 
 func _setup_collition_shape() -> void:
 	pages_collision.set_disabled(_spread == null)
+	for each_child in area_void.get_children():
+		if each_child is CollisionShape2D:
+			each_child.set_disabled(_spread == null)
 	if !_spread:
+		
 		return
 	var has_left := _spread.get_left_page() != null
-	var had_right := _spread.get_right_page() != null
-	if has_left and had_right:
+	var has_right := _spread.get_right_page() != null
+	if has_left and has_right:
 		pages_collision.get_shape().size.x = Utilties.PAGE_SIZE.x * 2
 		pages_collision.position.x = 0
 		boundry_left.position.x = Utilties.PAGE_SIZE.x * -1
 		boundry_right.position.x = Utilties.PAGE_SIZE.x
-	else:
+	elif has_left or has_right:
 		pages_collision.get_shape().size.x = Utilties.PAGE_SIZE.x
 		pages_collision.position.x = Utilties.PAGE_SIZE.x / 2
 		if has_left:
 			pages_collision.position.x *= -1
 			boundry_left.position.x = Utilties.PAGE_SIZE.x * -1
 			boundry_right.position.x = 0
-		else:
+		elif has_right:
 			boundry_left.position.x = 0
 			boundry_right.position.x = Utilties.PAGE_SIZE.x
-	
+
+func _on_sticker_lifted(node: Sticker) -> void:
+	move_child(node, -1)
+
+func _on_child_entered_tree(node: Node) -> void:
+	if node is Sticker:
+		if !node.picked_up.is_connected(_on_sticker_lifted):
+			node.picked_up.connect(_on_sticker_lifted)
+
+func _on_child_exiting_tree(node: Node) -> void:
+	if node is Sticker:
+		if node.picked_up.is_connected(_on_sticker_lifted):
+			node.picked_up.disconnect(_on_sticker_lifted)

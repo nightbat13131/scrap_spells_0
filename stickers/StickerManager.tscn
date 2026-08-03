@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://b83m7l80gy6ni"]
+
+[ext_resource type="Script" uid="uid://coi63igrfdp7r" path="res://stickers/sticker_manager.gd" id="1_btjui"]
+[ext_resource type="Script" uid="uid://dnrisihmmrbgf" path="res://stickers/resources/sticker_model.gd" id="2_muckq"]
+[ext_resource type="Resource" uid="uid://bqym0jocf4716" path="res://stickers/resources/godot_sticker.tres" id="3_q8sfl"]
+
+[node name="StickerManager" type="Node" unique_id=1720783604]
+script = ExtResource("1_btjui")
+sticker_resources = Array[ExtResource("2_muckq")]([ExtResource("3_q8sfl")])

@@ -43,3 +43,5 @@ func get_spread_index() -> int:
 		@warning_ignore("integer_division")
 		return get_left_page().get_page_number()/2
 	return 0
+
+func sync_stickers(list: Array[Sticker]) -> void: _stickeres = list

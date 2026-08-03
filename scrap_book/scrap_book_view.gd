@@ -15,7 +15,12 @@ func set_spell_book_model (info: ScrapBookModel) -> void:
 	_is_open = _model.is_open()
 	_last_spread = _model.get_current_spread()
 
-func _set_is_open(value: bool) -> void: _is_open = value
+func _set_is_open(value: bool) -> void: 
+	_is_open = value
+	if !_is_open:
+		_last_spread = null
+	else:
+		_last_spread = _model.get_current_spread()
 
 func _on_book_open() -> void: 
 	if !_is_open:

@@ -1,38 +1,26 @@
 [gd_scene format=3 uid="uid://c0ripq2vl8b5q"]
 
 [ext_resource type="PackedScene" uid="uid://obwawdcqq777" path="res://scrap_book/scrap_book.tscn" id="1_dxppu"]
-[ext_resource type="Script" uid="uid://cmwecrd28prqk" path="res://sticker_tray.gd" id="2_dsnr4"]
-[ext_resource type="Texture2D" uid="uid://dilw848ljs5ol" path="res://icon.svg" id="2_gy3sr"]
-[ext_resource type="PackedScene" uid="uid://dp3yhwlavt14t" path="res://sticker_godot.tscn" id="4_dsnr4"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1lwx6"]
-size = Vector2(300, 500)
+[ext_resource type="PackedScene" uid="uid://bec25qjnm4apa" path="res://sticker_tray.tscn" id="2_1lwx6"]
+[ext_resource type="PackedScene" uid="uid://dp3yhwlavt14t" path="res://stickers/scenes/sticker_godot.tscn" id="4_dsnr4"]
+[ext_resource type="Script" uid="uid://bfee2hak2offx" path="res://debugs/debug_save_load.gd" id="4_lf0gk"]
 
 [node name="Holder" type="Node2D" unique_id=1284834048]
 
 [node name="ScrapBook" parent="." unique_id=856058266 instance=ExtResource("1_dxppu")]
 position = Vector2(323, 387)
 
-[node name="StickerTray" type="Area2D" parent="." unique_id=1588191614]
+[node name="StickerTray" parent="." unique_id=657403163 instance=ExtResource("2_1lwx6")]
 position = Vector2(972, 297)
-input_pickable = false
-script = ExtResource("2_dsnr4")
-metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="StickerTray" unique_id=1771473522]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(-1, 1.5258789e-05)
-scale = Vector2(2.40625, 3.9687502)
-texture = ExtResource("2_gy3sr")
+[node name="Sticker" parent="StickerTray" unique_id=1207061736 instance=ExtResource("4_dsnr4")]
+position = Vector2(63, -150)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StickerTray" unique_id=1077577443]
-shape = SubResource("RectangleShape2D_1lwx6")
+[node name="Sticker2" parent="StickerTray" unique_id=1638204896 instance=ExtResource("4_dsnr4")]
+position = Vector2(-42, -25)
 
-[node name="Sticker" parent="." unique_id=1207061736 instance=ExtResource("4_dsnr4")]
-position = Vector2(1035, 147)
+[node name="Sticker3" parent="StickerTray" unique_id=41068416 instance=ExtResource("4_dsnr4")]
+position = Vector2(35, 113)
 
-[node name="Sticker2" parent="." unique_id=1638204896 instance=ExtResource("4_dsnr4")]
-position = Vector2(930, 272)
-
-[node name="Sticker3" parent="." unique_id=41068416 instance=ExtResource("4_dsnr4")]
-position = Vector2(1007, 410)
+[node name="DebugSave" type="Node" parent="." unique_id=408546582]
+script = ExtResource("4_lf0gk")

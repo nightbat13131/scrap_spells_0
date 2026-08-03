@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="StickerResource" format=3 uid="uid://bqym0jocf4716"]
+
+[ext_resource type="Script" uid="uid://dnrisihmmrbgf" path="res://stickers/resources/sticker_model.gd" id="1_umb5u"]
+
+[resource]
+script = ExtResource("1_umb5u")
+sticker_ID = -1
+packed_scene_uid = "uid://dp3yhwlavt14t"
+metadata/_custom_type_script = "uid://dnrisihmmrbgf"

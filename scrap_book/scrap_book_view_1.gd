@@ -24,6 +24,11 @@ func _on_page_turn() -> void:
 
 func _set_is_open(value: bool) -> void: 
 	super._set_is_open(value)
+	if _is_open:
+		spread_view.apply_spread(_last_spread)
+		_update_page_view()
+	else:
+		spread_view.apply_spread(null)
 	sprite_open.set_visible(_is_open)
 	sprite_cover.set_visible(!_is_open)
 	_animation_timer = get_tree().create_timer(TWEEN_DURATION)
