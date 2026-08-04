@@ -5,7 +5,6 @@ class_name SpreadView extends Area2D
 @onready var boundry_left: CollisionShape2D = %Boundry_Left
 @onready var area_void: OutsideSpread = %AreaVoid
 
-
 @onready var page_left: Page = %Page_Left
 @onready var page_right: Page = %Page_Right
 
@@ -14,6 +13,9 @@ var _spread: SpreadModel
 func _init() -> void:
 	child_entered_tree.connect(_on_child_entered_tree)
 	child_exiting_tree.connect(_on_child_exiting_tree)
+
+func _ready() -> void:
+	set_collision_layer_value(Utilties.COLLISION_LAYER.STICKER_PAPER, true)
 
 func apply_spread(spread: SpreadModel) -> void:
 	_before_spread_change() 

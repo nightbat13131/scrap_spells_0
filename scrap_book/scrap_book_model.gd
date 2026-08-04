@@ -4,11 +4,9 @@ signal page_turn
 signal open_book
 signal close_book
 
-
 var _spread_number := 0: set = _set_spread_num
 var _is_open := true : set = _set_is_open, get = is_open
 var _spreads : Array[SpreadModel]
-
 
 func from_save(data: SaveResource) -> void:
 	if data == null:

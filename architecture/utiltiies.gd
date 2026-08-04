@@ -7,6 +7,9 @@ static var StickerUID : Dictionary[StickerID, String ] = {
 		StickerID.GODOT : "uid://dp3yhwlavt14t", 
 	}
 
+enum COLLISION_LAYER { STICKER = 5, STICKER_PAPER = 6}
+
+
 const PAGE_SIZE := Vector2(280,280)
 const PAGE_SPINE := 25
 

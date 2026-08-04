@@ -4,6 +4,15 @@
 [ext_resource type="PackedScene" uid="uid://bec25qjnm4apa" path="res://sticker_tray.tscn" id="2_1lwx6"]
 [ext_resource type="PackedScene" uid="uid://dp3yhwlavt14t" path="res://stickers/scenes/sticker_godot.tscn" id="4_dsnr4"]
 [ext_resource type="Script" uid="uid://bfee2hak2offx" path="res://debugs/debug_save_load.gd" id="4_lf0gk"]
+[ext_resource type="Script" uid="uid://bwsecoun8nkod" path="res://mouse_sticker_manager.gd" id="5_lf0gk"]
+[ext_resource type="Resource" uid="uid://btwynxqbkmr87" path="res://architecture/guide/sticker_mover.tres" id="6_4tg7h"]
+[ext_resource type="Resource" uid="uid://csjc3wn7ljh4j" path="res://architecture/guide/select_sticker.tres" id="7_ud3vi"]
+[ext_resource type="Resource" uid="uid://d3go1ue010rcl" path="res://architecture/guide/release_sticker.tres" id="8_5457m"]
+[ext_resource type="Resource" uid="uid://t0d0qvadrqhl" path="res://architecture/guide/rotate_sticker.tres" id="9_ivea3"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_lf0gk"]
+a = Vector2(1, 1)
+b = Vector2(-1, -1)
 
 [node name="Holder" type="Node2D" unique_id=1284834048]
 
@@ -24,3 +33,23 @@ position = Vector2(35, 113)
 
 [node name="DebugSave" type="Node" parent="." unique_id=408546582]
 script = ExtResource("4_lf0gk")
+
+[node name="MouseStickerManager" type="Node2D" parent="." unique_id=1663120959]
+position = Vector2(677, 373)
+script = ExtResource("5_lf0gk")
+_guide_context = ExtResource("6_4tg7h")
+_action_grab = ExtResource("7_ud3vi")
+_action_release = ExtResource("8_5457m")
+_action_rotate = ExtResource("9_ivea3")
+metadata/_edit_group_ = true
+
+[node name="StickerFinder" type="Area2D" parent="MouseStickerManager" unique_id=1410452338]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseStickerManager/StickerFinder" unique_id=2063092431]
+shape = SubResource("SegmentShape2D_lf0gk")
+
+[connection signal="area_entered" from="MouseStickerManager/StickerFinder" to="MouseStickerManager" method="_on_sticker_finder_area_entered"]
+[connection signal="area_exited" from="MouseStickerManager/StickerFinder" to="MouseStickerManager" method="_on_sticker_finder_area_exited"]
