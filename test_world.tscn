@@ -34,6 +34,14 @@ position = Vector2(35, 113)
 [node name="DebugSave" type="Node" parent="." unique_id=408546582]
 script = ExtResource("4_lf0gk")
 
+[node name="Debug2" type="Button" parent="DebugSave" unique_id=1182324966]
+unique_name_in_owner = true
+offset_left = 85.0
+offset_top = 47.0
+offset_right = 153.0
+offset_bottom = 78.0
+text = "Debug2"
+
 [node name="MouseStickerManager" type="Node2D" parent="." unique_id=1663120959]
 position = Vector2(677, 373)
 script = ExtResource("5_lf0gk")

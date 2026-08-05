@@ -26,3 +26,8 @@ func get_dict() -> Dictionary:
 func set_saved_values(pos: Vector2, rotation: float) -> void:
 	_local_position = pos
 	_local_rotation = rotation
+
+func get_sticker(load_with_save_values := true) -> Sticker:
+	_object = StickerManager_AL.request_sticker(sticker_ID)
+	_object.set_info(self, load_with_save_values)
+	return _object

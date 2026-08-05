@@ -23,6 +23,24 @@ static func return_to_tray(sticker: Sticker) -> bool:
 		return _instance._return_home(sticker)
 	return false
 
+static func request_save(data: SaveResource) -> void:
+	if _instance:
+		_instance._on_save(data)
+
+func _on_save(data: SaveResource) -> void:
+	var stickers : Array[StickerResource] = []
+	var sticker_info : StickerResource
+	for each_child in get_children():
+		if each_child is Sticker:
+			sticker_info = each_child.get_info()
+			if sticker_info:
+				stickers.append(sticker_info)
+	data.set_sticker_tray_stickers(stickers)
+
+static func request_load(data: SaveResource) -> void:
+	if _instance:
+		_instance.from_save(data)
+
 func _return_home(sticker: Sticker) -> bool:
 	if sticker:
 		if sticker.is_visible_in_tree():
@@ -54,8 +72,7 @@ func from_save(data: SaveResource) -> void:
 	for each_new in data.get_tray_stickers():
 		add_child( each_new)
 
-func _on_sticker_lifted(node: Sticker) -> void:
-	move_child(node, -1)
+func _on_sticker_lifted(node: Sticker) -> void: move_child(node, -1)
 
 func _on_child_entered_tree(node: Node) -> void:
 	if node is Sticker:

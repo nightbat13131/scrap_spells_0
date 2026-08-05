@@ -16,10 +16,6 @@ var _spread_num := -1
 
 func _ready() -> void:
 	set_z_index(50)
-	#input_event.connect(_on_input_event)
-	#mouse_entered.connect(_on_mouse_entered)
-	#mouse_exited.connect(_on_mouse_exited)
-	#set_collision_layer( ( 1 << Utilties.COLLISION_BIT.STICKER as int ) )
 	set_collision_layer_value(Utilties.COLLISION_LAYER.STICKER, true)
 	set_collision_mask_value(Utilties.COLLISION_LAYER.STICKER_PAPER, true)
 
@@ -112,21 +108,3 @@ func _set_get_dragged(value: bool) -> void:
 func try_rotation(direction: float) -> void:
 	rotation += (direction * TAU / 8.0)
 	rotation = snappedf(rotation, TAU / 8.0)
-	
-
-
-
-#func _process(_delta: float) -> void:
-	#if _is_get_dragged:
-		#global_position = get_global_mouse_position() + _mouse_offset
-#
-##func _on_mouse_entered() -> void: sprite_outline.scale = Vector2(1.1, 1.1)
-#
-##func _on_mouse_exited() -> void: sprite_outline.scale = Vector2(1, 1)
-#
-#func _unhandled_input(event: InputEvent) -> void:
-	#if event is InputEventMouseButton:
-		#if _is_get_dragged:
-			#if !event.is_pressed():
-				#_is_get_dragged = false
-				#get_viewport().set_input_as_handled()

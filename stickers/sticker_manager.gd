@@ -16,11 +16,3 @@ func request_sticker(stickerid: Utilties.StickerID) -> Sticker:
 		if packed_scene.can_instantiate():
 			return packed_scene.instantiate()
 	return null
-
-#func get_sticker() -> Sticker:
-	#var packed_scene: PackedScene = load(packed_scene_uid)
-	#if packed_scene:
-		#if packed_scene.can_instantiate():
-			#_object = packed_scene.instantiate()
-			#return _object
-	#return null
