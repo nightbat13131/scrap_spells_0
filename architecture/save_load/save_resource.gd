@@ -3,7 +3,7 @@ class_name SaveResource extends Resource
 const NULL = &"null"
 
 const SAVE_VERSION = &"save_version"
-const SAVE_SLOT = &"save_slot"
+#const SAVE_SLOT = &"save_slot"
 #const SECTION_SETTINGS = &"settings_section"
 #const SECTION_GAME = &"game_section"
 const 	STICKER_TRAY = &"sticker_tray"
@@ -18,12 +18,25 @@ const STICKER_ID = &"sticker_id"
 const LOCAL_POSITION = &"local_position_x"
 const LOCAL_ROTATION = &"local_rotation"
 
-
-var _active_save_slot := 1
+#var _active_save_slot := 1
 
 var _loaded_json : Dictionary
 
+static var _instance : SaveResource
+
+func _init() -> void: 
+	if _instance:
+		push_warning("SaveResource already exists")
+	_instance = self
+
+static func get_save() -> SaveResource:
+	if _instance:
+		return _instance
+	return SaveResource.new()
+
 func save_game_state() -> SaveResource: return self
+
+
 
 # called by file manager to populate resource 
 func set_loaded_string(string: String) -> void: 

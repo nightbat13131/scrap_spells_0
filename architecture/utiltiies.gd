@@ -1,10 +1,13 @@
 class_name Utilties extends RefCounted
 ## Banished to a wizard's tower with no one to save me but myself
 
-enum StickerID {NA = 0,  GODOT = -1 }
+enum StickerID {NA = 0,  GODOT = -1 , 
+	TAPE_0 = 1, 
+}
 
 static var StickerUID : Dictionary[StickerID, String ] = {
 		StickerID.GODOT : "uid://dp3yhwlavt14t", 
+		StickerID.TAPE_0: "uid://m6tw46tv8s1i"
 	}
 
 enum COLLISION_LAYER { STICKER = 5, STICKER_PAPER = 6}

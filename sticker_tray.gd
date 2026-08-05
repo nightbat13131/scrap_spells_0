@@ -13,7 +13,6 @@ func _ready() -> void:
 	_return_home( StickerManager_AL.request_sticker(Utilties.StickerID.GODOT))
 	set_collision_layer_value(Utilties.COLLISION_LAYER.STICKER_PAPER, true)
 	#set_collision_mask_value(Utilties.COLLISION_LAYER.STICKER_PAPER, true)
-	
 	%Button.pressed.connect(from_save.bind(null)) ## Debug 
 
 static func get_instance() -> StickerTray: return _instance

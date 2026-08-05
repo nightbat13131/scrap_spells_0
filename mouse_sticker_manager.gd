@@ -33,6 +33,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	set_global_position(get_global_mouse_position())
+	
 	#prints(sticker_finder.get_overlapping_areas(), _overlapping_stickers, _held_sticker, _sticker_offset)
 	if _held_sticker:
 		_held_sticker.set_global_position(get_global_mouse_position() + _sticker_offset)
@@ -40,12 +41,26 @@ func _process(_delta: float) -> void:
 func _on_sticker_finder_area_entered(area: Area2D) -> void:
 	if area is Sticker:
 		if !_overlapping_stickers.has(area):
-			_overlapping_stickers.append(area)
+			var index := 0
+			if _is_dragging() and _overlapping_stickers.size() >= 1:
+				index = 1
+			_overlapping_stickers.insert(index, area)
+		_overlapping_stickeres_updated()
 
 func _on_sticker_finder_area_exited(area: Area2D) -> void:
 	if area is Sticker:
+		area.set_mouse_focus(false)
 		while _overlapping_stickers.has(area):
 			_overlapping_stickers.erase(area)
+		_overlapping_stickeres_updated()
+
+func _overlapping_stickeres_updated() -> void:
+	var index := 0
+	for each in _overlapping_stickers:
+		each.set_mouse_focus(index == 0)
+		index += 1
+
+func _is_dragging() -> bool: return _held_sticker != null
 
 func _on_action_grab() -> void:
 	if !_overlapping_stickers.is_empty():
@@ -64,5 +79,4 @@ func _on_action_release() -> void:
 
 func _on_action_rotate() -> void:
 	if _held_sticker:
-		#print(_action_rotate.value_axis_1d)
 		_held_sticker.try_rotation(_action_rotate.value_axis_1d)

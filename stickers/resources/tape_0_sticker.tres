@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="StickerResource" format=3 uid="uid://d0vo50hp2tv2o"]
+
+[ext_resource type="Script" uid="uid://dnrisihmmrbgf" path="res://stickers/resources/sticker_model.gd" id="1_qvtdb"]
+
+[resource]
+script = ExtResource("1_qvtdb")
+sticker_ID = 1
+metadata/_custom_type_script = "uid://dnrisihmmrbgf"
