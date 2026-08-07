@@ -45,7 +45,8 @@ func _before_spread_change() -> void:
 					stickers.append(each_child)
 				else:
 					each_child.spread_rejected()
-	_spread.sync_stickers(stickers)
+	_spread.set_stickers(stickers)
+	
 
 func try_to_stick(sticker: Sticker) -> void:
 	sticker.set_spread(_spread.get_spread_index())

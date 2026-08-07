@@ -24,7 +24,7 @@ position = Vector2(323, 387)
 position = Vector2(972, 297)
 
 [node name="Sticker" parent="StickerTray" unique_id=1207061736 instance=ExtResource("4_dsnr4")]
-position = Vector2(63, -150)
+position = Vector2(64, -137)
 
 [node name="Sticker2" parent="StickerTray" unique_id=249778916 instance=ExtResource("4_ud3vi")]
 position = Vector2(-77, -38)

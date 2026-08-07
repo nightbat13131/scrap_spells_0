@@ -1,4 +1,4 @@
-class_name SaveResource extends Resource
+@abstract class_name SaveResource extends Resource
 
 const NULL = &"null"
 
@@ -10,7 +10,8 @@ const 	STICKER_TRAY = &"sticker_tray"
 			#STICKERS
 const SCRAPBOOK = &"scrapbook"
 const 	SCRAPBOOK_SPREADS = &"book_spreads"
-const 	SCRAPBOOK_PAGES = &"book_pages"
+const 		SCRAPBOOK_PAGE_LEFT = &"spread_page_left"
+const 		SCRAPBOOK_PAGE_RIGHT = &"spread_page_right"
 			#STICKERS
 
 const STICKERS = &"stickers"
@@ -32,15 +33,12 @@ func _init() -> void:
 static func get_save() -> SaveResource:
 	if _instance:
 		return _instance
-	return SaveResource.new()
+	return SaveResource0.new()
 
-func save_game_state() -> SaveResource: return self
-
-
+@abstract func update_save_game_state() -> SaveResource
 
 # called by file manager to populate resource 
 func set_loaded_string(string: String) -> void: 
-	#_loaded_string = string
 	if string:
 		_loaded_json = JSON.parse_string(string)
 	else:
@@ -48,15 +46,34 @@ func set_loaded_string(string: String) -> void:
 
 func get_save_string() -> String: return JSON.stringify(_loaded_json)
 
-func get_tray_stickers() -> Array[Sticker]: return []
+@abstract func _stickers_from_list_sticker_dicts(list: Array[Dictionary]) -> Array[Sticker]
 
-func set_tray_stickers(_info: Array[StickerResource]) -> void: pass
+#region StickerTray
 
-func get_spread_model(_spread_index: int) -> SpreadModel: return null
+@abstract func get_tray_stickers() -> Array[Sticker]
 
-func get_paper_count() -> int: return 3
+@abstract func set_sticker_tray_stickers(_info: Array[StickerResource]) -> void
 
-func _get_page_model(_page_number: int) -> PageModel: return null
+func _get_spread_count() -> int: return 5  #front, back, 3 full
+
+
+
+#endregion
+
+#region Scrapbook
+
+@abstract func get_scrapbook_model() -> ScrapBookModel
+
+@abstract func _get_spread_model(_spread_index: int) -> SpreadModel
+
+@abstract func _get_page_model(page_number: int) -> PageModel
+
+@abstract func set_scrapbook_spread(spread_index : int, spread_model) -> void
+
+#endregion
+
+
+
 
 
 

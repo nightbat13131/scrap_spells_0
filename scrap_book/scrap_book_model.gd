@@ -8,14 +8,25 @@ var _spread_number := 0: set = _set_spread_num
 var _is_open := true : set = _set_is_open, get = is_open
 var _spreads : Array[SpreadModel]
 
-func from_save(data: SaveResource) -> void:
-	if data == null:
-		data = SaveResource0.new()
-	var paper_count := data.get_paper_count()
-	for index in range(paper_count +1 ):
-		_spreads.append(data.get_spread_model(index))
+static var _instance : ScrapBookModel
 
-func get_current_spread() -> SpreadModel: return _spreads[_spread_number]
+func _init() -> void:
+	if _instance:
+		push_warning("ScrapBookModel instance already set to ", _instance)
+	_instance = self
+	#set_spreads(SaveResource.get_save().get_s)
+
+
+static func get_model() -> ScrapBookModel:
+	if _instance == null:
+		#_instance = SaveResource.get_save()
+		ScrapBookModel.new()
+	return _instance
+
+func get_current_spread() -> SpreadModel: 
+	if _spreads.size() > _spread_number:
+		return _spreads[_spread_number]
+	return null
 
 func _set_spread_num(num: int) -> void:
 	if !_is_open:
@@ -48,3 +59,17 @@ func _set_is_open(value: bool) -> void:
 	else:
 		print("_book close")
 		close_book.emit()
+
+#region Save pushing in
+
+func set_spreads(list: Array[SpreadModel]) -> void:
+	_spreads = list
+
+#func _from_save(data: SaveResource) -> void:
+	#if data == null:
+		#data = SaveResource.get_save()
+	#var paper_count := data.get_paper_count()
+	#for index in range(paper_count +1 ):
+		#_spreads.append(data.get_spread_model(index))
+
+#endregion

@@ -2,16 +2,13 @@ class_name SpreadModel  extends Resource
 
 var _left_page : PageModel
 var _right_page : PageModel
-var _stickeres: Array[Sticker]
-
-func set_pages(left: PageModel, right: PageModel) -> void:
-	_left_page = left
-	_right_page = right
+var _stickeres: Array[StickerResource]
 
 func get_left_page() -> PageModel: return _left_page
 
 func get_right_page() -> PageModel : return _right_page
 
+## used for checking direction of page turn
 func get_page_sum() -> int:
 	var num := 0
 	if _left_page:
@@ -36,7 +33,15 @@ func _to_string() -> String:
 	out += "]"
 	return out
 
-func get_stickers() -> Array[Sticker]: return _stickeres
+func get_stickers() -> Array[Sticker]: 
+	var out : Array[Sticker]
+	var holder: Sticker
+	for each in _stickeres:
+		if each:
+			holder = each.get_sticker(true)
+			if holder:
+				out.append(holder)
+	return out
 
 func get_spread_index() -> int:
 	if get_left_page():
@@ -44,4 +49,36 @@ func get_spread_index() -> int:
 		return get_left_page().get_page_number()/2
 	return 0
 
-func sync_stickers(list: Array[Sticker]) -> void: _stickeres = list
+# used by save and view/controler
+func set_stickers(list: Array[Sticker]) -> void: 
+	_stickeres = []
+	for each in list:
+		if each:
+			_stickeres.append(each.get_info())
+
+#region save/load
+
+func set_pages(left: PageModel, right: PageModel) -> void:
+	_left_page = left
+	_right_page = right
+
+func _update_save() -> void:
+	var data := SaveResource.get_save()
+	var _spread_index := 0
+	if get_right_page():
+		_spread_index = (get_right_page().get_page_number()*2)-2
+	data.set_scrapbook_spread(_spread_index, self)
+
+
+func to_save_dict() -> Dictionary:
+	var out : Dictionary
+	out[SaveResource.STICKERS] = []
+	var list : Array[Dictionary]
+	list = out.get(SaveResource.STICKERS)
+		
+	for each in _stickeres:
+		if each:
+			list.append(each.get_dict())
+	return out
+
+#endregion

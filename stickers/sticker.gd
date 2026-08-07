@@ -79,6 +79,9 @@ func try_pickup() -> Sticker:  ## allows some stickers to be locked in place or 
 func release_pickup() -> void: 
 	_is_get_dragged = false
 	_update_status_color()
+	for area in get_overlapping_areas():
+		if area is SpreadView:
+			area.try_to_stick(self)
 
 func _set_get_dragged(value: bool) -> void:
 	if value == _is_get_dragged: 

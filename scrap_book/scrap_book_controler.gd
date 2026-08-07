@@ -1,6 +1,5 @@
 class_name ScrapBookControler extends Node
 
-
 var _model: ScrapBookModel
 @export var _view : ScrapBookView
 @export_category("Controls")
@@ -9,8 +8,7 @@ var _model: ScrapBookModel
 @export var _toggle_open: Button
 
 func _ready() -> void:
-	_model = ScrapBookModel.new()
-	_model.from_save.bind(null).call_deferred()
+	_model = SaveResource.get_save().get_scrapbook_model() # ScrapBookModel.get_model()
 	if _view:
 		_view.set_spell_book_model.call_deferred(_model)
 	connect_buttons()

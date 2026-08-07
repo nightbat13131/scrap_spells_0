@@ -22,10 +22,18 @@ texture = ExtResource("2_iutta")
 unique_name_in_owner = true
 shape = SubResource("RectangleShape2D_1lwx6")
 
-[node name="Button" type="Button" parent="." unique_id=1067702089]
+[node name="CloseButton" type="Button" parent="." unique_id=1067702089]
 unique_name_in_owner = true
-offset_left = -222.0
-offset_top = -58.0
-offset_right = -165.0
-offset_bottom = -27.0
-text = "debug"
+offset_left = -30.0
+offset_top = 276.0
+offset_right = 27.0
+offset_bottom = 307.0
+text = "Close Sticker Tray"
+
+[node name="Button" type="Button" parent="." unique_id=1738573521]
+unique_name_in_owner = true
+offset_left = -376.0
+offset_top = -107.0
+offset_right = -291.0
+offset_bottom = -76.0
+text = "from save"
