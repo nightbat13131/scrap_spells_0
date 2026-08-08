@@ -25,9 +25,21 @@ func apply_spread(spread: SpreadModel) -> void:
 		show()
 		page_left.apply_page(_spread.get_left_page())
 		page_right.apply_page(_spread.get_right_page())
+		var needed_stickers := spread.get_stickers().duplicate()
 		for each_child in get_children():
+			## useful when turning pages
 			if each_child is Sticker:
-				each_child.activate_if_spread(_spread.get_spread_index())
+				if needed_stickers.has(each_child):
+					needed_stickers.erase(each_child)
+					each_child.activate()
+				else:
+					each_child.deactivate()
+		if !needed_stickers.is_empty():
+			for each_sticker: Sticker in needed_stickers:
+				## useful when loading from save file first time
+				add_child(each_sticker)
+				each_sticker.set_spread(_spread.get_spread_index())
+				each_sticker.activate()
 	else:
 		hide()
 		for each_child in get_children():
@@ -46,7 +58,6 @@ func _before_spread_change() -> void:
 				else:
 					each_child.spread_rejected()
 	_spread.set_stickers(stickers)
-	
 
 func try_to_stick(sticker: Sticker) -> void:
 	sticker.set_spread(_spread.get_spread_index())

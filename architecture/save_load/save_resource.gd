@@ -62,13 +62,15 @@ func _get_spread_count() -> int: return 5  #front, back, 3 full
 
 #region Scrapbook
 
+@abstract func set_scrapbook_model(scrapbook: ScrapBookModel) -> void
+
 @abstract func get_scrapbook_model() -> ScrapBookModel
 
 @abstract func _get_spread_model(_spread_index: int) -> SpreadModel
 
 @abstract func _get_page_model(page_number: int) -> PageModel
 
-@abstract func set_scrapbook_spread(spread_index : int, spread_model) -> void
+#@abstract func set_scrapbook_spread(spread_index : int, spread_model) -> void
 
 #endregion
 

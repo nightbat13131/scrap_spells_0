@@ -62,19 +62,16 @@ func set_pages(left: PageModel, right: PageModel) -> void:
 	_left_page = left
 	_right_page = right
 
-func _update_save() -> void:
-	var data := SaveResource.get_save()
-	var _spread_index := 0
-	if get_right_page():
-		_spread_index = (get_right_page().get_page_number()*2)-2
-	data.set_scrapbook_spread(_spread_index, self)
-
+#func _update_save() -> void:
+	#var data := SaveResource.get_save()
+	#data.set_scrapbook_spread(get_spread_index(), self)
 
 func to_save_dict() -> Dictionary:
 	var out : Dictionary
 	out[SaveResource.STICKERS] = []
 	var list : Array[Dictionary]
-	list = out.get(SaveResource.STICKERS)
+	for each in out.get(SaveResource.STICKERS):
+		list.append(each)
 		
 	for each in _stickeres:
 		if each:

@@ -12,6 +12,7 @@ func _ready() -> void:
 	if _view:
 		_view.set_spell_book_model.call_deferred(_model)
 	connect_buttons()
+	%SaveDebug.pressed.connect(request_save)
 
 func _input_blocked() -> bool:
 	if _model:
@@ -40,3 +41,7 @@ func _on_toggle_open() -> void:
 		_model.request_close()
 	else:
 		_model.request_open()
+
+func request_save() -> void:
+	var data := SaveResource.get_save()
+	data.set_scrapbook_model(_model)

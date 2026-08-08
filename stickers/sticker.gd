@@ -12,7 +12,7 @@ var _last_tray_position := Vector2.ZERO
 var _is_mouse_focus := false : set = set_mouse_focus
 var _spread_num := -1 
 
-@export var _info : StickerResource
+@export var _info : StickerResource: get = get_info
 
 func _ready() -> void:
 	set_z_index(50)
@@ -20,8 +20,11 @@ func _ready() -> void:
 	set_collision_mask_value(Utilties.COLLISION_LAYER.STICKER_PAPER, true)
 	await get_tree().process_frame
 	_update_status_color()
+	if !_info.match_object(self):
+		_info = _info.duplicate()
+		_info.set_object(self)
 
-func set_info(info: StickerResource, use_values) -> void: 
+func set_info(info: StickerResource, use_values: bool = false) -> void: 
 	_info = info
 	if use_values:
 		position = _info._local_position
@@ -29,7 +32,7 @@ func set_info(info: StickerResource, use_values) -> void:
 
 func get_info() -> StickerResource: return _info
 
-func _activate() -> void:
+func activate() -> void:
 	show()
 	sticker_collision.set_disabled(false)
 
@@ -40,12 +43,6 @@ func deactivate() -> void:
 func set_spread(num: int) -> void: _spread_num = num
 
 func match_spread(spraed: int) -> bool: return spraed == _spread_num
-
-func activate_if_spread(spread: int) -> void:
-	if match_spread(spread):
-		_activate()
-	else:
-		deactivate()
 
 func spread_rejected() -> void:
 	_spread_num = -1
@@ -69,8 +66,6 @@ func set_mouse_focus(is_focused: bool) -> void:
 	else:
 		sprite_outline.set_scale(Vector2.ONE)
 
-
-
 func try_pickup() -> Sticker:  ## allows some stickers to be locked in place or have other rules
 	_is_get_dragged = true
 	_last_g_position = global_position
@@ -82,6 +77,8 @@ func release_pickup() -> void:
 	for area in get_overlapping_areas():
 		if area is SpreadView:
 			area.try_to_stick(self)
+		elif area is StickerTray:
+			area.return_to_tray(self, false)
 
 func _set_get_dragged(value: bool) -> void:
 	if value == _is_get_dragged: 

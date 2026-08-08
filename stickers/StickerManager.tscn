@@ -4,7 +4,8 @@
 [ext_resource type="Script" uid="uid://dnrisihmmrbgf" path="res://stickers/resources/sticker_model.gd" id="2_muckq"]
 [ext_resource type="Resource" uid="uid://bqym0jocf4716" path="res://stickers/resources/godot_sticker.tres" id="3_q8sfl"]
 [ext_resource type="Resource" uid="uid://d0vo50hp2tv2o" path="res://stickers/resources/tape_0_sticker.tres" id="4_q8sfl"]
+[ext_resource type="Resource" uid="uid://byppgfl6iy787" path="res://stickers/resources/key_sticker.tres" id="5_mlwh0"]
 
 [node name="StickerManager" type="Node" unique_id=1720783604]
 script = ExtResource("1_btjui")
-sticker_resources = Array[ExtResource("2_muckq")]([ExtResource("3_q8sfl"), ExtResource("4_q8sfl")])
+sticker_resources = Array[ExtResource("2_muckq")]([ExtResource("3_q8sfl"), ExtResource("4_q8sfl"), ExtResource("5_mlwh0")])

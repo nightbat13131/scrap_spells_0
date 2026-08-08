@@ -14,14 +14,15 @@ func _init() -> void:
 	if _instance:
 		push_warning("ScrapBookModel instance already set to ", _instance)
 	_instance = self
-	#set_spreads(SaveResource.get_save().get_s)
 
-
+## Currently being created in the SaveResource
 static func get_model() -> ScrapBookModel:
 	if _instance == null:
 		#_instance = SaveResource.get_save()
 		ScrapBookModel.new()
 	return _instance
+
+func get_spreads() -> Array[SpreadModel]: return _spreads
 
 func get_current_spread() -> SpreadModel: 
 	if _spreads.size() > _spread_number:
@@ -64,6 +65,7 @@ func _set_is_open(value: bool) -> void:
 
 func set_spreads(list: Array[SpreadModel]) -> void:
 	_spreads = list
+
 
 #func _from_save(data: SaveResource) -> void:
 	#if data == null:

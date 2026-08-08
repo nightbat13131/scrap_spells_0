@@ -68,6 +68,14 @@ unique_name_in_owner = true
 
 [node name="Cover" type="Sprite2D" parent="ScrapBookView" unique_id=1985565558]
 unique_name_in_owner = true
-visible = false
 position = Vector2(-1, 21)
 texture = SubResource("AtlasTexture_hbeyj")
+
+[node name="SaveDebug" type="Button" parent="." unique_id=1660664740]
+unique_name_in_owner = true
+offset_left = -35.0
+offset_top = 182.0
+offset_right = 54.0
+offset_bottom = 213.0
+text = "save_book
+"

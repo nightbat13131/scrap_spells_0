@@ -28,6 +28,17 @@ func set_saved_values(pos: Vector2, rotation: float) -> void:
 	_local_rotation = rotation
 
 func get_sticker(load_with_save_values := true) -> Sticker:
-	_object = StickerManager_AL.request_sticker(sticker_ID)
-	_object.set_info(self, load_with_save_values)
+	if _object == null:
+		_object = StickerManager_AL.request_sticker(sticker_ID)
+		_object.set_info(self, load_with_save_values)
 	return _object
+
+func match_object(sticker: Sticker) -> bool: return _object == sticker
+
+func set_object(sticker: Sticker) -> void:
+	if _object == sticker:
+		print("STicker already set matching")
+	elif _object != null:
+		print("STicker already something else")
+	else:
+		_object = sticker

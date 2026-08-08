@@ -19,18 +19,22 @@ func _ready() -> void:
 
 static func get_instance() -> StickerTray: return _instance
 
-static func return_to_tray(sticker: Sticker) -> bool:
+static func return_to_tray(sticker: Sticker, use_random_pos := true) -> bool:
 	if _instance:
-		return _instance._return_home(sticker)
+		return _instance._return_home(sticker, use_random_pos)
 	return false
 
-func _return_home(sticker: Sticker) -> bool:
+func _return_home(sticker: Sticker, use_random_pos := true) -> bool:
 	if sticker:
 		if sticker.is_visible_in_tree():
-			sticker.reparent(self, false)
+			if sticker.get_parent() == self:
+				return true
+			sticker.reparent(self)
 		else:
 			add_child(sticker)
-		sticker.position = ( Vector2( randf(), randf()  ) * collision_shape_2d.get_shape().size )  - ( collision_shape_2d.get_shape().size * .5 )
+		if use_random_pos:
+			sticker.position = ( Vector2( randf(), randf()  ) * collision_shape_2d.get_shape().size )  - ( collision_shape_2d.get_shape().size * .5 )
+			sticker.rotation = randf_range(0, TAU)
 		return true
 	return false
 

@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://cdwq4dms4b3nm"]
+
+[ext_resource type="PackedScene" uid="uid://dp3yhwlavt14t" path="res://stickers/scenes/sticker_godot.tscn" id="1_ng2y2"]
+[ext_resource type="Resource" uid="uid://byppgfl6iy787" path="res://stickers/resources/key_sticker.tres" id="2_vv8ts"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vv8ts"]
+load_path = "res://.godot/imported/stickers_1.png-27afab8a431312bcc0303f3c6af39871.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ng2y2"]
+atlas = SubResource("CompressedTexture2D_vv8ts")
+region = Rect2(20, 0, 20, 45)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_g1bxb"]
+load_path = "res://.godot/imported/stickers_1.png-27afab8a431312bcc0303f3c6af39871.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m0k4m"]
+atlas = SubResource("CompressedTexture2D_g1bxb")
+region = Rect2(-2, 271, 185, 327)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dbuik"]
+size = Vector2(145, 315)
+
+[node name="Sticker" unique_id=1207061736 instance=ExtResource("1_ng2y2")]
+_info = ExtResource("2_vv8ts")
+
+[node name="SpriteOutline" parent="." index="0" unique_id=1626618487]
+texture = SubResource("AtlasTexture_ng2y2")
+
+[node name="SpriteSticker" parent="." index="1" unique_id=853671408]
+texture = SubResource("AtlasTexture_m0k4m")
+
+[node name="StickerCollision" parent="." index="2" unique_id=135357915]
+position = Vector2(-13, -7)
+rotation = 0.27435026
+shape = SubResource("RectangleShape2D_dbuik")

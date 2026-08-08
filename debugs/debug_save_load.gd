@@ -20,6 +20,5 @@ func _on_debug_2() -> void:
 func _on_debug_3() -> void:
 	if !a:
 		a = SaveResource.get_save()
-	a.save_game_state()
+	a.update_save_game_state()
 	FileManager.save_to_file(a)
-	
