@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_umb5u")
 sticker_ID = -1
-packed_scene_uid = "uid://dp3yhwlavt14t"
+socket_v_gem = 1
 metadata/_custom_type_script = "uid://dnrisihmmrbgf"

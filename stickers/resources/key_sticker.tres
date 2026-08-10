@@ -5,4 +5,5 @@
 [resource]
 script = ExtResource("1_5gcs3")
 sticker_ID = 10
+socket_v_gem = -1
 metadata/_custom_type_script = "uid://dnrisihmmrbgf"

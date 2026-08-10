@@ -1,6 +1,7 @@
 class_name StickerResource extends Resource
 
 @export var sticker_ID : Utilties.StickerID
+@export var socket_v_gem := Utilties.Socket_Gem.NA
 
 #Save: remember position
 var _local_position : Vector2
