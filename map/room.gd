@@ -1,13 +1,12 @@
 class_name Room extends Node2D
 
-@export var first_view : RoomView
+@export var first_view : RoomViewInfo
 
-var _current_view : RoomView
-var _previous_view : RoomView
+@export var camera : Camera2D
 
+var _current_view : RoomViewInfo
+var _previous_view : RoomViewInfo
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	assert(first_view)
 	request_view(first_view)
@@ -18,15 +17,18 @@ func _setup_children() -> void:
 		if each_child is RoomView:
 			each_child.set_room(self)
 
-func request_view(node: RoomView) -> void:
-	if node == null or _current_view == node:
+func request_view(next_info: RoomViewInfo) -> void:
+	if next_info == null or next_info == _current_view:
+		return # no change
+	var node := next_info.get_roomview()
+	if node == null:
 		return 
 	for each_child in get_children():
 		if each_child is RoomView:
 			if each_child == node:
-				each_child.activat()
+				each_child.activat(camera, _current_view)
 				_previous_view = _current_view
-				_current_view = each_child
+				_current_view = next_info
 			else:
 				each_child.deactivat()
 

@@ -1,16 +1,15 @@
 [gd_scene format=3 uid="uid://c4sydpq1j6r8n"]
 
 [ext_resource type="Script" uid="uid://cecbrucoj1ntw" path="res://map/room.gd" id="1_ddfdk"]
+[ext_resource type="Resource" uid="uid://cu0kh0c3176qe" path="res://map/room0_walln.tres" id="2_1kdkj"]
 [ext_resource type="Script" uid="uid://dfdpqpb1ajc7m" path="res://map/room_view.gd" id="2_mtvp2"]
 [ext_resource type="Script" uid="uid://uiu7pfxoff56" path="res://map/view_change.gd" id="3_mtvp2"]
-
-[sub_resource type="Gradient" id="Gradient_2mtg7"]
-colors = PackedColorArray(1, 1, 1, 1, 0.51718444, 0.5171845, 0.51718444, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ddfdk"]
-gradient = SubResource("Gradient_2mtg7")
-fill = 2
-fill_from = Vector2(0.5, 0.5)
+[ext_resource type="Resource" uid="uid://xgygn6kdpm86" path="res://map/room0_ceiling.tres" id="3_nunyq"]
+[ext_resource type="Resource" uid="uid://q6w1by1k8y6g" path="res://map/room0_ceiling_zoom.tres" id="5_1kdkj"]
+[ext_resource type="Resource" uid="uid://q43a1miwswh4" path="res://map/room0_walle.tres" id="7_lj1gl"]
+[ext_resource type="Resource" uid="uid://dh5xm6ickcxxv" path="res://map/room0_walls.tres" id="8_7bcun"]
+[ext_resource type="Resource" uid="uid://b4sdxq05ai4t8" path="res://map/room0_wallw.tres" id="9_uofao"]
+[ext_resource type="Resource" uid="uid://bjkr4wbktvyki" path="res://map/room0_floor.tres" id="10_bdmcl"]
 
 [sub_resource type="Gradient" id="Gradient_4bimv"]
 offsets = PackedFloat32Array(0.44528303, 0.6603774, 0.7056604)
@@ -21,6 +20,14 @@ gradient = SubResource("Gradient_4bimv")
 fill = 1
 fill_from = Vector2(0.508547, 0.4871795)
 
+[sub_resource type="Gradient" id="Gradient_2mtg7"]
+colors = PackedColorArray(1, 1, 1, 1, 0.51718444, 0.5171845, 0.51718444, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ddfdk"]
+gradient = SubResource("Gradient_2mtg7")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
 [sub_resource type="Gradient" id="Gradient_qc57e"]
 offsets = PackedFloat32Array(0, 0.50566036, 1)
 colors = PackedColorArray(0.51718444, 0.5171845, 0.51718444, 1, 1, 1, 1, 1, 0.43134022, 0.43134025, 0.43134025, 1)
@@ -28,13 +35,43 @@ colors = PackedColorArray(0.51718444, 0.5171845, 0.51718444, 1, 1, 1, 1, 1, 0.43
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_86tsd"]
 gradient = SubResource("Gradient_qc57e")
 
-[node name="Room0" type="Node2D" unique_id=853721544 node_paths=PackedStringArray("first_view")]
+[node name="Room0" type="Node2D" unique_id=853721544 node_paths=PackedStringArray("camera")]
 script = ExtResource("1_ddfdk")
-first_view = NodePath("Wall1")
+first_view = ExtResource("2_1kdkj")
+camera = NodePath("Camera2D")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1655344574]
+position = Vector2(-238, -622)
+ignore_rotation = false
+editor_draw_drag_margin = true
+
+[node name="LookUpstairs" type="Node2D" parent="." unique_id=1688334447]
+position = Vector2(38, -2066)
+script = ExtResource("2_mtvp2")
+_info = ExtResource("5_1kdkj")
+
+[node name="TextureRect" type="TextureRect" parent="LookUpstairs" unique_id=941164517]
+offset_left = 108.0
+offset_top = 40.0
+offset_right = 759.0
+offset_bottom = 666.0
+texture = SubResource("GradientTexture2D_axj8b")
+
+[node name="Button4" type="Button" parent="LookUpstairs" unique_id=258601690]
+offset_left = 174.0
+offset_top = 309.0
+offset_right = 219.0
+offset_bottom = 355.0
+text = "back"
+script = ExtResource("3_mtvp2")
+next_view = ExtResource("3_nunyq")
+only_back = true
 
 [node name="Ceiling" type="Node2D" parent="." unique_id=1012893480]
 modulate = Color(0.18431373, 0.67058825, 1, 1)
+position = Vector2(19, -1337)
 script = ExtResource("2_mtvp2")
+_info = ExtResource("3_nunyq")
 
 [node name="TextureRect5" type="TextureRect" parent="Ceiling" unique_id=65103397]
 anchors_preset = 15
@@ -50,6 +87,13 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = SubResource("GradientTexture2D_ddfdk")
 
+[node name="TextureRect" type="TextureRect" parent="Ceiling" unique_id=753707371]
+offset_left = 775.0
+offset_top = 34.0
+offset_right = 1062.0
+offset_bottom = 313.0
+texture = SubResource("GradientTexture2D_axj8b")
+
 [node name="Button2" type="Button" parent="Ceiling" unique_id=1543464375]
 offset_left = 552.0
 offset_top = 14.0
@@ -59,26 +103,27 @@ text = "back"
 script = ExtResource("3_mtvp2")
 only_back = true
 
-[node name="LookUpstairs" type="Node2D" parent="Ceiling" unique_id=1688334447]
+[node name="Button3" type="Button" parent="Ceiling" unique_id=79594526]
+offset_left = 890.0
+offset_top = 167.0
+offset_right = 935.0
+offset_bottom = 198.0
+text = "look"
+script = ExtResource("3_mtvp2")
+next_view = ExtResource("5_1kdkj")
 
-[node name="TextureRect" type="TextureRect" parent="Ceiling/LookUpstairs" unique_id=941164517]
-offset_left = 775.0
-offset_top = 34.0
-offset_right = 1062.0
-offset_bottom = 313.0
-texture = SubResource("GradientTexture2D_axj8b")
-
-[node name="Wall1" type="Node2D" parent="." unique_id=1879625400]
-visible = false
+[node name="WallN" type="Node2D" parent="." unique_id=1879625400]
 modulate = Color(0.76862746, 0.60784316, 0.4392157, 1)
+position = Vector2(34, -669)
 script = ExtResource("2_mtvp2")
+_info = ExtResource("2_1kdkj")
 
-[node name="TextureRect" type="TextureRect" parent="Wall1" unique_id=734450493]
+[node name="TextureRect" type="TextureRect" parent="WallN" unique_id=734450493]
 offset_right = 1153.0
 offset_bottom = 646.0
 texture = SubResource("GradientTexture2D_86tsd")
 
-[node name="Label" type="Label" parent="Wall1/TextureRect" unique_id=297424672]
+[node name="Label" type="Label" parent="WallN/TextureRect" unique_id=297424672]
 layout_mode = 0
 offset_left = 186.0
 offset_top = 75.0
@@ -86,43 +131,54 @@ offset_right = 229.0
 offset_bottom = 98.0
 text = "Wall1"
 
-[node name="Button" type="Button" parent="Wall1" unique_id=1666867201 node_paths=PackedStringArray("next_view")]
+[node name="Button" type="Button" parent="WallN" unique_id=1666867201]
 offset_left = 552.0
 offset_top = 14.0
 offset_right = 581.0
 offset_bottom = 45.0
 text = "up"
 script = ExtResource("3_mtvp2")
-next_view = NodePath("../../Ceiling")
+next_view = ExtResource("3_nunyq")
 
-[node name="Button2" type="Button" parent="Wall1" unique_id=30631220 node_paths=PackedStringArray("next_view")]
+[node name="Button2" type="Button" parent="WallN" unique_id=30631220]
 offset_left = 45.0
 offset_top = 330.0
 offset_right = 74.0
 offset_bottom = 361.0
 text = "Left -"
 script = ExtResource("3_mtvp2")
-next_view = NodePath("../../Wall4")
+next_view = ExtResource("9_uofao")
 
-[node name="Button3" type="Button" parent="Wall1" unique_id=1086234812 node_paths=PackedStringArray("next_view")]
+[node name="Button3" type="Button" parent="WallN" unique_id=1086234812]
 offset_left = 1060.0
 offset_top = 324.0
 offset_right = 1108.0
 offset_bottom = 355.0
 text = "Right +"
 script = ExtResource("3_mtvp2")
-next_view = NodePath("../../Wall2")
+next_view = ExtResource("7_lj1gl")
 
-[node name="Wall2" type="Node2D" parent="." unique_id=468583202]
-visible = false
+[node name="Button4" type="Button" parent="WallN" unique_id=320290740]
+offset_left = 564.0
+offset_top = 588.0
+offset_right = 615.0
+offset_bottom = 619.0
+text = "down"
+script = ExtResource("3_mtvp2")
+next_view = ExtResource("10_bdmcl")
+
+[node name="WallE" type="Node2D" parent="." unique_id=468583202]
+position = Vector2(1908, -248)
+rotation = 1.5707964
 script = ExtResource("2_mtvp2")
+_info = ExtResource("7_lj1gl")
 
-[node name="TextureRect2" type="TextureRect" parent="Wall2" unique_id=1346675873]
+[node name="TextureRect2" type="TextureRect" parent="WallE" unique_id=1346675873]
 offset_right = 1155.0
 offset_bottom = 651.0
 texture = SubResource("GradientTexture2D_86tsd")
 
-[node name="Label2" type="Label" parent="Wall2/TextureRect2" unique_id=678608855]
+[node name="Label2" type="Label" parent="WallE/TextureRect2" unique_id=678608855]
 layout_mode = 0
 offset_left = 186.0
 offset_top = 75.0
@@ -130,16 +186,55 @@ offset_right = 229.0
 offset_bottom = 98.0
 text = "Wall2"
 
-[node name="Wall3" type="Node2D" parent="." unique_id=1767400358]
-visible = false
-script = ExtResource("2_mtvp2")
+[node name="Button" type="Button" parent="WallE" unique_id=129365134]
+offset_left = 552.0
+offset_top = 14.0
+offset_right = 581.0
+offset_bottom = 45.0
+text = "up"
+script = ExtResource("3_mtvp2")
+next_view = ExtResource("3_nunyq")
 
-[node name="TextureRect3" type="TextureRect" parent="Wall3" unique_id=1831839060]
+[node name="Button2" type="Button" parent="WallE" unique_id=38130874]
+offset_left = 45.0
+offset_top = 330.0
+offset_right = 74.0
+offset_bottom = 361.0
+text = "Left -"
+script = ExtResource("3_mtvp2")
+next_view = ExtResource("2_1kdkj")
+
+[node name="Button3" type="Button" parent="WallE" unique_id=2110129013]
+offset_left = 1060.0
+offset_top = 324.0
+offset_right = 1108.0
+offset_bottom = 355.0
+text = "Right +"
+script = ExtResource("3_mtvp2")
+next_view = ExtResource("8_7bcun")
+
+[node name="Button5" type="Button" parent="WallE" unique_id=412198703]
+offset_left = 564.0
+offset_top = 588.0
+offset_right = 615.0
+offset_bottom = 619.0
+text = "down"
+script = ExtResource("3_mtvp2")
+next_view = Object(Node2D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(0.59562516, 0.3951354, 0.23734325, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"oversampling_with_scale":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"script":ExtResource("2_mtvp2"),"_info":ExtResource("10_bdmcl"))
+
+
+[node name="WallS" type="Node2D" parent="." unique_id=1767400358]
+position = Vector2(1158, 1317)
+rotation = -3.1415927
+script = ExtResource("2_mtvp2")
+_info = ExtResource("8_7bcun")
+
+[node name="TextureRect3" type="TextureRect" parent="WallS" unique_id=1831839060]
 offset_right = 1153.0
 offset_bottom = 651.0
 texture = SubResource("GradientTexture2D_86tsd")
 
-[node name="Label3" type="Label" parent="Wall3/TextureRect3" unique_id=675583011]
+[node name="Label3" type="Label" parent="WallS/TextureRect3" unique_id=675583011]
 layout_mode = 0
 offset_left = 186.0
 offset_top = 75.0
@@ -147,16 +242,54 @@ offset_right = 229.0
 offset_bottom = 98.0
 text = "Wall3"
 
-[node name="Wall4" type="Node2D" parent="." unique_id=124238026]
-visible = false
-script = ExtResource("2_mtvp2")
+[node name="Button" type="Button" parent="WallS" unique_id=473215679]
+offset_left = 552.0
+offset_top = 14.0
+offset_right = 581.0
+offset_bottom = 45.0
+text = "up"
+script = ExtResource("3_mtvp2")
+next_view = ExtResource("3_nunyq")
 
-[node name="TextureRect4" type="TextureRect" parent="Wall4" unique_id=890849628]
+[node name="Button2" type="Button" parent="WallS" unique_id=1740644981]
+offset_left = 45.0
+offset_top = 330.0
+offset_right = 74.0
+offset_bottom = 361.0
+text = "Left -"
+script = ExtResource("3_mtvp2")
+next_view = ExtResource("7_lj1gl")
+
+[node name="Button3" type="Button" parent="WallS" unique_id=1137002503]
+offset_left = 1060.0
+offset_top = 324.0
+offset_right = 1108.0
+offset_bottom = 355.0
+text = "Right +"
+script = ExtResource("3_mtvp2")
+next_view = ExtResource("9_uofao")
+
+[node name="Button6" type="Button" parent="WallS" unique_id=1850045828]
+offset_left = 564.0
+offset_top = 588.0
+offset_right = 615.0
+offset_bottom = 619.0
+text = "down"
+script = ExtResource("3_mtvp2")
+next_view = ExtResource("10_bdmcl")
+
+[node name="WallW" type="Node2D" parent="." unique_id=124238026]
+position = Vector2(-670, 926)
+rotation = -1.5707964
+script = ExtResource("2_mtvp2")
+_info = ExtResource("9_uofao")
+
+[node name="TextureRect4" type="TextureRect" parent="WallW" unique_id=890849628]
 offset_right = 1156.0
 offset_bottom = 645.0
 texture = SubResource("GradientTexture2D_86tsd")
 
-[node name="Label4" type="Label" parent="Wall4/TextureRect4" unique_id=86835081]
+[node name="Label4" type="Label" parent="WallW/TextureRect4" unique_id=86835081]
 layout_mode = 0
 offset_left = 186.0
 offset_top = 75.0
@@ -164,12 +297,57 @@ offset_right = 229.0
 offset_bottom = 98.0
 text = "Wall4"
 
+[node name="Button" type="Button" parent="WallW" unique_id=702549551]
+offset_left = 552.0
+offset_top = 14.0
+offset_right = 581.0
+offset_bottom = 45.0
+text = "up"
+script = ExtResource("3_mtvp2")
+next_view = ExtResource("3_nunyq")
+
+[node name="Button2" type="Button" parent="WallW" unique_id=651323738]
+offset_left = 45.0
+offset_top = 330.0
+offset_right = 74.0
+offset_bottom = 361.0
+text = "Left -"
+script = ExtResource("3_mtvp2")
+next_view = ExtResource("8_7bcun")
+
+[node name="Button3" type="Button" parent="WallW" unique_id=247111570]
+offset_left = 1060.0
+offset_top = 324.0
+offset_right = 1108.0
+offset_bottom = 355.0
+text = "Right +"
+script = ExtResource("3_mtvp2")
+next_view = ExtResource("2_1kdkj")
+
+[node name="Button7" type="Button" parent="WallW" unique_id=372428533]
+offset_left = 564.0
+offset_top = 588.0
+offset_right = 615.0
+offset_bottom = 619.0
+text = "down"
+script = ExtResource("3_mtvp2")
+next_view = ExtResource("10_bdmcl")
+
 [node name="Floor" type="Node2D" parent="." unique_id=1454893748]
-visible = false
 modulate = Color(0.59562516, 0.3951354, 0.23734325, 1)
 script = ExtResource("2_mtvp2")
+_info = ExtResource("10_bdmcl")
 
 [node name="TextureRect6" type="TextureRect" parent="Floor" unique_id=1766238563]
 offset_right = 1143.0
 offset_bottom = 642.0
 texture = SubResource("GradientTexture2D_ddfdk")
+
+[node name="Button8" type="Button" parent="Floor" unique_id=2056528475]
+offset_left = 564.0
+offset_top = 588.0
+offset_right = 615.0
+offset_bottom = 619.0
+text = "back"
+script = ExtResource("3_mtvp2")
+only_back = true
