@@ -1,7 +1,9 @@
 class_name StickerResource extends Resource
 
 @export var sticker_ID : Utilties.StickerID
+@export_category("Gem/Socket")
 @export var socket_v_gem := Utilties.Socket_Gem.NA
+@export var gem_color := Color.AQUA
 
 #Save: remember position
 var _local_position : Vector2
@@ -43,3 +45,20 @@ func set_object(sticker: Sticker) -> void:
 		print("STicker already something else")
 	else:
 		_object = sticker
+
+func is_socket() -> bool:
+	match socket_v_gem:
+		Utilties.Socket_Gem.SOCKET_0:
+			return true
+	return false
+
+func is_gem() -> bool:
+	match socket_v_gem:
+		Utilties.Socket_Gem.GEM_BOT:
+			return true
+	return false
+
+func get_gem_type() -> Utilties.Socket_Gem:
+	if is_gem():
+		return socket_v_gem
+	return Utilties.Socket_Gem.NA

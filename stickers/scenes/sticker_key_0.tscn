@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cdwq4dms4b3nm"]
 
-[ext_resource type="PackedScene" uid="uid://dp3yhwlavt14t" path="res://stickers/scenes/sticker_godot.tscn" id="1_ng2y2"]
+[ext_resource type="Script" uid="uid://c6ssqyojrkx1t" path="res://stickers/sticker_socket.gd" id="1_vv8ts"]
 [ext_resource type="Resource" uid="uid://byppgfl6iy787" path="res://stickers/resources/key_sticker.tres" id="2_vv8ts"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vv8ts"]
@@ -18,18 +18,57 @@ atlas = SubResource("CompressedTexture2D_g1bxb")
 region = Rect2(-2, 271, 185, 327)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dbuik"]
-size = Vector2(145, 315)
+size = Vector2(108.02698, 107.5553)
 
-[node name="Sticker" unique_id=1207061736 instance=ExtResource("1_ng2y2")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ng2y2"]
+size = Vector2(46.839043, 69.641815)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vv8ts"]
+size = Vector2(18.681435, 216.6724)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_86tsd"]
+
+[node name="Key" type="Area2D" unique_id=1207061736 node_paths=PackedStringArray("socket_area", "sprite_gemed")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_vv8ts")
+socket_area = NodePath("Area2DSocket")
+sprite_gemed = NodePath("SpriteGemed")
 _info = ExtResource("2_vv8ts")
 
-[node name="SpriteOutline" parent="." index="0" unique_id=1626618487]
+[node name="SpriteOutline" type="Sprite2D" parent="." unique_id=1626618487]
+unique_name_in_owner = true
 texture = SubResource("AtlasTexture_ng2y2")
 
-[node name="SpriteSticker" parent="." index="1" unique_id=853671408]
+[node name="SpriteGemed" type="Sprite2D" parent="." unique_id=1641365668]
+unique_name_in_owner = true
+position = Vector2(76, -130)
+texture = SubResource("AtlasTexture_ng2y2")
+
+[node name="SpriteSticker" type="Sprite2D" parent="." unique_id=853671408]
 texture = SubResource("AtlasTexture_m0k4m")
 
-[node name="StickerCollision" parent="." index="2" unique_id=135357915]
-position = Vector2(-13, -7)
-rotation = 0.27435026
+[node name="StickerCollision" type="CollisionShape2D" parent="." unique_id=135357915]
+visible = false
+position = Vector2(13.759537, -94.85487)
+rotation = 1.0278034
 shape = SubResource("RectangleShape2D_dbuik")
+
+[node name="StickerCollision2" type="CollisionShape2D" parent="." unique_id=630662160]
+visible = false
+position = Vector2(-13.573397, 110.76079)
+rotation = 0.2743503
+shape = SubResource("RectangleShape2D_ng2y2")
+
+[node name="StickerCollision3" type="CollisionShape2D" parent="." unique_id=1254980082]
+visible = false
+position = Vector2(-29.381035, 56.353844)
+rotation = 0.2743503
+shape = SubResource("RectangleShape2D_vv8ts")
+
+[node name="Area2DSocket" type="Area2D" parent="." unique_id=2125397672]
+position = Vector2(14, -94)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DSocket" unique_id=1879461325]
+shape = SubResource("CircleShape2D_86tsd")

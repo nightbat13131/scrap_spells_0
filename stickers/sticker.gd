@@ -3,7 +3,7 @@ class_name Sticker extends Area2D
 signal picked_up(sticker: Sticker)
 
 @onready var sprite_outline: Sprite2D = %SpriteOutline
-@onready var sticker_collision: CollisionShape2D = %StickerCollision
+#@onready var sticker_collision: CollisionShape2D = %StickerCollision
 
 
 var _is_get_dragged := false : set = _set_get_dragged
@@ -11,6 +11,7 @@ var _last_g_position := Vector2.ZERO
 var _last_tray_position := Vector2.ZERO
 var _is_mouse_focus := false : set = set_mouse_focus
 var _spread_num := -1 
+var _collition_shapes : Array[CollisionShape2D]
 
 @export var _info : StickerResource: get = get_info
 
@@ -18,11 +19,20 @@ func _ready() -> void:
 	set_z_index(50)
 	set_collision_layer_value(Utilties.COLLISION_LAYER.STICKER, true)
 	set_collision_mask_value(Utilties.COLLISION_LAYER.STICKER_PAPER, true)
+	_connect_children() 
 	await get_tree().process_frame
+	_post_ready()
+
+func _post_ready() -> void:
 	_update_status_color()
 	if !_info.match_object(self):
 		_info = _info.duplicate()
 		_info.set_object(self)
+
+func _connect_children() -> void:
+	for each_child in get_children():
+		if each_child is CollisionShape2D:
+			_collition_shapes.append(each_child)
 
 func set_info(info: StickerResource, use_values: bool = false) -> void: 
 	_info = info
@@ -34,11 +44,13 @@ func get_info() -> StickerResource: return _info
 
 func activate() -> void:
 	show()
-	sticker_collision.set_disabled(false)
+	for each in _collition_shapes:
+		each.set_disabled(false)
 
 func deactivate() -> void:
 	hide()
-	sticker_collision.set_disabled(true)
+	for each in _collition_shapes:
+		each.set_disabled(true)
 
 func set_spread(num: int) -> void: _spread_num = num
 

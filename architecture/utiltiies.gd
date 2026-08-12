@@ -16,7 +16,11 @@ static var StickerUID : Dictionary[StickerID, String ] = {
 
 enum Socket_Gem { SOCKET_0 = -1 , NA = 0, GEM_BOT = 1}
 
-enum COLLISION_LAYER { STICKER = 5, STICKER_PAPER = 6}
+enum COLLISION_LAYER { 
+	STICKER = 5, 
+	STICKER_PAPER = 6, 
+	GEM = 7,
+	}
 
 
 const PAGE_SIZE := Vector2(280,280)

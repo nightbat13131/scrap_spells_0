@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dp3yhwlavt14t"]
 
-[ext_resource type="Script" uid="uid://cs78dywijli4t" path="res://stickers/sticker.gd" id="1_78oom"]
+[ext_resource type="Script" uid="uid://bss35y14r27ct" path="res://stickers/sticker_gem.gd" id="1_13gqs"]
 [ext_resource type="Resource" uid="uid://bqym0jocf4716" path="res://stickers/resources/godot_sticker.tres" id="2_13gqs"]
 [ext_resource type="Texture2D" uid="uid://dilw848ljs5ol" path="res://icon.svg" id="2_nehm6"]
 
@@ -10,10 +10,13 @@ size = Vector2(134, 134)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dsnr4"]
 size = Vector2(128, 129)
 
-[node name="Sticker" type="Area2D" unique_id=1207061736]
+[sub_resource type="CircleShape2D" id="CircleShape2D_86tsd"]
+
+[node name="Robit" type="Area2D" unique_id=1207061736 node_paths=PackedStringArray("gem_area")]
 collision_layer = 0
 collision_mask = 0
-script = ExtResource("1_78oom")
+script = ExtResource("1_13gqs")
+gem_area = NodePath("Area2DGem")
 _info = ExtResource("2_13gqs")
 metadata/_edit_group_ = true
 
@@ -25,6 +28,13 @@ texture = SubResource("PlaceholderTexture2D_1lwx6")
 texture = ExtResource("2_nehm6")
 
 [node name="StickerCollision" type="CollisionShape2D" parent="." unique_id=135357915]
-unique_name_in_owner = true
+visible = false
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_dsnr4")
+
+[node name="Area2DGem" type="Area2D" parent="." unique_id=1018638040]
+unique_name_in_owner = true
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DGem" unique_id=802390887]
+shape = SubResource("CircleShape2D_86tsd")

@@ -36,7 +36,7 @@ func apply_spread(spread: SpreadModel) -> void:
 					each_child.deactivate()
 		if !needed_stickers.is_empty():
 			for each_sticker: Sticker in needed_stickers:
-				## useful when loading from save file first time
+				## useful when loading from save file first time,
 				add_child(each_sticker)
 				each_sticker.set_spread(_spread.get_spread_index())
 				each_sticker.activate()
