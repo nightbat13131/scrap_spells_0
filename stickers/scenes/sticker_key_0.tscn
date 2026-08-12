@@ -3,6 +3,13 @@
 [ext_resource type="Script" uid="uid://c6ssqyojrkx1t" path="res://stickers/sticker_socket.gd" id="1_vv8ts"]
 [ext_resource type="Resource" uid="uid://byppgfl6iy787" path="res://stickers/resources/key_sticker.tres" id="2_vv8ts"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ng2y2"]
+load_path = "res://.godot/imported/stickers_1.png-27afab8a431312bcc0303f3c6af39871.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g1bxb"]
+atlas = SubResource("CompressedTexture2D_ng2y2")
+region = Rect2(176, 267, 152, 332)
+
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vv8ts"]
 load_path = "res://.godot/imported/stickers_1.png-27afab8a431312bcc0303f3c6af39871.ctex"
 
@@ -38,7 +45,7 @@ _info = ExtResource("2_vv8ts")
 
 [node name="SpriteOutline" type="Sprite2D" parent="." unique_id=1626618487]
 unique_name_in_owner = true
-texture = SubResource("AtlasTexture_ng2y2")
+texture = SubResource("AtlasTexture_g1bxb")
 
 [node name="SpriteGemed" type="Sprite2D" parent="." unique_id=1641365668]
 unique_name_in_owner = true

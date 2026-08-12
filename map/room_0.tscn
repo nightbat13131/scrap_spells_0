@@ -1,0 +1,175 @@
+[gd_scene format=3 uid="uid://c4sydpq1j6r8n"]
+
+[ext_resource type="Script" uid="uid://cecbrucoj1ntw" path="res://map/room.gd" id="1_ddfdk"]
+[ext_resource type="Script" uid="uid://dfdpqpb1ajc7m" path="res://map/room_view.gd" id="2_mtvp2"]
+[ext_resource type="Script" uid="uid://uiu7pfxoff56" path="res://map/view_change.gd" id="3_mtvp2"]
+
+[sub_resource type="Gradient" id="Gradient_2mtg7"]
+colors = PackedColorArray(1, 1, 1, 1, 0.51718444, 0.5171845, 0.51718444, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ddfdk"]
+gradient = SubResource("Gradient_2mtg7")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_4bimv"]
+offsets = PackedFloat32Array(0.44528303, 0.6603774, 0.7056604)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_axj8b"]
+gradient = SubResource("Gradient_4bimv")
+fill = 1
+fill_from = Vector2(0.508547, 0.4871795)
+
+[sub_resource type="Gradient" id="Gradient_qc57e"]
+offsets = PackedFloat32Array(0, 0.50566036, 1)
+colors = PackedColorArray(0.51718444, 0.5171845, 0.51718444, 1, 1, 1, 1, 1, 0.43134022, 0.43134025, 0.43134025, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_86tsd"]
+gradient = SubResource("Gradient_qc57e")
+
+[node name="Room0" type="Node2D" unique_id=853721544 node_paths=PackedStringArray("first_view")]
+script = ExtResource("1_ddfdk")
+first_view = NodePath("Wall1")
+
+[node name="Ceiling" type="Node2D" parent="." unique_id=1012893480]
+modulate = Color(0.18431373, 0.67058825, 1, 1)
+script = ExtResource("2_mtvp2")
+
+[node name="TextureRect5" type="TextureRect" parent="Ceiling" unique_id=65103397]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 3.0
+offset_right = 1149.0
+offset_bottom = 645.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource("GradientTexture2D_ddfdk")
+
+[node name="Button2" type="Button" parent="Ceiling" unique_id=1543464375]
+offset_left = 552.0
+offset_top = 14.0
+offset_right = 581.0
+offset_bottom = 45.0
+text = "back"
+script = ExtResource("3_mtvp2")
+only_back = true
+
+[node name="LookUpstairs" type="Node2D" parent="Ceiling" unique_id=1688334447]
+
+[node name="TextureRect" type="TextureRect" parent="Ceiling/LookUpstairs" unique_id=941164517]
+offset_left = 775.0
+offset_top = 34.0
+offset_right = 1062.0
+offset_bottom = 313.0
+texture = SubResource("GradientTexture2D_axj8b")
+
+[node name="Wall1" type="Node2D" parent="." unique_id=1879625400]
+visible = false
+modulate = Color(0.76862746, 0.60784316, 0.4392157, 1)
+script = ExtResource("2_mtvp2")
+
+[node name="TextureRect" type="TextureRect" parent="Wall1" unique_id=734450493]
+offset_right = 1153.0
+offset_bottom = 646.0
+texture = SubResource("GradientTexture2D_86tsd")
+
+[node name="Label" type="Label" parent="Wall1/TextureRect" unique_id=297424672]
+layout_mode = 0
+offset_left = 186.0
+offset_top = 75.0
+offset_right = 229.0
+offset_bottom = 98.0
+text = "Wall1"
+
+[node name="Button" type="Button" parent="Wall1" unique_id=1666867201 node_paths=PackedStringArray("next_view")]
+offset_left = 552.0
+offset_top = 14.0
+offset_right = 581.0
+offset_bottom = 45.0
+text = "up"
+script = ExtResource("3_mtvp2")
+next_view = NodePath("../../Ceiling")
+
+[node name="Button2" type="Button" parent="Wall1" unique_id=30631220 node_paths=PackedStringArray("next_view")]
+offset_left = 45.0
+offset_top = 330.0
+offset_right = 74.0
+offset_bottom = 361.0
+text = "Left -"
+script = ExtResource("3_mtvp2")
+next_view = NodePath("../../Wall4")
+
+[node name="Button3" type="Button" parent="Wall1" unique_id=1086234812 node_paths=PackedStringArray("next_view")]
+offset_left = 1060.0
+offset_top = 324.0
+offset_right = 1108.0
+offset_bottom = 355.0
+text = "Right +"
+script = ExtResource("3_mtvp2")
+next_view = NodePath("../../Wall2")
+
+[node name="Wall2" type="Node2D" parent="." unique_id=468583202]
+visible = false
+script = ExtResource("2_mtvp2")
+
+[node name="TextureRect2" type="TextureRect" parent="Wall2" unique_id=1346675873]
+offset_right = 1155.0
+offset_bottom = 651.0
+texture = SubResource("GradientTexture2D_86tsd")
+
+[node name="Label2" type="Label" parent="Wall2/TextureRect2" unique_id=678608855]
+layout_mode = 0
+offset_left = 186.0
+offset_top = 75.0
+offset_right = 229.0
+offset_bottom = 98.0
+text = "Wall2"
+
+[node name="Wall3" type="Node2D" parent="." unique_id=1767400358]
+visible = false
+script = ExtResource("2_mtvp2")
+
+[node name="TextureRect3" type="TextureRect" parent="Wall3" unique_id=1831839060]
+offset_right = 1153.0
+offset_bottom = 651.0
+texture = SubResource("GradientTexture2D_86tsd")
+
+[node name="Label3" type="Label" parent="Wall3/TextureRect3" unique_id=675583011]
+layout_mode = 0
+offset_left = 186.0
+offset_top = 75.0
+offset_right = 229.0
+offset_bottom = 98.0
+text = "Wall3"
+
+[node name="Wall4" type="Node2D" parent="." unique_id=124238026]
+visible = false
+script = ExtResource("2_mtvp2")
+
+[node name="TextureRect4" type="TextureRect" parent="Wall4" unique_id=890849628]
+offset_right = 1156.0
+offset_bottom = 645.0
+texture = SubResource("GradientTexture2D_86tsd")
+
+[node name="Label4" type="Label" parent="Wall4/TextureRect4" unique_id=86835081]
+layout_mode = 0
+offset_left = 186.0
+offset_top = 75.0
+offset_right = 229.0
+offset_bottom = 98.0
+text = "Wall4"
+
+[node name="Floor" type="Node2D" parent="." unique_id=1454893748]
+visible = false
+modulate = Color(0.59562516, 0.3951354, 0.23734325, 1)
+script = ExtResource("2_mtvp2")
+
+[node name="TextureRect6" type="TextureRect" parent="Floor" unique_id=1766238563]
+offset_right = 1143.0
+offset_bottom = 642.0
+texture = SubResource("GradientTexture2D_ddfdk")
