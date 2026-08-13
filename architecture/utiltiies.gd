@@ -22,6 +22,7 @@ enum COLLISION_LAYER {
 	GEM = 7,
 	}
 
+enum EventStates { NA = 0, INIT = 1 }
 
 const PAGE_SIZE := Vector2(280,280)
 const PAGE_SPINE := 25

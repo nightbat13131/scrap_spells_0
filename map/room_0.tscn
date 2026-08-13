@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://q43a1miwswh4" path="res://map/room0_walle.tres" id="7_lj1gl"]
 [ext_resource type="Resource" uid="uid://dh5xm6ickcxxv" path="res://map/room0_walls.tres" id="8_7bcun"]
 [ext_resource type="Resource" uid="uid://b4sdxq05ai4t8" path="res://map/room0_wallw.tres" id="9_uofao"]
+[ext_resource type="Script" uid="uid://udv74dyufb3v" path="res://map/view_event.gd" id="10_7bcun"]
 [ext_resource type="Resource" uid="uid://bjkr4wbktvyki" path="res://map/room0_floor.tres" id="10_bdmcl"]
 
 [sub_resource type="Gradient" id="Gradient_4bimv"]
@@ -35,13 +36,16 @@ colors = PackedColorArray(0.51718444, 0.5171845, 0.51718444, 1, 1, 1, 1, 1, 0.43
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_86tsd"]
 gradient = SubResource("Gradient_qc57e")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_86tsd"]
+radius = 20.0
+
 [node name="Room0" type="Node2D" unique_id=853721544 node_paths=PackedStringArray("camera")]
 script = ExtResource("1_ddfdk")
 first_view = ExtResource("2_1kdkj")
 camera = NodePath("Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1655344574]
-position = Vector2(-238, -622)
+position = Vector2(-633, -342)
 ignore_rotation = false
 editor_draw_drag_margin = true
 
@@ -49,6 +53,7 @@ editor_draw_drag_margin = true
 position = Vector2(38, -2066)
 script = ExtResource("2_mtvp2")
 _info = ExtResource("5_1kdkj")
+metadata/_edit_group_ = true
 
 [node name="TextureRect" type="TextureRect" parent="LookUpstairs" unique_id=941164517]
 offset_left = 108.0
@@ -72,6 +77,7 @@ modulate = Color(0.18431373, 0.67058825, 1, 1)
 position = Vector2(19, -1337)
 script = ExtResource("2_mtvp2")
 _info = ExtResource("3_nunyq")
+metadata/_edit_group_ = true
 
 [node name="TextureRect5" type="TextureRect" parent="Ceiling" unique_id=65103397]
 anchors_preset = 15
@@ -117,6 +123,7 @@ modulate = Color(0.76862746, 0.60784316, 0.4392157, 1)
 position = Vector2(34, -669)
 script = ExtResource("2_mtvp2")
 _info = ExtResource("2_1kdkj")
+metadata/_edit_group_ = true
 
 [node name="TextureRect" type="TextureRect" parent="WallN" unique_id=734450493]
 offset_right = 1153.0
@@ -167,13 +174,21 @@ text = "down"
 script = ExtResource("3_mtvp2")
 next_view = ExtResource("10_bdmcl")
 
+[node name="ViewEvent" type="Area2D" parent="WallN" unique_id=696430303]
+position = Vector2(375, 242)
+script = ExtResource("10_7bcun")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallN/ViewEvent" unique_id=494929705]
+shape = SubResource("CircleShape2D_86tsd")
+
 [node name="WallE" type="Node2D" parent="." unique_id=468583202]
 position = Vector2(1908, -248)
-rotation = 1.5707964
 script = ExtResource("2_mtvp2")
 _info = ExtResource("7_lj1gl")
+metadata/_edit_group_ = true
 
 [node name="TextureRect2" type="TextureRect" parent="WallE" unique_id=1346675873]
+self_modulate = Color(1, 1, 0.78039217, 1)
 offset_right = 1155.0
 offset_bottom = 651.0
 texture = SubResource("GradientTexture2D_86tsd")
@@ -220,16 +235,16 @@ offset_right = 615.0
 offset_bottom = 619.0
 text = "down"
 script = ExtResource("3_mtvp2")
-next_view = Object(Node2D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(0.59562516, 0.3951354, 0.23734325, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"oversampling_with_scale":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"script":ExtResource("2_mtvp2"),"_info":ExtResource("10_bdmcl"))
-
+next_view = ExtResource("10_bdmcl")
 
 [node name="WallS" type="Node2D" parent="." unique_id=1767400358]
 position = Vector2(1158, 1317)
-rotation = -3.1415927
 script = ExtResource("2_mtvp2")
 _info = ExtResource("8_7bcun")
+metadata/_edit_group_ = true
 
 [node name="TextureRect3" type="TextureRect" parent="WallS" unique_id=1831839060]
+self_modulate = Color(0.7882353, 1, 1, 1)
 offset_right = 1153.0
 offset_bottom = 651.0
 texture = SubResource("GradientTexture2D_86tsd")
@@ -279,12 +294,13 @@ script = ExtResource("3_mtvp2")
 next_view = ExtResource("10_bdmcl")
 
 [node name="WallW" type="Node2D" parent="." unique_id=124238026]
-position = Vector2(-670, 926)
-rotation = -1.5707964
+position = Vector2(-1894, 341)
 script = ExtResource("2_mtvp2")
 _info = ExtResource("9_uofao")
+metadata/_edit_group_ = true
 
 [node name="TextureRect4" type="TextureRect" parent="WallW" unique_id=890849628]
+self_modulate = Color(1, 0.7058824, 1, 1)
 offset_right = 1156.0
 offset_bottom = 645.0
 texture = SubResource("GradientTexture2D_86tsd")
@@ -337,6 +353,7 @@ next_view = ExtResource("10_bdmcl")
 modulate = Color(0.59562516, 0.3951354, 0.23734325, 1)
 script = ExtResource("2_mtvp2")
 _info = ExtResource("10_bdmcl")
+metadata/_edit_group_ = true
 
 [node name="TextureRect6" type="TextureRect" parent="Floor" unique_id=1766238563]
 offset_right = 1143.0

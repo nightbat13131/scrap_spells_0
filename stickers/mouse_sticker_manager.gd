@@ -5,7 +5,6 @@ class_name MouseSticker extends Node2D
 
 # detect when over a sticker
 # track the order of stickers
-# 
 
 @onready var sticker_finder: Area2D = %StickerFinder
 
@@ -20,6 +19,8 @@ var _overlapping_stickers :Array [Sticker]
 var _held_sticker : Sticker
 var _sticker_offset : Vector2
 
+var _is_active := true
+
 func _ready() -> void:
 	sticker_finder.set_collision_mask_value(Utilties.COLLISION_LAYER.STICKER, true)
 	if _guide_context:
@@ -32,8 +33,9 @@ func _ready() -> void:
 			_action_rotate.triggered.connect(_on_action_rotate)
 
 func _process(_delta: float) -> void:
+	if !_is_active:
+		return
 	set_global_position(get_global_mouse_position())
-	
 	#prints(sticker_finder.get_overlapping_areas(), _overlapping_stickers, _held_sticker, _sticker_offset)
 	if _held_sticker:
 		_held_sticker.set_global_position(get_global_mouse_position() + _sticker_offset)
@@ -63,12 +65,16 @@ func _overlapping_stickeres_updated() -> void:
 func _is_dragging() -> bool: return _held_sticker != null
 
 func _on_action_grab() -> void:
+	if !_is_active:
+		return
 	if !_overlapping_stickers.is_empty():
 		_held_sticker = _overlapping_stickers[0].try_pickup()
 		if _held_sticker:
 			_sticker_offset = _held_sticker.global_position - get_global_mouse_position()
 
 func _on_action_release() -> void:
+	if !_is_active:
+		return
 	if _held_sticker:
 		if !_overlapping_stickers.is_empty(): 
 			_overlapping_stickers.erase(_held_sticker)
@@ -78,5 +84,7 @@ func _on_action_release() -> void:
 		_sticker_offset = Vector2.ZERO
 
 func _on_action_rotate() -> void:
+	if !_is_active:
+		return
 	if _held_sticker:
 		_held_sticker.try_rotation(_action_rotate.value_axis_1d)
