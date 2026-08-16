@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://bnwuoevxw1tl2"]
+
+[ext_resource type="PackedScene" uid="uid://ccc3jc5xk0clw" path="res://assets/3d/tower_0.glb" id="1_cbpu3"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cbpu3"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_w2g74"]
+sky_material = SubResource("ProceduralSkyMaterial_cbpu3")
+
+[sub_resource type="Environment" id="Environment_v1tsq"]
+background_mode = 2
+sky = SubResource("Sky_w2g74")
+ambient_light_source = 3
+ambient_light_sky_contribution = 0.17
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v1tsq"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.5372549)
+
+[sub_resource type="SphereMesh" id="SphereMesh_w2g74"]
+material = SubResource("StandardMaterial3D_v1tsq")
+
+[node name="TestingWorld3d" type="Node3D" unique_id=1507365228]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1918213979]
+environment = SubResource("Environment_v1tsq")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1586810811]
+transform = Transform3D(0.61675096, -0.41380283, 0.669616, -0.73554546, -2.9613393e-08, 0.6774754, -0.2803412, -0.91036654, -0.3043708, 0, 0, 0)
+shadow_enabled = true
+
+[node name="tower_0" parent="." unique_id=1509354637 instance=ExtResource("1_cbpu3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51752937, 1.1920929e-07, -0.63971424)
+
+[node name="Camera3D" type="Camera3D" parent="tower_0" unique_id=923267197]
+transform = Transform3D(-0.8439182, 0, -0.5364719, 0, 1, 0, 0.5364719, 0, -0.8439182, 0, 1.2490468, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=220820124]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0168698, 0)
+mesh = SubResource("SphereMesh_w2g74")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="MeshInstance3D" unique_id=1589191676]
+light_color = Color(0.9834159, 0.78993195, 0.7205278, 1)
+light_energy = 0.5
+distance_fade_enabled = true
