@@ -1,4 +1,4 @@
-class_name ViewEvent extends Area2D
+class_name ViewEvent2D extends Area2D
 
 var _event_state := Utilties.EventStates.INIT
 

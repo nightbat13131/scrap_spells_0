@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="View3D" format=3 uid="uid://da207n1i03x1y"]
+
+[ext_resource type="Script" uid="uid://mx57gvfplfjg" path="res://map/view_3d_tag.gd" id="1_omwdu"]
+
+[resource]
+script = ExtResource("1_omwdu")
+_name = "Room1_WallHatch"
+metadata/_custom_type_script = "uid://mx57gvfplfjg"

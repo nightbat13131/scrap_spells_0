@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dpowqvpcn01po"]
+
+[ext_resource type="PackedScene" uid="uid://c4sydpq1j6r8n" path="res://map/2D/room_0.tscn" id="1_lw14u"]
+[ext_resource type="Script" uid="uid://bswkr233c4sfu" path="res://map/2D/mouse_room_interactions.gd" id="2_k0quw"]
+[ext_resource type="Resource" uid="uid://e3b7p71clx03" path="res://architecture/guide/room_navigation.tres" id="3_nh7kw"]
+[ext_resource type="Resource" uid="uid://cgdg3r0t2287h" path="res://architecture/guide/try_event_select.tres" id="4_xektm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_86tsd"]
+radius = 1.0
+
+[node name="TestingWorld" type="Node2D" unique_id=2095910656]
+
+[node name="Room0" parent="." unique_id=853721544 instance=ExtResource("1_lw14u")]
+
+[node name="MouseRoomInteractions" type="Node2D" parent="." unique_id=2109354774]
+position = Vector2(-660, -791)
+script = ExtResource("2_k0quw")
+_context = ExtResource("3_nh7kw")
+_action_trigger_event = ExtResource("4_xektm")
+
+[node name="Area2D" type="Area2D" parent="MouseRoomInteractions" unique_id=499082354]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseRoomInteractions/Area2D" unique_id=1823232643]
+shape = SubResource("CircleShape2D_86tsd")

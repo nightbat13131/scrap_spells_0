@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://bnwuoevxw1tl2"]
+
+[ext_resource type="PackedScene" uid="uid://ccc3jc5xk0clw" path="res://assets/3d/tower_0.glb" id="1_cbpu3"]
+[ext_resource type="Script" uid="uid://cd4n4f70da5wp" path="res://map/room_navigation3d.gd" id="2_tqoqd"]
+[ext_resource type="Script" uid="uid://kksaog2m6y2x" path="res://map/room_camera_manager.gd" id="2_w2g74"]
+[ext_resource type="Script" uid="uid://bq850lnoatow3" path="res://map/marker3d_enhanced.gd" id="3_v1tsq"]
+[ext_resource type="Resource" uid="uid://bnyrn1rlbx1c3" path="res://map/room1/room1_window.tres" id="5_iiwpn"]
+[ext_resource type="Script" uid="uid://mx57gvfplfjg" path="res://map/view_3d_tag.gd" id="5_rv4dh"]
+[ext_resource type="Resource" uid="uid://bxmi81xkcbvjx" path="res://map/room1/room1_empty_wall.tres" id="6_5huil"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cbpu3"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_w2g74"]
+sky_material = SubResource("ProceduralSkyMaterial_cbpu3")
+
+[sub_resource type="Environment" id="Environment_v1tsq"]
+background_mode = 2
+sky = SubResource("Sky_w2g74")
+ambient_light_source = 3
+ambient_light_sky_contribution = 0.17
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v1tsq"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.5372549)
+
+[sub_resource type="SphereMesh" id="SphereMesh_w2g74"]
+material = SubResource("StandardMaterial3D_v1tsq")
+
+[sub_resource type="BoxMesh" id="BoxMesh_86tsd"]
+
+[sub_resource type="Resource" id="Resource_clu2a"]
+script = ExtResource("5_rv4dh")
+_name = "Room1_WallHatch"
+metadata/_custom_type_script = "uid://mx57gvfplfjg"
+
+[sub_resource type="Resource" id="Resource_jm58l"]
+script = ExtResource("5_rv4dh")
+_name = "Room1_HatchZoom"
+metadata/_custom_type_script = "uid://mx57gvfplfjg"
+
+[sub_resource type="Resource" id="Resource_iiwpn"]
+script = ExtResource("5_rv4dh")
+_name = "Room1_Door"
+metadata/_custom_type_script = "uid://mx57gvfplfjg"
+
+[sub_resource type="Resource" id="Resource_5huil"]
+script = ExtResource("5_rv4dh")
+_name = "Room1_DoorZoom"
+metadata/_custom_type_script = "uid://mx57gvfplfjg"
+
+[node name="TestingWorld3d" type="Node3D" unique_id=1507365228]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1918213979]
+environment = SubResource("Environment_v1tsq")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1586810811]
+transform = Transform3D(0.61675096, -0.41380283, 0.669616, -0.73554546, -2.9613393e-08, 0.6774754, -0.2803412, -0.91036654, -0.3043708, 0, 0, 0)
+shadow_enabled = true
+
+[node name="RoomStuff" type="Node3D" parent="." unique_id=1083588097]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51752937, 1.1920929e-07, -0.63971424)
+
+[node name="lamp" type="MeshInstance3D" parent="RoomStuff" unique_id=220820124]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.51752937, 2.0168695, 0.63971424)
+mesh = SubResource("SphereMesh_w2g74")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="RoomStuff/lamp" unique_id=1589191676]
+light_color = Color(0.9834159, 0.78993195, 0.7205278, 1)
+light_energy = 0.5
+distance_fade_enabled = true
+
+[node name="hatch" type="MeshInstance3D" parent="RoomStuff" unique_id=873509392]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03654468, 2.6580052, -1.6509638)
+mesh = SubResource("BoxMesh_86tsd")
+
+[node name="tower_0" parent="." unique_id=1509354637 instance=ExtResource("1_cbpu3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51752937, 1.1920929e-07, -0.63971424)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=923267197]
+transform = Transform3D(0.71712106, 0, -0.6969486, 0, 1, 0, 0.6969486, 0, 0.71712106, -0.51752937, 1.2490469, -0.63971424)
+
+[node name="RoomNavigation" type="CanvasLayer" parent="." unique_id=2049441113]
+script = ExtResource("2_tqoqd")
+
+[node name="Button" type="Button" parent="RoomNavigation" unique_id=1279682604]
+unique_name_in_owner = true
+offset_left = 4.0
+offset_top = 305.0
+offset_right = 47.0
+offset_bo

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="View3D" format=3 uid="uid://0dxbaor117py"]
+
+[ext_resource type="Script" uid="uid://mx57gvfplfjg" path="res://map/view_3d_tag.gd" id="1_hkdao"]
+
+[resource]
+script = ExtResource("1_hkdao")
+_name = "Room1_Door"
+metadata/_custom_type_script = "uid://mx57gvfplfjg"

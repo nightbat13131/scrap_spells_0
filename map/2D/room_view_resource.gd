@@ -14,10 +14,7 @@ func set_last_requester(info: RoomViewInfo) -> void:
 		if each == info:
 			_last_requseter = info
 			return
-	
-	
-	#if valid_previous.has(_last_requseter): # not working on 4.7 , not sure if version issue or if it's the linux
-	#	_last_requseter = info
+
 
 func get_roomview() -> RoomView: return _my_view
 
