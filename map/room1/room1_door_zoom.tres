@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="View3D" format=3 uid="uid://b0m300xqhfkyo"]
 
-[ext_resource type="Script" uid="uid://mx57gvfplfjg" path="res://map/view_3d_tag.gd" id="1_odo3p"]
+[ext_resource type="Script" uid="uid://mx57gvfplfjg" path="res://map/room1/view_3d_tag.gd" id="1_odo3p"]
 
 [resource]
 script = ExtResource("1_odo3p")

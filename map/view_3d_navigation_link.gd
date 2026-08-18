@@ -17,3 +17,7 @@ func get_button_location() -> Vector2i: return _button_location
 func get_icon() -> Texture2D: return _button_icon
 
 func get_text() -> String: return _text
+
+func trigger_navigation() -> void:
+	if _link_to:
+		ViewCameraManager.request_view(_link_to.get_marker())

@@ -4,10 +4,8 @@ class_name ViewCameraManager extends Node3D
 
 @export var _initial : Marker3D
 
-@onready var button_up: Button = %Button_up
-@onready var button_left: Button = %Button_left
-@onready var button_right: Button = %Button_right
-@onready var button_down: Button = %Button_down
+
+#@onready var button_up: Button_NavigateView = %Button_up
 
 
 @onready var _things : Array[Marker3D_Enhanced] = []
@@ -24,17 +22,17 @@ func _ready() -> void:
 	for each in get_children():
 		if each is Marker3D_Enhanced:
 			_things.append(each)
-	button_up.pressed.connect(_on_press)
+	#button_up.pressed.connect(_on_press)
 	_move_camera(_initial)
 
-func _on_press() -> void:
-	var _next : Marker3D_Enhanced
-	if _last_marker:
-		_next = _last_marker.get_rand_neighbor()
-	if _next == null and !_things.is_empty():
-		_next = _things.pick_random()
-	
-	_move_camera(_next, false)
+#func _on_press() -> void:
+	#var _next : Marker3D_Enhanced
+	#if _last_marker:
+		#_next = _last_marker.get_rand_neighbor()
+	#if _next == null and !_things.is_empty():
+		#_next = _things.pick_random()
+	#
+	#_move_camera(_next, false)
 
 func _move_camera(next_maker: Marker3D_Enhanced, fast := true) -> void:
 	if next_maker == null:
@@ -54,7 +52,6 @@ static func request_view(next_marker: Marker3D_Enhanced) -> void:
 	if _instance:
 		_instance._move_camera(next_marker)
 
-
 #method for the tween to do the moving
 func __tween_camera_interpolate(weight: float):
 	#print(weight)
@@ -65,5 +62,8 @@ func __tween_camera_interpolate(weight: float):
 		_transform = _last_marker.get_global_transform().interpolate_with(_transform, weight)
 	camera.set_global_transform(_transform)
 	if is_equal_approx(1.0, weight):
+		print("cleanup")
 		_last_marker = _next_marker
-		#print("cleanup")
+		if _last_marker:
+			RoomNavigation3D.set_navigation_links(_last_marker.get_neighbors().duplicate())
+		

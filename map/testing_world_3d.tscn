@@ -3,12 +3,14 @@
 [ext_resource type="PackedScene" uid="uid://ccc3jc5xk0clw" path="res://assets/3d/tower_0.glb" id="1_cbpu3"]
 [ext_resource type="Script" uid="uid://cd4n4f70da5wp" path="res://map/room_navigation3d.gd" id="2_tqoqd"]
 [ext_resource type="Script" uid="uid://kksaog2m6y2x" path="res://map/room_camera_manager.gd" id="2_w2g74"]
+[ext_resource type="Script" uid="uid://bjwg0fl4u77lb" path="res://map/button_view_navigation.gd" id="3_ob6f3"]
 [ext_resource type="Script" uid="uid://bq850lnoatow3" path="res://map/marker3d_enhanced.gd" id="3_v1tsq"]
 [ext_resource type="Script" uid="uid://bs2sqv4mli5hm" path="res://map/view_3d_navigation_link.gd" id="5_5huil"]
 [ext_resource type="Resource" uid="uid://bnyrn1rlbx1c3" path="res://map/room1/room1_window.tres" id="5_iiwpn"]
 [ext_resource type="Resource" uid="uid://bxmi81xkcbvjx" path="res://map/room1/room1_empty_wall.tres" id="6_5huil"]
 [ext_resource type="Resource" uid="uid://da207n1i03x1y" path="res://map/room1/room1_wall_hatch.tres" id="8_by05c"]
 [ext_resource type="Resource" uid="uid://cytr5emj3a523" path="res://map/room1/room1_hatch_zoom.tres" id="9_ob6f3"]
+[ext_resource type="Resource" uid="uid://bv03jf18pgo6b" path="res://map/room1/room1_window_zoom.tres" id="9_vx84k"]
 [ext_resource type="Resource" uid="uid://0dxbaor117py" path="res://map/room1/room1_door.tres" id="10_vx84k"]
 [ext_resource type="Resource" uid="uid://b0m300xqhfkyo" path="res://map/room1/room1_door_zoom.tres" id="11_evoi6"]
 
@@ -22,7 +24,7 @@ sky_material = SubResource("ProceduralSkyMaterial_cbpu3")
 [sub_resource type="Environment" id="Environment_v1tsq"]
 background_mode = 2
 sky = SubResource("Sky_w2g74")
-ambient_light_source = 3
+ambient_light_source = 1
 ambient_light_sky_contribution = 0.17
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v1tsq"]
@@ -33,6 +35,8 @@ albedo_color = Color(1, 1, 1, 0.5372549)
 material = SubResource("StandardMaterial3D_v1tsq")
 
 [sub_resource type="BoxMesh" id="BoxMesh_86tsd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_86tsd"]
 
 [sub_resource type="Resource" id="Resource_vqn2q"]
 script = ExtResource("5_5huil")
@@ -46,6 +50,20 @@ script = ExtResource("5_5huil")
 _link_to = ExtResource("8_by05c")
 _button_location = Vector2i(-1, 0)
 _text = "< hatch"
+metadata/_custom_type_script = "uid://bs2sqv4mli5hm"
+
+[sub_resource type="Resource" id="Resource_42re8"]
+script = ExtResource("5_5huil")
+_link_to = ExtResource("9_vx84k")
+_button_location = Vector2i(0, -1)
+_text = "^ zoom"
+metadata/_custom_type_script = "uid://bs2sqv4mli5hm"
+
+[sub_resource type="Resource" id="Resource_qt16q"]
+script = ExtResource("5_5huil")
+_link_to = ExtResource("5_iiwpn")
+_button_location = Vector2i(0, 1)
+_text = "v window"
 metadata/_custom_type_script = "uid://bs2sqv4mli5hm"
 
 [sub_resource type="Resource" id="Resource_by05c"]
@@ -122,25 +140,44 @@ metadata/_custom_type_script = "uid://bs2sqv4mli5hm"
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1918213979]
 environment = SubResource("Environment_v1tsq")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1586810811]
-transform = Transform3D(0.61675096, -0.41380283, 0.669616, -0.73554546, -2.9613393e-08, 0.6774754, -0.2803412, -0.91036654, -0.3043708, 0, 0, 0)
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=1586810811]
+transform = Transform3D(-0.6756734, 0.061216768, 0.73465496, 0.23224278, 0.9634785, 0.13331318, -0.6996633, 0.26069456, -0.665214, 0, 0, 0)
+light_color = Color(0.9803533, 0.7958797, 0.4635905, 1)
+light_energy = 0.234
 shadow_enabled = true
 
 [node name="RoomStuff" type="Node3D" parent="." unique_id=1083588097]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51752937, 1.1920929e-07, -0.63971424)
 
 [node name="lamp" type="MeshInstance3D" parent="RoomStuff" unique_id=220820124]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.51752937, 2.0168695, 0.63971424)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.032758057, 1.3265424, 1.629337)
 mesh = SubResource("SphereMesh_w2g74")
+metadata/_edit_group_ = true
 
 [node name="OmniLight3D" type="OmniLight3D" parent="RoomStuff/lamp" unique_id=1589191676]
-light_color = Color(0.9834159, 0.78993195, 0.7205278, 1)
-light_energy = 0.5
+visible = false
+light_color = Color(0.8666667, 0.9098039, 0.94509804, 1)
 distance_fade_enabled = true
 
 [node name="hatch" type="MeshInstance3D" parent="RoomStuff" unique_id=873509392]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03654468, 2.6580052, -1.6509638)
 mesh = SubResource("BoxMesh_86tsd")
+
+[node name="table" type="MeshInstance3D" parent="RoomStuff" unique_id=2045213961]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03654468, 0.36253083, 1.8536956)
+mesh = SubResource("BoxMesh_86tsd")
+
+[node name="Windolight" type="AreaLight3D" parent="RoomStuff" unique_id=1874204203]
+transform = Transform3D(-0.20296076, 0, 0.9791869, 0, 1, 0, -0.9791869, 0, -0.20296076, 2.26639, 1.1815763, 0)
+area_range = 2.5
+area_size = Vector2(0.7112889, 1.246743)
+
+[node name="ClickableWindow" type="Area3D" parent="RoomStuff" unique_id=1417582662]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2748706, 1.279892, 0.0021986365)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomStuff/ClickableWindow" unique_id=1882897349]
+shape = SubResource("BoxShape3D_86tsd")
 
 [node name="tower_0" parent="." unique_id=1509354637 instance=ExtResource("1_cbpu3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51752937, 1.1920929e-07, -0.63971424)
@@ -149,7 +186,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51752937, 1.1920929e-07, -
 transform = Transform3D(0.71712106, 0, -0.6969486, 0, 1, 0, 0.6969486, 0, 0.71712106, -0.51752937, 1.2490469, -0.63971424)
 
 [node name="RoomNavigation" type="CanvasLayer" parent="." unique_id=2049441113]
-script = ExtResource("2_tqoqd")
 
 [node name="Control" type="Control" parent="RoomNavigation" unique_id=1267414963]
 layout_mode = 3
@@ -167,54 +203,77 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 columns = 3
+script = ExtResource("2_tqoqd")
 
 [node name="Control" type="Control" parent="RoomNavigation/Control/GridContainer" unique_id=1259557120]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Button_up" type="Button" parent="RoomNavigation/Control/GridContainer" unique_id=1279682604]
+[node name="MarginContainer" type="MarginContainer" parent="RoomNavigation/Control/GridContainer" unique_id=652932620]
+layout_mode = 2
+
+[node name="Button_up" type="Button" parent="RoomNavigation/Control/GridContainer/MarginContainer" unique_id=1279682604]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "next"
+script = ExtResource("3_ob6f3")
 
 [node name="Control2" type="Control" parent="RoomNavigation/Control/GridContainer" unique_id=276889820]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Button_left" type="Button" parent="RoomNavigation/Control/GridContainer" unique_id=1912422322]
+[node name="Control7" type="MarginContainer" parent="RoomNavigation/Control/GridContainer" unique_id=2090799970]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button_left" type="Button" parent="RoomNavigation/Control/GridContainer/Control7" unique_id=1912422322]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 text = "next"
+script = ExtResource("3_ob6f3")
 
 [node name="Control3" type="Control" parent="RoomNavigation/Control/GridContainer" unique_id=1156247053]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Button_right" type="Button" parent="RoomNavigation/Control/GridContainer" unique_id=1060111804]
+[node name="Control8" type="MarginContainer" parent="RoomNavigation/Control/GridContainer" unique_id=336911231]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button_right" type="Button" parent="RoomNavigation/Control/GridContainer/Control8" unique_id=1060111804]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
 text = "next"
+script = ExtResource("3_ob6f3")
 
 [node name="Control4" type="Control" parent="RoomNavigation/Control/GridContainer" unique_id=2066884125]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Button_down" type="Button" parent="RoomNavigation/Control/GridContainer" unique_id=1326440777]
+[node name="Control9" type="MarginContainer" parent="RoomNavigation/Control/GridContainer" unique_id=321698468]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button_down" type="Button" parent="RoomNavigation/Control/GridContainer/Control9" unique_id=1326440777]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 text = "next"
+script = ExtResource("3_ob6f3")
 
 [node name="Control6" type="Control" parent="RoomNavigation/Control/GridContainer" unique_id=89757120]
 layout_mode = 2
@@ -224,15 +283,23 @@ size_flags_vertical = 3
 [node name="RoomCameraManager" type="Node3D" parent="." unique_id=113264014 node_paths=PackedStringArray("camera", "_initial")]
 script = ExtResource("2_w2g74")
 camera = NodePath("../Camera3D")
-_initial = NodePath("door")
+_initial = NodePath("window")
 
 [node name="window" type="Marker3D" parent="RoomCameraManager" unique_id=2090192460]
 unique_name_in_owner = true
 transform = Transform3D(0.039497793, 0, -0.99921966, 0, 1, 0, 0.99921966, 0, 0.039497793, -0.51752937, 1.2490469, -0.63971424)
 gizmo_extents = 2.0
 script = ExtResource("3_v1tsq")
-_neighbors = Array[ExtResource("5_5huil")]([SubResource("Resource_vqn2q"), SubResource("Resource_kjanm")])
+_neighbors = Array[ExtResource("5_5huil")]([SubResource("Resource_vqn2q"), SubResource("Resource_kjanm"), SubResource("Resource_42re8")])
 _info = ExtResource("5_iiwpn")
+
+[node name="window_zoom" type="Marker3D" parent="RoomCameraManager" unique_id=1176386479]
+unique_name_in_owner = true
+transform = Transform3D(0.039497793, 0, -0.99921966, 0, 1, 0, 0.99921966, 0, 0.039497793, 0.22499287, 1.2490469, -0.63971424)
+gizmo_extents = 2.0
+script = ExtResource("3_v1tsq")
+_neighbors = Array[ExtResource("5_5huil")]([SubResource("Resource_qt16q")])
+_info = ExtResource("9_vx84k")
 
 [node name="wall_empty" type="Marker3D" parent="RoomCameraManager" unique_id=1782226687]
 unique_name_in_owner = true

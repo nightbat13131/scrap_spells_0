@@ -15,3 +15,5 @@ func get_rand_neighbor() -> Marker3D_Enhanced:
 	if !_neighbors.is_empty():
 		return _neighbors.pick_random().get_link().get_marker()
 	return null
+
+func get_neighbors() -> Array[View3DNavigationLink]: return _neighbors
