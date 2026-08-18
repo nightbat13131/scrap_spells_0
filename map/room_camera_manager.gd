@@ -22,35 +22,25 @@ func _ready() -> void:
 	for each in get_children():
 		if each is Marker3D_Enhanced:
 			_things.append(each)
-	#button_up.pressed.connect(_on_press)
 	_move_camera(_initial)
 
-#func _on_press() -> void:
-	#var _next : Marker3D_Enhanced
-	#if _last_marker:
-		#_next = _last_marker.get_rand_neighbor()
-	#if _next == null and !_things.is_empty():
-		#_next = _things.pick_random()
-	#
-	#_move_camera(_next, false)
-
-func _move_camera(next_maker: Marker3D_Enhanced, fast := true) -> void:
-	if next_maker == null:
+func _move_camera(next_marker: Marker3D_Enhanced, fast := true) -> void:
+	if next_marker == null:
 		return
-	if next_maker == _last_marker:
+	if next_marker == _last_marker:
 		return
-	_next_marker = next_maker
+	_next_marker = next_marker
+	_leaving_marker()
 	if fast:
 		__tween_camera_interpolate(1.0)
-		
 	else: 
 		var tween = create_tween()
 		tween.tween_method(__tween_camera_interpolate, 0.0, 1.0, 1.0)
 		#print(tween)
 
-static func request_view(next_marker: Marker3D_Enhanced) -> void:
+static func request_view(next_marker: Marker3D_Enhanced, fast := true) -> void:
 	if _instance:
-		_instance._move_camera(next_marker)
+		_instance._move_camera(next_marker, fast)
 
 #method for the tween to do the moving
 func __tween_camera_interpolate(weight: float):
@@ -63,7 +53,15 @@ func __tween_camera_interpolate(weight: float):
 	camera.set_global_transform(_transform)
 	if is_equal_approx(1.0, weight):
 		print("cleanup")
-		_last_marker = _next_marker
-		if _last_marker:
-			RoomNavigation3D.set_navigation_links(_last_marker.get_neighbors().duplicate())
-		
+		_ariving_at_marker()
+
+func _ariving_at_marker() -> void:
+	_last_marker = _next_marker
+	if _last_marker:
+		RoomNavigation3D.set_navigation_links(_last_marker.get_neighbors().duplicate())
+		_last_marker.get_info().set_focus(true)
+
+func _leaving_marker() -> void:
+	RoomNavigation3D.no_links()
+	if _last_marker:
+		_last_marker.get_info().set_focus(false)

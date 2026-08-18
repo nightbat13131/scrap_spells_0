@@ -4,6 +4,7 @@ class_name View3D extends Resource
 @export var _name : String ## debugging
 
 var _marker: Marker3D_Enhanced
+var _is_focused := false : set = set_focus
 
 func set_marker(node: Marker3D_Enhanced) -> void:
 	if _marker:
@@ -13,3 +14,7 @@ func set_marker(node: Marker3D_Enhanced) -> void:
 func get_marker() -> Marker3D: return _marker
 
 func get_view_name() -> String: return _name
+
+func set_focus(is_focused_) -> void: _is_focused = is_focused_
+
+func is_focused() -> bool: return _is_focused

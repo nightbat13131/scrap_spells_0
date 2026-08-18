@@ -20,4 +20,4 @@ func get_text() -> String: return _text
 
 func trigger_navigation() -> void:
 	if _link_to:
-		ViewCameraManager.request_view(_link_to.get_marker())
+		ViewCameraManager.request_view(_link_to.get_marker(), false)

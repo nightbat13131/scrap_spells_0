@@ -17,3 +17,5 @@ func get_rand_neighbor() -> Marker3D_Enhanced:
 	return null
 
 func get_neighbors() -> Array[View3DNavigationLink]: return _neighbors
+
+func get_info() -> View3D: return _info
