@@ -1,33 +1,32 @@
-class_name Area3D_Clickable extends Area3D
+class_name Area3D_Mousable extends Area3D
 
+signal triggered(mousable: Area3D_Mousable)
+
+# Only work when this view is active
 @export var _view_dependency : View3D
-@export var _navigate_on_press : View3DNavigationLink
+# for thing connected to trigger to use
+@export var _nav_link : View3DNavigationLink
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
-	#mouse_entered.connect(_on_mouse_entered)
-	#mouse_exited.connect(_on_mouse_exited)
+	set_monitorable(false)
+	_on_focus_change(false)
+	if _view_dependency:
+		_view_dependency.focused_changed.connect(_on_focus_change)
 	input_event.connect(_on_input_event)
-	pass # Replace with function body.
 
 func _is_dependency_good() -> bool: 
 	if _view_dependency:
 		return _view_dependency.is_focused()
 	return true
 
-#func _on_mouse_entered() -> void: 
-	#print("E")
-	#if _is_dependency_good():
-		#print("EEEEEEEEE")
-		#
-#
-#func _on_mouse_exited() -> void: 
-	#print("X")
+func get_nav_link() -> View3DNavigationLink: return _nav_link
 
 func _on_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if _is_dependency_good():
 		if event.is_pressed():
-			#print(event)
-			if _navigate_on_press:
-				_navigate_on_press.trigger_navigation()
-	pass # Replace with function body.
+			triggered.emit(self)
+
+func _on_focus_change(_is_focused: bool) -> void: 
+	set_monitoring(_is_focused)
+	set_ray_pickable(_is_focused)
