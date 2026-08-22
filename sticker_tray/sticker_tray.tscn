@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bec25qjnm4apa"]
 
-[ext_resource type="Script" uid="uid://cmwecrd28prqk" path="res://sticker_tray.gd" id="1_pmxlv"]
+[ext_resource type="Script" uid="uid://cmwecrd28prqk" path="res://sticker_tray/sticker_tray.gd" id="1_pmxlv"]
 [ext_resource type="Texture2D" uid="uid://dilw848ljs5ol" path="res://icon.svg" id="2_iutta"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1lwx6"]

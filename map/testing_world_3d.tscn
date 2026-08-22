@@ -38,6 +38,9 @@ material = SubResource("StandardMaterial3D_v1tsq")
 
 [sub_resource type="BoxMesh" id="BoxMesh_86tsd"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_g8r6x"]
+size = Vector3(0.8952484, 0.13360596, 0.74523926)
+
 [sub_resource type="Resource" id="Resource_7uoqy"]
 script = ExtResource("5_5huil")
 _link_to = ExtResource("9_vx84k")
@@ -206,6 +209,10 @@ mesh = SubResource("BoxMesh_86tsd")
 [node name="table" type="MeshInstance3D" parent="RoomStuff" unique_id=2045213961]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7168585, 0.36253083, 1.0727181)
 mesh = SubResource("BoxMesh_86tsd")
+
+[node name="drawr" type="MeshInstance3D" parent="RoomStuff/table" unique_id=1049352512]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0043258667, 0.37838745, -0.19091415)
+mesh = SubResource("BoxMesh_g8r6x")
 
 [node name="Windolight" type="AreaLight3D" parent="RoomStuff" unique_id=1874204203]
 transform = Transform3D(-0.20296076, 0, 0.9791869, 0, 1, 0, -0.9791869, 0, -0.20296076, 2.26639, 1.1815763, 0)
