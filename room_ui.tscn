@@ -1,0 +1,144 @@
+[gd_scene format=3 uid="uid://d13kpimdq3rnr"]
+
+[ext_resource type="PackedScene" uid="uid://bjenx6b1byvbq" path="res://map/world_3d.tscn" id="1_14tkw"]
+[ext_resource type="Script" uid="uid://cd4n4f70da5wp" path="res://map/room_navigation3d.gd" id="17_c6oil"]
+[ext_resource type="Script" uid="uid://bjwg0fl4u77lb" path="res://map/button_view_navigation.gd" id="18_l1fid"]
+
+[node name="RoomUI" type="CanvasLayer" unique_id=46330287]
+
+[node name="Control" type="Control" parent="." unique_id=243619204]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=1504872245]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer" unique_id=1012963149]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/MarginContainer/HBoxContainer" unique_id=484933212]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/PanelContainer" unique_id=1289867761]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer" unique_id=2126539291]
+layout_mode = 2
+text = "Inventory"
+
+[node name="CenterContainer" type="MarginContainer" parent="Control/MarginContainer/HBoxContainer" unique_id=708833900]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Control/MarginContainer/HBoxContainer/CenterContainer" unique_id=906870076]
+layout_mode = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="Control/MarginContainer/HBoxContainer/CenterContainer/SubViewportContainer" unique_id=1637796737]
+handle_input_locally = false
+physics_object_picking = true
+size = Vector2i(1337, 786)
+render_target_update_mode = 4
+
+[node name="Node3D" parent="Control/MarginContainer/HBoxContainer/CenterContainer/SubViewportContainer/SubViewport" unique_id=1511830246 instance=ExtResource("1_14tkw")]
+
+[node name="RoomNavButtons" type="GridContainer" parent="Control/MarginContainer/HBoxContainer/CenterContainer" unique_id=926160803]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+columns = 3
+script = ExtResource("17_c6oil")
+
+[node name="Control" type="Control" parent="Control/MarginContainer/HBoxContainer/CenterContainer/RoomNavButtons" unique_id=2061942110]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/HBoxContainer/CenterContainer/RoomNavButtons" unique_id=484161884]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Button_up" type="Button" parent="Control/MarginContainer/HBoxContainer/CenterContainer/RoomNavButtons/MarginContainer" unique_id=1824586123]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "next"
+script = ExtResource("18_l1fid")
+
+[node name="Control2" type="Control" parent="Control/MarginContainer/HBoxContainer/CenterContainer/RoomNavButtons" unique_id=1049607935]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Control7" type="MarginContainer" parent="Control/MarginContainer/HBoxContainer/CenterContainer/RoomNavButtons" unique_id=163954855]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Button_left" type="Button" parent="Control/MarginContainer/HBoxContainer/CenterContainer/RoomNavButtons/Control7" unique_id=1255221102]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+text = "next"
+script = ExtResource("18_l1fid")
+
+[node name="Control3" type="Control" parent="Control/MarginContainer/HBoxContainer/CenterContainer/RoomNavButtons" unique_id=1124486756]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Control8" type="MarginContainer" parent="Control/MarginContainer/HBoxContainer/CenterContainer/RoomNavButtons" unique_id=409371086]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Button_right" type="Button" parent="Control/MarginContainer/HBoxContainer/CenterContainer/RoomNavButtons/Control8" unique_id=145779824]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+text = "next"
+script = ExtResource("18_l1fid")
+
+[node name="Control4" type="Control" parent="Control/MarginContainer/HBoxContainer/CenterContainer/RoomNavButtons" unique_id=1824535227]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Control9" type="MarginContainer" parent="Control/MarginContainer/HBoxContainer/CenterContainer/RoomNavButtons" unique_id=402105267]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Button_down" type="Button" parent="Control/MarginContainer/HBoxContainer/CenterContainer/RoomNavButtons/Control9" unique_id=394493581]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "next"
+script = ExtResource("18_l1fid")
+
+[node name="Control6" type="Control" parent="Control/MarginContainer/HBoxContainer/CenterContainer/RoomNavButtons" unique_id=1692028692]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2

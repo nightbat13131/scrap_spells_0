@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bnwuoevxw1tl2"]
+
+[ext_resource type="PackedScene" uid="uid://d13kpimdq3rnr" path="res://room_ui.tscn" id="1_cbpu3"]
+
+[node name="TestingWorld3d" type="Node3D" unique_id=1507365228]
+
+[node name="RoomUI" parent="." unique_id=46330287 instance=ExtResource("1_cbpu3")]

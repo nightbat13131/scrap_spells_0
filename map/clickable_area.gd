@@ -4,8 +4,7 @@ signal triggered(mousable: Area3D_Mousable)
 
 # Only work when this view is active
 @export var _view_dependency : View3D
-# for thing connected to trigger to use
-@export var _nav_link : View3DNavigationLink
+
 
 
 func _ready() -> void:
@@ -20,12 +19,12 @@ func _is_dependency_good() -> bool:
 		return _view_dependency.is_focused()
 	return true
 
-func get_nav_link() -> View3DNavigationLink: return _nav_link
 
 func _on_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if _is_dependency_good():
 		if event.is_pressed():
 			triggered.emit(self)
+
 
 func _on_focus_change(_is_focused: bool) -> void: 
 	set_monitoring(_is_focused)

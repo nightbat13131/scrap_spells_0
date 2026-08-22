@@ -33,7 +33,8 @@ func _set_links(links: Array[View3DNavigationLink]) -> void:
 			Vector2i.RIGHT:
 				button_right.set_info(link)
 			_ : 
-				prints("no button for ", link.get_text())
+				#prints("no button for ", link.get_text())
+				pass
 
 static func no_links() -> void:
 	if _instance:

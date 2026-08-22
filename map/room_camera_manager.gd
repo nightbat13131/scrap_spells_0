@@ -1,28 +1,23 @@
 class_name ViewCameraManager extends Node3D
+# views that are being moved to do NOT need to be a child of this. 
 
 @export var camera : Camera3D
 
 @export var _initial : Marker3D
-
-
-#@onready var button_up: Button_NavigateView = %Button_up
-
-
-@onready var _things : Array[Marker3D_Enhanced] = []
 
 var _last_marker : Marker3D_Enhanced
 var _next_marker: Marker3D_Enhanced
 
 static var _instance : ViewCameraManager
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	assert(camera and _initial, "3d camera manager missing stuff")
 	_instance = self
-	for each in get_children():
-		if each is Marker3D_Enhanced:
-			_things.append(each)
-	_move_camera(_initial)
+	#for each in get_children():
+		#if each is Marker3D_Enhanced:
+			#_things.append(each)
+	_move_camera.call_deferred(_initial)
 
 func _move_camera(next_marker: Marker3D_Enhanced, fast := true) -> void:
 	if next_marker == null:
@@ -52,7 +47,7 @@ func __tween_camera_interpolate(weight: float):
 		_transform = _last_marker.get_global_transform().interpolate_with(_transform, weight)
 	camera.set_global_transform(_transform)
 	if is_equal_approx(1.0, weight):
-		print("cleanup")
+		#print("cleanup")
 		_ariving_at_marker()
 
 func _ariving_at_marker() -> void:

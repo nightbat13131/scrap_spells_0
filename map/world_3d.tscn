@@ -1,0 +1,402 @@
+[gd_scene format=3 uid="uid://bjenx6b1byvbq"]
+
+[ext_resource type="Script" uid="uid://dlgxx2qol7y8f" path="res://events/table_0.gd" id="1_np25w"]
+[ext_resource type="Script" uid="uid://bq850lnoatow3" path="res://map/marker3d_enhanced.gd" id="2_wf3jw"]
+[ext_resource type="Script" uid="uid://bs2sqv4mli5hm" path="res://map/view_3d_navigation_link.gd" id="3_o7l3u"]
+[ext_resource type="Resource" uid="uid://bxmi81xkcbvjx" path="res://map/room1/r1_wall_drawr.tres" id="4_6pcc3"]
+[ext_resource type="Resource" uid="uid://2mchmgolhjks" path="res://map/room1/r1_drawr_zoom.tres" id="5_m3e1j"]
+[ext_resource type="Script" uid="uid://ys2nvu6uaei1" path="res://map/clickable_area.gd" id="6_w2lvg"]
+[ext_resource type="Script" uid="uid://70tbmn58ivrj" path="res://map/click_navigate.gd" id="7_np25w"]
+[ext_resource type="Resource" uid="uid://bnyrn1rlbx1c3" path="res://map/room1/r1_wall_window.tres" id="8_u2keh"]
+[ext_resource type="Resource" uid="uid://bv03jf18pgo6b" path="res://map/room1/r1_window_zoom.tres" id="9_4orxc"]
+[ext_resource type="Resource" uid="uid://da207n1i03x1y" path="res://map/room1/r1_wall_hatch.tres" id="10_ntgq4"]
+[ext_resource type="Resource" uid="uid://cytr5emj3a523" path="res://map/room1/r1_hatch_zoom.tres" id="11_jjv41"]
+[ext_resource type="Resource" uid="uid://0dxbaor117py" path="res://map/room1/r1_wall_door.tres" id="12_ake51"]
+[ext_resource type="Resource" uid="uid://b0m300xqhfkyo" path="res://map/room1/r1_door_zoom.tres" id="13_2pq2l"]
+[ext_resource type="Resource" uid="uid://234ixh4uyy4q" path="res://map/room1/r1_door_knob_zoom.tres" id="14_2b6r3"]
+[ext_resource type="PackedScene" uid="uid://ccc3jc5xk0clw" path="res://assets/3d/tower_0.glb" id="15_np2o1"]
+[ext_resource type="Script" uid="uid://kksaog2m6y2x" path="res://map/room_camera_manager.gd" id="16_fhoj7"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cbpu3"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_w2g74"]
+sky_material = SubResource("ProceduralSkyMaterial_cbpu3")
+
+[sub_resource type="Environment" id="Environment_v1tsq"]
+background_mode = 2
+sky = SubResource("Sky_w2g74")
+ambient_light_sky_contribution = 0.17
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v1tsq"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.5372549)
+
+[sub_resource type="SphereMesh" id="SphereMesh_w2g74"]
+material = SubResource("StandardMaterial3D_v1tsq")
+
+[sub_resource type="BoxMesh" id="BoxMesh_86tsd"]
+
+[sub_resource type="Resource" id="Resource_7s8ge"]
+script = ExtResource("3_o7l3u")
+_link_to = ExtResource("4_6pcc3")
+_button_location = Vector2i(0, 1)
+_text = "v back wall"
+metadata/_custom_type_script = "uid://bs2sqv4mli5hm"
+
+[sub_resource type="Resource" id="Resource_8qede"]
+script = ExtResource("3_o7l3u")
+_link_to = ExtResource("5_m3e1j")
+_text = "drawr zoom"
+metadata/_custom_type_script = "uid://bs2sqv4mli5hm"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_axj8b"]
+size = Vector3(1, 0.1352539, 0.10961914)
+
+[sub_resource type="BoxMesh" id="BoxMesh_g8r6x"]
+size = Vector3(0.8952484, 0.13360596, 0.74523926)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_86tsd"]
+radius = 0.1
+
+[sub_resource type="Resource" id="Resource_7uoqy"]
+script = ExtResource("3_o7l3u")
+_link_to = ExtResource("9_4orxc")
+metadata/_custom_type_script = "uid://bs2sqv4mli5hm"
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_g8r6x"]
+height = 0.2609253
+radius = 0.55
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_86tsd"]
+size = Vector3(0.37597656, 0.8574829, 1.114685)
+
+[sub_resource type="Resource" id="Resource_86tsd"]
+script = ExtResource("3_o7l3u")
+_link_to = ExtResource("11_jjv41")
+metadata/_custom_type_script = "uid://bs2sqv4mli5hm"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_evoi6"]
+
+[sub_resource type="Resource" id="Resource_hchi7"]
+script = ExtResource("3_o7l3u")
+_link_to = ExtResource("13_2pq2l")
+metadata/_custom_type_script = "uid://bs2sqv4mli5hm"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kjanm"]
+size = Vector3(0.24853516, 1.6883545, 1.2572937)
+
+[sub_resource type="Resource" id="Resource_kudnk"]
+script = ExtResource("3_o7l3u")
+_link_to = ExtResource("14_2b6r3")
+metadata/_custom_type_script = "uid://bs2sqv4mli5hm"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g8r6x"]
+size = Vector3(0.2526245, 0.30791473, 0.36021423)
+
+[sub_resource type="Resource" id="Resource_vqn2q"]
+script = ExtResource("3_o7l3u")
+_link_to = ExtResource("4_6pcc3")
+_button_location = Vector2i(1, 0)
+_text = "> empty"
+metadata/_custom_type_script = "uid://bs2sqv4mli5hm"
+
+[sub_resource type="Resource" id="Resource_kjanm"]
+script = ExtResource("3_o7l3u")
+_link_to = ExtResource("10_ntgq4")
+_button_location = Vector2i(-1, 0)
+_text = "< hatch"
+metadata/_custom_type_script = "uid://bs2sqv4mli5hm"
+
+[sub_resource type="Resource" id="Resource_42re8"]
+script = ExtResource("3_o7l3u")
+_link_to = ExtResource("9_4orxc")
+_text = "^ zoom"
+metadata/_custom_type_script = "uid://bs2sqv4mli5hm"
+
+[sub_resource type="Resource" id="Resource_qt16q"]
+script = ExtResource("3_o7l3u")
+_link_to = ExtResource("8_u2keh")
+_button_location = Vector2i(0, 1)
+_text = "v window"
+metadata/_custom_type_script = "uid://bs2sqv4mli5hm"
+
+[sub_resource type="Resource" id="Resource_by05c"]
+script = ExtResource("3_o7l3u")
+_link_to = ExtResource("8_u2keh")
+_button_location = Vector2i(-1, 0)
+_text = "< window"
+metadata/_custom_type_script = "uid://bs2sqv4mli5hm"
+
+[sub_resource type="Resource" id="Resource_g8r6x"]
+script = ExtResource("3_o7l3u")
+_link_to = ExtResource("12_ake51")
+_button_location = Vector2i(1, 0)
+_text = "> door"
+metadata/_custom_type_script = "uid://bs2sqv4mli5hm"
+
+[sub_resource type="Resource" id="Resource_ob6f3"]
+script = ExtResource("3_o7l3u")
+_link_to = ExtResource("8_u2keh")
+_button_location = Vector2i(1, 0)
+_text = "> window"
+metadata/_custom_type_script = "uid://bs2sqv4mli5hm"
+
+[sub_resource type="Resource" id="Resource_vx84k"]
+script = ExtResource("3_o7l3u")
+_link_to = ExtResource("12_ake51")
+_button_location = Vector2i(-1, 0)
+_text = "< door"
+metadata/_custom_type_script = "uid://bs2sqv4mli5hm"
+
+[sub_resource type="Resource" id="Resource_evoi6"]
+script = ExtResource("3_o7l3u")
+_link_to = ExtResource("11_jjv41")
+_text = "^ zoom"
+metadata/_custom_type_script = "uid://bs2sqv4mli5hm"
+
+[sub_resource type="Resource" id="Resource_ri43h"]
+script = ExtResource("3_o7l3u")
+_link_to = ExtResource("10_ntgq4")
+_button_location = Vector2i(0, 1)
+_text = "v back"
+metadata/_custom_type_script = "uid://bs2sqv4mli5hm"
+
+[sub_resource type="Resource" id="Resource_nbiok"]
+script = ExtResource("3_o7l3u")
+_link_to = ExtResource("4_6pcc3")
+_button_location = Vector2i(-1, 0)
+_text = "< empty"
+metadata/_custom_type_script = "uid://bs2sqv4mli5hm"
+
+[sub_resource type="Resource" id="Resource_xg2st"]
+script = ExtResource("3_o7l3u")
+_link_to = ExtResource("10_ntgq4")
+_button_location = Vector2i(1, 0)
+_text = "> hatch"
+metadata/_custom_type_script = "uid://bs2sqv4mli5hm"
+
+[sub_resource type="Resource" id="Resource_sxxud"]
+script = ExtResource("3_o7l3u")
+_link_to = ExtResource("13_2pq2l")
+_text = "^ zoom"
+metadata/_custom_type_script = "uid://bs2sqv4mli5hm"
+
+[sub_resource type="Resource" id="Resource_yfaoa"]
+script = ExtResource("3_o7l3u")
+_link_to = ExtResource("12_ake51")
+_button_location = Vector2i(0, 1)
+_text = "v back"
+metadata/_custom_type_script = "uid://bs2sqv4mli5hm"
+
+[sub_resource type="Resource" id="Resource_rwdvf"]
+script = ExtResource("3_o7l3u")
+_link_to = ExtResource("13_2pq2l")
+_button_location = Vector2i(0, 1)
+_text = "v Back"
+metadata/_custom_type_script = "uid://bs2sqv4mli5hm"
+
+[node name="Node3D" type="Node3D" unique_id=1511830246]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=654173617]
+environment = SubResource("Environment_v1tsq")
+
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=1058584760]
+transform = Transform3D(-0.6756734, 0.061216753, 0.73465496, 0.23224278, 0.96347857, 0.13331327, -0.6996633, 0.26069456, -0.665214, 0, 0, 0)
+light_color = Color(0.9803533, 0.7958797, 0.4635905, 1)
+light_energy = 0.234
+shadow_enabled = true
+
+[node name="RoomStuff" type="Node3D" parent="." unique_id=205842774]
+metadata/_edit_lock_ = true
+
+[node name="lamp" type="MeshInstance3D" parent="RoomStuff" unique_id=1696149386]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.73478407, 1.3265424, 1.0530694)
+mesh = SubResource("SphereMesh_w2g74")
+metadata/_edit_group_ = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="RoomStuff/lamp" unique_id=1023226953]
+visible = false
+light_color = Color(0.8666667, 0.9098039, 0.94509804, 1)
+distance_fade_enabled = true
+
+[node name="hatch" type="MeshInstance3D" parent="RoomStuff" unique_id=1559712529]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5016225, 2.6580052, -2.1594572)
+mesh = SubResource("BoxMesh_86tsd")
+
+[node name="table" type="MeshInstance3D" parent="RoomStuff" unique_id=1402616252 node_paths=PackedStringArray("_action_trigger")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7168585, 0.36253083, 1.0727181)
+mesh = SubResource("BoxMesh_86tsd")
+script = ExtResource("1_np25w")
+_action_trigger = NodePath("drawr/open_trigger")
+
+[node name="looking_in_drawr" type="Marker3D" parent="RoomStuff/table" unique_id=1859363835]
+transform = Transform3D(-0.99921966, 0, -0.039497748, -0.031878788, 0.59040934, 0.8064741, 0.023319839, 0.80710393, -0.5899486, -0.020371795, 1.0925719, -0.9770018)
+gizmo_extents = 2.0
+script = ExtResource("2_wf3jw")
+_neighbors = Array[ExtResource("3_o7l3u")]([SubResource("Resource_7s8ge")])
+_info = ExtResource("5_m3e1j")
+metadata/_custom_type_script = "uid://bq850lnoatow3"
+
+[node name="view_trigger" type="Area3D" parent="RoomStuff/table" unique_id=354614035]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0043258667, 0.4775138, -0.4605664)
+script = ExtResource("7_np25w")
+_nav_link = SubResource("Resource_8qede")
+_view_dependency = ExtResource("4_6pcc3")
+metadata/_custom_type_script = "uid://70tbmn58ivrj"
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomStuff/table/view_trigger" unique_id=760755533]
+shape = SubResource("BoxShape3D_axj8b")
+
+[node name="drawr" type="MeshInstance3D" parent="RoomStuff/table" unique_id=2039317402]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37800002, -0.12952173)
+mesh = SubResource("BoxMesh_g8r6x")
+
+[node name="open_trigger" type="Area3D" parent="RoomStuff/table/drawr" unique_id=856528982]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0043258667, 0.033705115, -0.33104467)
+script = ExtResource("6_w2lvg")
+_view_dependency = ExtResource("4_6pcc3")
+metadata/_custom_type_script = "uid://ys2nvu6uaei1"
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomStuff/table/drawr/open_trigger" unique_id=2074404350]
+shape = SubResource("BoxShape3D_axj8b")
+
+[node name="Area3D_Mousable" type="Area3D" parent="RoomStuff/table/drawr" unique_id=1085097264]
+script = ExtResource("6_w2lvg")
+metadata/_custom_type_script = "uid://ys2nvu6uaei1"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomStuff/table/drawr/Area3D_Mousable" unique_id=1751129357]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.20171177)
+shape = SubResource("SphereShape3D_86tsd")
+
+[node name="Windolight" type="AreaLight3D" parent="RoomStuff" unique_id=118422547]
+transform = Transform3D(-0.20296076, 0, 0.9791869, 0, 1, 0, -0.9791869, 0, -0.20296076, 2.26639, 1.1815763, 0)
+area_range = 2.5
+area_size = Vector2(0.7112889, 1.246743)
+
+[node name="AreaNavigations" type="Node3D" parent="RoomStuff" unique_id=619112315]
+metadata/_edit_lock_ = true
+
+[node name="WindowZoom" type="Area3D" parent="RoomStuff/AreaNavigations" unique_id=527223971]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5809453, 1.0519533, -0.6126631)
+monitorable = false
+script = ExtResource("7_np25w")
+_nav_link = SubResource("Resource_7uoqy")
+_view_dependency = ExtResource("8_u2keh")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomStuff/AreaNavigations/WindowZoom" unique_id=332123266]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0.39999998, -0.033963263)
+shape = SubResource("CylinderShape3D_g8r6x")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="RoomStuff/AreaNavigations/WindowZoom" unique_id=1332664746]
+shape = SubResource("BoxShape3D_86tsd")
+
+[node name="HatchZoom" type="Area3D" parent="RoomStuff/AreaNavigations" unique_id=1454224618]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4964809, 2.6398072, -2.1461053)
+monitorable = false
+script = ExtResource("7_np25w")
+_nav_link = SubResource("Resource_86tsd")
+_view_dependency = ExtResource("10_ntgq4")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomStuff/AreaNavigations/HatchZoom" unique_id=912541150]
+shape = SubResource("BoxShape3D_evoi6")
+
+[node name="DoorZoom" type="Area3D" parent="RoomStuff/AreaNavigations" unique_id=131668464]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.338737, 0.7579719, -0.5319983)
+monitorable = false
+script = ExtResource("7_np25w")
+_nav_link = SubResource("Resource_hchi7")
+_view_dependency = ExtResource("12_ake51")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomStuff/AreaNavigations/DoorZoom" unique_id=1338539753]
+shape = SubResource("BoxShape3D_kjanm")
+
+[node name="DoorKnobZoom" type="Area3D" parent="RoomStuff/AreaNavigations" unique_id=1760807288]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3348866, 0.4240377, 0.15048122)
+monitorable = false
+script = ExtResource("7_np25w")
+_nav_link = SubResource("Resource_kudnk")
+_view_dependency = ExtResource("13_2pq2l")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomStuff/AreaNavigations/DoorKnobZoom" unique_id=460945978]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27647072, -0.3612738)
+shape = SubResource("BoxShape3D_g8r6x")
+
+[node name="tower_0" parent="." unique_id=44202357 instance=ExtResource("15_np2o1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51752937, 1.1920929e-07, -0.63971424)
+metadata/_edit_lock_ = true
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=316072588]
+transform = Transform3D(0.7171211, 0, -0.69694865, 0, 1, 0, 0.69694865, 0, 0.7171211, -0.51752937, 1.2490469, -0.63971424)
+
+[node name="RoomCameraManager" type="Node3D" parent="." unique_id=1684840818 node_paths=PackedStringArray("camera", "_initial")]
+script = ExtResource("16_fhoj7")
+camera = NodePath("../Camera3D")
+_initial = NodePath("window")
+metadata/_edit_lock_ = true
+
+[node name="window" type="Marker3D" parent="RoomCameraManager" unique_id=56709604]
+transform = Transform3D(0.039497793, 0, -0.99921966, 0, 1, 0, 0.99921966, 0, 0.039497793, -0.51752937, 1.2490469, -0.63971424)
+gizmo_extents = 2.0
+script = ExtResource("2_wf3jw")
+_neighbors = Array[ExtResource("3_o7l3u")]([SubResource("Resource_vqn2q"), SubResource("Resource_kjanm"), SubResource("Resource_42re8")])
+_info = ExtResource("8_u2keh")
+
+[node name="window_zoom" type="Marker3D" parent="RoomCameraManager" unique_id=190645274]
+transform = Transform3D(0.039497793, 0, -0.99921966, 0, 1, 0, 0.99921966, 0, 0.039497793, 0.5066531, 1.2490469, -0.63971424)
+gizmo_extents = 2.0
+script = ExtResource("2_wf3jw")
+_neighbors = Array[ExtResource("3_o7l3u")]([SubResource("Resource_qt16q")])
+_info = ExtResource("9_4orxc")
+
+[node name="wall_drawr" type="Marker3D" parent="RoomCameraManager" unique_id=1918123455]
+transform = Transform3D(-0.99878985, 0, -0.04918323, 0, 1, 0, 0.04918323, 0, -0.99878985, -0.51752937, 1.2490469, -0.63971424)
+gizmo_extents = 2.0
+script = ExtResource("2_wf3jw")
+_neighbors = Array[ExtResource("3_o7l3u")]([SubResource("Resource_by05c"), SubResource("Resource_g8r6x")])
+_info = ExtResource("4_6pcc3")
+
+[node name="wall_hatch" type="Marker3D" parent="RoomCameraManager" unique_id=25009586]
+transform = Transform3D(0.9991441, 0, 0.04136813, 0, 1, 0, -0.04136813, 0, 0.9991441, -0.51752937, 1.2490469, -0.63971424)
+gizmo_extents = 2.0
+script = ExtResource("2_wf3jw")
+_neighbors = Array[ExtResource("3_o7l3u")]([SubResource("Resource_ob6f3"), SubResource("Resource_vx84k"), SubResource("Resource_evoi6")])
+_info = ExtResource("10_ntgq4")
+
+[node name="hatch_zoom" type="Marker3D" parent="RoomCameraManager" unique_id=718765717]
+transform = Transform3D(0.999144, -2.220446e-16, 0.04136813, 0.03942925, 0.30255798, -0.95231515, -0.012516257, 0.9531309, 0.302299, -0.51752937, 1.5654536, -1.7694387)
+gizmo_extents = 2.0
+script = ExtResource("2_wf3jw")
+_neighbors = Array[ExtResource("3_o7l3u")]([SubResource("Resource_ri43h")])
+_info = ExtResource("11_jjv41")
+
+[node name="door" type="Marker3D" parent="RoomCameraManager" unique_id=1628054060]
+transform = Transform3D(-0.07169628, 0, 0.9974265, 0, 1, 0, -0.9974265, 0, -0.07169628, -0.51752937, 1.2490469, -0.63971424)
+gizmo_extents = 2.0
+script = ExtResource("2_wf3jw")
+_neighbors = Array[ExtResource("3_o7l3u")]([SubResource("Resource_nbiok"), SubResource("Resource_xg2st"), SubResource("Resource_sxxud")])
+_info = ExtResource("12_ake51")
+
+[node name="doorzoom" type="Marker3D" parent="RoomCameraManager" unique_id=784560687]
+transform = Transform3D(-0.07169628, 0, 0.9974265, 0, 1, 0, -0.9974265, 0, -0.07169628, -1.5727146, 0.7030788, -0.38259655)
+gizmo_extents = 2.0
+script = ExtResource("2_wf3jw")
+_neighbors = Array[ExtResource("3_o7l3u")]([SubResource("Resource_yfaoa")])
+_info = ExtResource("13_2pq2l")
+
+[node name="doorknobzoom" type="Marker3D" parent="RoomCameraManager" unique_id=530077070]
+transform = Transform3D(-0.06847573, 0.2963461, 0.9526227, 0.021246914, 0.9550806, -0.29558346, -0.9974265, 0, -0.07169628, -1.8738571, 0.5512079, -0.22124544)
+gizmo_extents = 2.0
+script = ExtResource("2_wf3jw")
+_neighbors = Array[ExtResource("3_o7l3u")]([SubResource("Resource_rwdvf")])
+_info = ExtResource("14_2b6r3")
