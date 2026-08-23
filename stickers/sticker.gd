@@ -133,6 +133,8 @@ func _update_status_color() -> void:
 
 func _area_test() -> void:
 	return
+	
+	@warning_ignore("unreachable_code")
 	var is_void := true
 	var has_void := false
 	var color := Utilties.STICKER_OUTLINE_TRAY

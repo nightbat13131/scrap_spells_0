@@ -1,14 +1,16 @@
 [gd_scene format=3 uid="uid://bjenx6b1byvbq"]
 
-[ext_resource type="Script" uid="uid://dlgxx2qol7y8f" path="res://events/table_0.gd" id="1_np25w"]
 [ext_resource type="Script" uid="uid://bq850lnoatow3" path="res://map/marker3d_enhanced.gd" id="2_wf3jw"]
 [ext_resource type="Script" uid="uid://bs2sqv4mli5hm" path="res://map/view_3d_navigation_link.gd" id="3_o7l3u"]
 [ext_resource type="Resource" uid="uid://bxmi81xkcbvjx" path="res://map/room1/r1_wall_drawr.tres" id="4_6pcc3"]
 [ext_resource type="Resource" uid="uid://2mchmgolhjks" path="res://map/room1/r1_drawr_zoom.tres" id="5_m3e1j"]
-[ext_resource type="Script" uid="uid://ys2nvu6uaei1" path="res://map/clickable_area.gd" id="6_w2lvg"]
-[ext_resource type="Script" uid="uid://70tbmn58ivrj" path="res://map/click_navigate.gd" id="7_np25w"]
+[ext_resource type="Script" uid="uid://dlgxx2qol7y8f" path="res://clickable/_script_drawr.gd" id="6_wf3jw"]
+[ext_resource type="Script" uid="uid://70tbmn58ivrj" path="res://clickable/click_navigate.gd" id="7_np25w"]
+[ext_resource type="Script" uid="uid://c3t7jmtmwswwn" path="res://clickable/click_event.gd" id="7_wf3jw"]
 [ext_resource type="Resource" uid="uid://bnyrn1rlbx1c3" path="res://map/room1/r1_wall_window.tres" id="8_u2keh"]
+[ext_resource type="Resource" uid="uid://bujjkr1wpcsuo" path="res://clickable/r1e_drawr_open.tres" id="8_wf3jw"]
 [ext_resource type="Resource" uid="uid://bv03jf18pgo6b" path="res://map/room1/r1_window_zoom.tres" id="9_4orxc"]
+[ext_resource type="Script" uid="uid://dytnek62ymhnf" path="res://clickable/event_info.gd" id="9_o7l3u"]
 [ext_resource type="Resource" uid="uid://da207n1i03x1y" path="res://map/room1/r1_wall_hatch.tres" id="10_ntgq4"]
 [ext_resource type="Resource" uid="uid://cytr5emj3a523" path="res://map/room1/r1_hatch_zoom.tres" id="11_jjv41"]
 [ext_resource type="Resource" uid="uid://0dxbaor117py" path="res://map/room1/r1_wall_door.tres" id="12_ake51"]
@@ -56,6 +58,14 @@ size = Vector3(1, 0.1352539, 0.10961914)
 
 [sub_resource type="BoxMesh" id="BoxMesh_g8r6x"]
 size = Vector3(0.8952484, 0.13360596, 0.74523926)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wf3jw"]
+size = Vector3(1, 0.1352539, 0.10961914)
+
+[sub_resource type="Resource" id="Resource_wf3jw"]
+script = ExtResource("9_o7l3u")
+_note = "pick up item"
+metadata/_custom_type_script = "uid://dytnek62ymhnf"
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_86tsd"]
 radius = 0.1
@@ -217,7 +227,6 @@ mesh = SubResource("SphereMesh_w2g74")
 metadata/_edit_group_ = true
 
 [node name="OmniLight3D" type="OmniLight3D" parent="RoomStuff/lamp" unique_id=1023226953]
-visible = false
 light_color = Color(0.8666667, 0.9098039, 0.94509804, 1)
 distance_fade_enabled = true
 
@@ -225,11 +234,9 @@ distance_fade_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5016225, 2.6580052, -2.1594572)
 mesh = SubResource("BoxMesh_86tsd")
 
-[node name="table" type="MeshInstance3D" parent="RoomStuff" unique_id=1402616252 node_paths=PackedStringArray("_action_trigger")]
+[node name="table" type="MeshInstance3D" parent="RoomStuff" unique_id=1402616252]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7168585, 0.36253083, 1.0727181)
 mesh = SubResource("BoxMesh_86tsd")
-script = ExtResource("1_np25w")
-_action_trigger = NodePath("drawr/open_trigger")
 
 [node name="looking_in_drawr" type="Marker3D" parent="RoomStuff/table" unique_id=1859363835]
 transform = Transform3D(-0.99921966, 0, -0.039497748, -0.031878788, 0.59040934, 0.8064741, 0.023319839, 0.80710393, -0.5899486, -0.020371795, 1.0925719, -0.9770018)
@@ -240,7 +247,6 @@ _info = ExtResource("5_m3e1j")
 metadata/_custom_type_script = "uid://bq850lnoatow3"
 
 [node name="view_trigger" type="Area3D" parent="RoomStuff/table" unique_id=354614035]
-unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0043258667, 0.4775138, -0.4605664)
 script = ExtResource("7_np25w")
 _nav_link = SubResource("Resource_8qede")
@@ -255,24 +261,30 @@ shape = SubResource("BoxShape3D_axj8b")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37800002, -0.12952173)
 mesh = SubResource("BoxMesh_g8r6x")
+script = ExtResource("6_wf3jw")
+_event = ExtResource("8_wf3jw")
 
 [node name="open_trigger" type="Area3D" parent="RoomStuff/table/drawr" unique_id=856528982]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0043258667, 0.033705115, -0.33104467)
-script = ExtResource("6_w2lvg")
-_view_dependency = ExtResource("4_6pcc3")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0043258667, 0.033705115, -0.33003008)
+script = ExtResource("7_wf3jw")
+_event = ExtResource("8_wf3jw")
+untrigger_on_view_break = true
+_view_dependency = ExtResource("5_m3e1j")
 metadata/_custom_type_script = "uid://ys2nvu6uaei1"
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RoomStuff/table/drawr/open_trigger" unique_id=2074404350]
-shape = SubResource("BoxShape3D_axj8b")
+shape = SubResource("BoxShape3D_wf3jw")
+debug_color = Color(0.7364922, 0.42855877, 0.51739687, 0.41960785)
 
-[node name="Area3D_Mousable" type="Area3D" parent="RoomStuff/table/drawr" unique_id=1085097264]
-script = ExtResource("6_w2lvg")
-metadata/_custom_type_script = "uid://ys2nvu6uaei1"
+[node name="Area3D_Mousable" type="Area3D" parent="RoomStuff/table/drawr" unique_id=739882502]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.099452734, -0.16839671)
+script = ExtResource("7_wf3jw")
+_event = SubResource("Resource_wf3jw")
+metadata/_custom_type_script = "uid://c3t7jmtmwswwn"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RoomStuff/table/drawr/Area3D_Mousable" unique_id=1751129357]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.20171177)
 shape = SubResource("SphereShape3D_86tsd")
 
 [node name="Windolight" type="AreaLight3D" parent="RoomStuff" unique_id=118422547]
