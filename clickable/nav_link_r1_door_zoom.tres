@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="View3DNavigationLink" format=3 uid="uid://d2eankcych3b3"]
+
+[ext_resource type="Resource" uid="uid://b0m300xqhfkyo" path="res://map/room1/r1_door_zoom.tres" id="2_b7aju"]
+[ext_resource type="Script" uid="uid://bs2sqv4mli5hm" path="res://map/view_3d_navigation_link.gd" id="3_3gfju"]
+
+[resource]
+script = ExtResource("3_3gfju")
+_link_to = ExtResource("2_b7aju")
+_text = "^ zoom"
+metadata/_custom_type_script = "uid://bs2sqv4mli5hm"

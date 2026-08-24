@@ -11,6 +11,9 @@ func deactivate() -> void:
 	set_info(null)
 
 func set_info(info: View3DNavigationLink) -> void:
+	if info:
+		if !info.is_valid():
+			info = null
 	_info = info
 	if _info:
 		set_text(_info.get_text())

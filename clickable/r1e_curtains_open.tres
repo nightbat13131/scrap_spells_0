@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Event" format=3 uid="uid://dkefd36kwmjar"]
+
+[ext_resource type="Script" uid="uid://dytnek62ymhnf" path="res://clickable/event_info.gd" id="1_p1274"]
+
+[resource]
+script = ExtResource("1_p1274")
+_note = "r1 curtains are open"
+_do_toggle = true
+metadata/_custom_type_script = "uid://dytnek62ymhnf"
