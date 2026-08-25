@@ -17,9 +17,11 @@ func set_info(info: View3DNavigationLink) -> void:
 	_info = info
 	if _info:
 		set_text(_info.get_text())
+		set_button_icon(_info.get_icon())
 		show()
 	else:
 		set_text("")
+		set_button_icon(null)
 		hide()
 
 func _on_pressed() -> void:
