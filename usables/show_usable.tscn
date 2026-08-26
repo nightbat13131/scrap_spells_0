@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://do20egm18mcix"]
+
+[ext_resource type="Script" uid="uid://eewuhp8322b8" path="res://usables/usable_view.gd" id="1_05ujj"]
+[ext_resource type="ButtonGroup" uid="uid://ny5qvexdynkx" path="res://usables/inventory_usables_button_group.tres" id="1_mhbav"]
+
+[node name="ShowUsable" type="Button" unique_id=1653365286]
+custom_minimum_size = Vector2(64, 64)
+offset_right = 8.0
+offset_bottom = 8.0
+toggle_mode = true
+button_group = ExtResource("1_mhbav")
+script = ExtResource("1_05ujj")

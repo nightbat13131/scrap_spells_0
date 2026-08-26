@@ -9,7 +9,6 @@ extends Node3D
 @onready var windowlight: AreaLight3D = %Windowlight
 
 
-
 var _init_size : Vector3
 var _left_init_pos : Vector3
 var _right_init_pos : Vector3
@@ -29,7 +28,6 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func _on_triggered(_is_triggered) -> void:
-	prints("eee", _is_triggered, _init_size)
 	var _new_size = _init_size
 	var _left_pos = _left_init_pos
 	var _right_pos = _right_init_pos

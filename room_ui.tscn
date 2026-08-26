@@ -1,6 +1,11 @@
 [gd_scene format=3 uid="uid://d13kpimdq3rnr"]
 
+[ext_resource type="Script" uid="uid://dsofpb2njedud" path="res://inventory.gd" id="1_6x0u6"]
+[ext_resource type="Script" uid="uid://bqk2o2r4f7wp6" path="res://mouse_navigation_manager.gd" id="1_7b5bc"]
 [ext_resource type="PackedScene" uid="uid://bjenx6b1byvbq" path="res://map/world_3d.tscn" id="1_14tkw"]
+[ext_resource type="PackedScene" uid="uid://do20egm18mcix" path="res://usables/show_usable.tscn" id="2_6x0u6"]
+[ext_resource type="Texture2D" uid="uid://dy3tq73wpopy" path="res://assets/images/hand_thin_open.svg" id="5_7b5bc"]
+[ext_resource type="ButtonGroup" uid="uid://ny5qvexdynkx" path="res://usables/inventory_usables_button_group.tres" id="7_optvc"]
 [ext_resource type="Script" uid="uid://cd4n4f70da5wp" path="res://map/room_navigation3d.gd" id="17_c6oil"]
 [ext_resource type="Script" uid="uid://bjwg0fl4u77lb" path="res://map/button_view_navigation.gd" id="18_l1fid"]
 
@@ -35,6 +40,32 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Control/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer" unique_id=2126539291]
 layout_mode = 2
 text = "Inventory"
+
+[node name="Inventory" type="GridContainer" parent="Control/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer" unique_id=43536829]
+layout_mode = 2
+script = ExtResource("1_6x0u6")
+_button_group = ExtResource("7_optvc")
+
+[node name="ShowUsable" parent="Control/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Inventory" unique_id=1653365286 instance=ExtResource("2_6x0u6")]
+layout_mode = 2
+
+[node name="ShowUsable2" parent="Control/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Inventory" unique_id=1590944997 instance=ExtResource("2_6x0u6")]
+layout_mode = 2
+
+[node name="ShowUsable3" parent="Control/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Inventory" unique_id=132859765 instance=ExtResource("2_6x0u6")]
+layout_mode = 2
+
+[node name="ShowUsable4" parent="Control/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Inventory" unique_id=928237873 instance=ExtResource("2_6x0u6")]
+layout_mode = 2
+
+[node name="ShowUsable5" parent="Control/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Inventory" unique_id=1792054909 instance=ExtResource("2_6x0u6")]
+layout_mode = 2
+
+[node name="ShowUsable6" parent="Control/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Inventory" unique_id=352388969 instance=ExtResource("2_6x0u6")]
+layout_mode = 2
+
+[node name="ShowUsable7" parent="Control/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Inventory" unique_id=1096347328 instance=ExtResource("2_6x0u6")]
+layout_mode = 2
 
 [node name="CenterContainer" type="MarginContainer" parent="Control/MarginContainer/HBoxContainer" unique_id=708833900]
 layout_mode = 2
@@ -142,3 +173,17 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
+
+[node name="MouseNavigationManager" type="Node2D" parent="." unique_id=1059577252]
+script = ExtResource("1_7b5bc")
+_inventory_button_group = ExtResource("7_optvc")
+
+[node name="Sprite2D" type="Sprite2D" parent="MouseNavigationManager" unique_id=1871235343]
+texture = ExtResource("5_7b5bc")
+
+[node name="HandTextureRect" type="TextureRect" parent="MouseNavigationManager" unique_id=2146306456]
+unique_name_in_owner = true
+offset_left = 32.0
+offset_top = 37.0
+offset_right = 72.0
+offset_bottom = 77.0

@@ -1,8 +1,10 @@
-[gd_resource type="Resource" format=3 uid="uid://dafx31rh2also"]
+[gd_resource type="Resource" script_class="EventLoot" format=3 uid="uid://dafx31rh2also"]
 
+[ext_resource type="Resource" uid="uid://bqwfdwt71sqf2" path="res://usables/debug_usable_0.tres" id="1_1xo7v"]
 [ext_resource type="Script" uid="uid://claeuj6pbos5l" path="res://clickable/event_loot_info.gd" id="1_n4ap4"]
 
 [resource]
 script = ExtResource("1_n4ap4")
+_usable_pickup = ExtResource("1_1xo7v")
 _note = "pick up item"
 metadata/_custom_type_script = "uid://dytnek62ymhnf"

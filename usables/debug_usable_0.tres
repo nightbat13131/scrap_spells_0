@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Usable" format=3 uid="uid://bqwfdwt71sqf2"]
+
+[ext_resource type="Texture2D" uid="uid://dilw848ljs5ol" path="res://icon.svg" id="1_5xckm"]
+[ext_resource type="Script" uid="uid://detw1fls8ll7j" path="res://usables/usable_info.gd" id="1_v336x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xckm"]
+atlas = ExtResource("1_5xckm")
+region = Rect2(32, 33, 64, 64)
+
+[resource]
+script = ExtResource("1_v336x")
+_icon = SubResource("AtlasTexture_5xckm")
+_note = "debug 0"
+metadata/_custom_type_script = "uid://detw1fls8ll7j"

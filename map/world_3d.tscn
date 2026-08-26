@@ -7,12 +7,14 @@
 [ext_resource type="Resource" uid="uid://dkefd36kwmjar" path="res://clickable/r1e_curtains_open.tres" id="3_w2lvg"]
 [ext_resource type="Resource" uid="uid://bxmi81xkcbvjx" path="res://map/room1/r1_wall_drawr.tres" id="4_6pcc3"]
 [ext_resource type="Resource" uid="uid://2mchmgolhjks" path="res://map/room1/r1_drawr_zoom.tres" id="5_m3e1j"]
-[ext_resource type="Script" uid="uid://dytnek62ymhnf" path="res://clickable/event_info.gd" id="6_ake51"]
+[ext_resource type="Script" uid="uid://caemuhh1sjhjw" path="res://clickable/_script_r1_hatch.gd" id="6_2b6r3"]
 [ext_resource type="Script" uid="uid://dlgxx2qol7y8f" path="res://clickable/_script_drawr.gd" id="6_wf3jw"]
+[ext_resource type="Resource" uid="uid://c8vu10hw1yqym" path="res://clickable/r1e_hatch_unlock.tres" id="7_2b6r3"]
 [ext_resource type="Script" uid="uid://70tbmn58ivrj" path="res://clickable/click_navigate.gd" id="7_np25w"]
 [ext_resource type="Script" uid="uid://c3t7jmtmwswwn" path="res://clickable/click_event.gd" id="7_wf3jw"]
 [ext_resource type="Resource" uid="uid://bnyrn1rlbx1c3" path="res://map/room1/r1_wall_window.tres" id="8_u2keh"]
 [ext_resource type="Resource" uid="uid://bujjkr1wpcsuo" path="res://clickable/r1e_drawr_open.tres" id="8_wf3jw"]
+[ext_resource type="Resource" uid="uid://bqwfdwt71sqf2" path="res://usables/debug_usable_0.tres" id="9_2pq2l"]
 [ext_resource type="Resource" uid="uid://bv03jf18pgo6b" path="res://map/room1/r1_window_zoom.tres" id="9_4orxc"]
 [ext_resource type="Script" uid="uid://driduwhwv36l4" path="res://map/entity_loot_item.gd" id="9_6pcc3"]
 [ext_resource type="Resource" uid="uid://dafx31rh2also" path="res://clickable/r1e_drawr_loot.tres" id="10_6pcc3"]
@@ -42,15 +44,12 @@ albedo_color = Color(1, 1, 1, 0.5372549)
 material = SubResource("StandardMaterial3D_v1tsq")
 
 [sub_resource type="BoxMesh" id="BoxMesh_86tsd"]
-size = Vector3(1, 0.07324219, 1)
-
-[sub_resource type="Resource" id="Resource_yvuh7"]
-script = ExtResource("6_ake51")
-_note = "open hatch"
-metadata/_custom_type_script = "uid://dytnek62ymhnf"
+size = Vector3(1, 0.07324219, 0.9296875)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_axj8b"]
 radius = 0.1
+
+[sub_resource type="BoxMesh" id="BoxMesh_ake51"]
 
 [sub_resource type="Resource" id="Resource_7s8ge"]
 script = ExtResource("3_o7l3u")
@@ -82,6 +81,14 @@ height = 0.1
 [sub_resource type="SphereShape3D" id="SphereShape3D_86tsd"]
 radius = 0.1
 
+[sub_resource type="Resource" id="Resource_86tsd"]
+script = ExtResource("3_o7l3u")
+_link_to = ExtResource("11_jjv41")
+metadata/_custom_type_script = "uid://bs2sqv4mli5hm"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_evoi6"]
+size = Vector3(1, 0.13964844, 1)
+
 [sub_resource type="Resource" id="Resource_7uoqy"]
 script = ExtResource("3_o7l3u")
 _link_to = ExtResource("9_4orxc")
@@ -93,13 +100,6 @@ radius = 0.55
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_86tsd"]
 size = Vector3(0.37597656, 0.8574829, 1.114685)
-
-[sub_resource type="Resource" id="Resource_86tsd"]
-script = ExtResource("3_o7l3u")
-_link_to = ExtResource("11_jjv41")
-metadata/_custom_type_script = "uid://bs2sqv4mli5hm"
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_evoi6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kjanm"]
 size = Vector3(0.24853516, 1.6883545, 1.2572937)
@@ -267,25 +267,31 @@ visible = false
 light_color = Color(0.8666667, 0.9098039, 0.94509804, 1)
 distance_fade_enabled = true
 
-[node name="hatch" type="MeshInstance3D" parent="RoomStuff" unique_id=1559712529]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5016225, 2.1946263, -2.1594572)
+[node name="hatch" type="Node3D" parent="RoomStuff" unique_id=701322450]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, -0.69327223, 2.2480688, -2.6095297)
+script = ExtResource("6_2b6r3")
+_event = ExtResource("7_2b6r3")
+
+[node name="hatchdoor" type="MeshInstance3D" parent="RoomStuff/hatch" unique_id=1559712529]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.046276808, 0.45373082)
 mesh = SubResource("BoxMesh_86tsd")
 
-[node name="ClickEvent" type="Area3D" parent="RoomStuff/hatch" unique_id=1548302426]
+[node name="ClickEvent" type="Area3D" parent="RoomStuff/hatch/hatchdoor" unique_id=1548302426]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.32239473)
 script = ExtResource("7_wf3jw")
-_event = SubResource("Resource_yvuh7")
+_event = ExtResource("7_2b6r3")
 _view_dependency = ExtResource("11_jjv41")
 _event_dependency = ExtResource("10_6pcc3")
+_usable_dependency = ExtResource("9_2pq2l")
 metadata/_custom_type_script = "uid://c3t7jmtmwswwn"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomStuff/hatch/ClickEvent" unique_id=1068132133]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomStuff/hatch/hatchdoor/ClickEvent" unique_id=1068132133]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.041058302, 0.043983936)
 shape = SubResource("SphereShape3D_axj8b")
 
 [node name="table" type="MeshInstance3D" parent="RoomStuff" unique_id=1402616252]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7168585, 0.36253083, 1.0727181)
-mesh = SubResource("BoxMesh_86tsd")
+mesh = SubResource("BoxMesh_ake51")
 
 [node name="looking_in_drawr" type="Marker3D" parent="RoomStuff/table" unique_id=1859363835]
 transform = Transform3D(-0.99921966, 0, -0.039497748, -0.031878788, 0.59040934, 0.8064741, 0.023319839, 0.80710393, -0.5899486, -0.020371795, 1.0925719, -0.9770018)
@@ -345,6 +351,18 @@ shape = SubResource("SphereShape3D_86tsd")
 [node name="AreaNavigations" type="Node3D" parent="RoomStuff" unique_id=619112315]
 metadata/_edit_lock_ = true
 
+[node name="HatchZoom" type="Area3D" parent="RoomStuff/AreaNavigations" unique_id=1454224618]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.70511764, 2.6398072, -2.1461053)
+monitorable = false
+script = ExtResource("7_np25w")
+_nav_link = SubResource("Resource_86tsd")
+_view_dependency = ExtResource("10_ntgq4")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomStuff/AreaNavigations/HatchZoom" unique_id=912541150]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.43017578, 0)
+shape = SubResource("BoxShape3D_evoi6")
+
 [node name="WindowZoom" type="Area3D" parent="RoomStuff/AreaNavigations" unique_id=527223971]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5809453, 1.0519533, -0.6126631)
 monitorable = false
@@ -359,17 +377,6 @@ shape = SubResource("CylinderShape3D_g8r6x")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="RoomStuff/AreaNavigations/WindowZoom" unique_id=1332664746]
 shape = SubResource("BoxShape3D_86tsd")
-
-[node name="HatchZoom" type="Area3D" parent="RoomStuff/AreaNavigations" unique_id=1454224618]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4964809, 2.6398072, -2.1461053)
-monitorable = false
-script = ExtResource("7_np25w")
-_nav_link = SubResource("Resource_86tsd")
-_view_dependency = ExtResource("10_ntgq4")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomStuff/AreaNavigations/HatchZoom" unique_id=912541150]
-shape = SubResource("BoxShape3D_evoi6")
 
 [node name="DoorZoom" type="Area3D" parent="RoomStuff/AreaNavigations" unique_id=131668464]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.338737, 0.7579719, -0.5319983)

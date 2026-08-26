@@ -1,7 +1,9 @@
 [gd_resource type="Theme" format=3 uid="uid://bmx3ux6e0b8g1"]
 
 [resource]
+InventoryButton/base_type = &"Button"
 MarginContainer/constants/margin_bottom = 6
 MarginContainer/constants/margin_left = 6
 MarginContainer/constants/margin_right = 6
 MarginContainer/constants/margin_top = 6
+nav_button/base_type = &"Button"
