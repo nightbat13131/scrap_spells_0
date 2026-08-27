@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dilw848ljs5ol" path="res://icon.svg" id="1_5xckm"]
 [ext_resource type="Script" uid="uid://detw1fls8ll7j" path="res://usables/usable_info.gd" id="1_v336x"]
+[ext_resource type="Resource" uid="uid://c8vu10hw1yqym" path="res://clickable/r1e_hatch_unlock.tres" id="2_mv0v8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5xckm"]
 atlas = ExtResource("1_5xckm")
@@ -11,4 +12,5 @@ region = Rect2(32, 33, 64, 64)
 script = ExtResource("1_v336x")
 _icon = SubResource("AtlasTexture_5xckm")
 _note = "debug 0"
+_used_by_event = ExtResource("2_mv0v8")
 metadata/_custom_type_script = "uid://detw1fls8ll7j"

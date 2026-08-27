@@ -2,13 +2,18 @@ extends Node2D
 
 @export var _inventory_button_group : ButtonGroup
 
-@onready var hand_texture_rect: TextureRect = %HandTextureRect
+@onready var held_texture_rect: TextureRect = %HeldTextureRect
+@onready var hand_sprite_2d: Sprite2D = %HandSprite2D
+
+@export var hand_idle : Texture2D
+@export var hand_holding_item : Texture2D
 
 
 var _active_usable : Usable
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	if _inventory_button_group:
 		_inventory_button_group.pressed.connect(_on_pressed)
 
@@ -29,7 +34,9 @@ func _set_active_usable(thing: Usable)  -> void:
 		_active_usable.changed.emit()
 	_active_usable = thing
 	if _active_usable:
-		hand_texture_rect.set_texture(_active_usable.get_icon())
+		held_texture_rect.set_texture(_active_usable.get_icon())
 		_active_usable.changed.emit()
+		hand_sprite_2d.set_texture(hand_holding_item)
 	else: 
-		hand_texture_rect.set_texture(null)
+		held_texture_rect.set_texture(null)
+		hand_sprite_2d.set_texture(hand_idle)

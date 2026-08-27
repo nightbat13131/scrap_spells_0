@@ -10,6 +10,9 @@ func _ready() -> void:
 
 func _on_triggered(_thing: Variant) -> void:
 	_event.trigger()
+	if _thing:
+		if _usable_dependency:
+			_usable_dependency.be_used_up(_event)
 
 func _on_view_change(_is_focused: bool) -> void:
 	super._on_view_change(_is_focused)

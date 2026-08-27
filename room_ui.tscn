@@ -4,8 +4,9 @@
 [ext_resource type="Script" uid="uid://bqk2o2r4f7wp6" path="res://mouse_navigation_manager.gd" id="1_7b5bc"]
 [ext_resource type="PackedScene" uid="uid://bjenx6b1byvbq" path="res://map/world_3d.tscn" id="1_14tkw"]
 [ext_resource type="PackedScene" uid="uid://do20egm18mcix" path="res://usables/show_usable.tscn" id="2_6x0u6"]
-[ext_resource type="Texture2D" uid="uid://dy3tq73wpopy" path="res://assets/images/hand_thin_open.svg" id="5_7b5bc"]
+[ext_resource type="Texture2D" uid="uid://dy3tq73wpopy" path="res://assets/images/hands/hand_thin_open.svg" id="5_7b5bc"]
 [ext_resource type="ButtonGroup" uid="uid://ny5qvexdynkx" path="res://usables/inventory_usables_button_group.tres" id="7_optvc"]
+[ext_resource type="Texture2D" uid="uid://vy18r53vvpq" path="res://assets/images/hands/hand_thin_closed.svg" id="9_dfjqo"]
 [ext_resource type="Script" uid="uid://cd4n4f70da5wp" path="res://map/room_navigation3d.gd" id="17_c6oil"]
 [ext_resource type="Script" uid="uid://bjwg0fl4u77lb" path="res://map/button_view_navigation.gd" id="18_l1fid"]
 
@@ -177,11 +178,14 @@ mouse_filter = 2
 [node name="MouseNavigationManager" type="Node2D" parent="." unique_id=1059577252]
 script = ExtResource("1_7b5bc")
 _inventory_button_group = ExtResource("7_optvc")
+hand_idle = ExtResource("5_7b5bc")
+hand_holding_item = ExtResource("9_dfjqo")
 
-[node name="Sprite2D" type="Sprite2D" parent="MouseNavigationManager" unique_id=1871235343]
+[node name="HandSprite2D" type="Sprite2D" parent="MouseNavigationManager" unique_id=1871235343]
+unique_name_in_owner = true
 texture = ExtResource("5_7b5bc")
 
-[node name="HandTextureRect" type="TextureRect" parent="MouseNavigationManager" unique_id=2146306456]
+[node name="HeldTextureRect" type="TextureRect" parent="MouseNavigationManager" unique_id=2146306456]
 unique_name_in_owner = true
 offset_left = 32.0
 offset_top = 37.0
