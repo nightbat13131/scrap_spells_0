@@ -8,6 +8,8 @@ signal triggered(mousable: Area3D_Mousable)
 @export var _view_dependency : View3D
 # Only work when this event is active
 @export var _event_dependency : Event
+# Only work when this event is NOT triggered
+@export var _unevent_dependency : Event
 # Only work when this usable is equiped
 @export var _usable_dependency : Usable
 
@@ -17,6 +19,8 @@ func _ready() -> void:
 		_view_dependency.focused_changed.connect(_on_view_change)
 	if _event_dependency:
 		_event_dependency.triggered.connect(_on_event_change)
+	if _unevent_dependency:
+		_unevent_dependency.triggered.connect(__uppdate_usabilty)
 	if _usable_dependency:
 		_usable_dependency.changed.connect(__uppdate_usabilty)
 	input_event.connect(_on_input_event)
@@ -31,7 +35,7 @@ func _on_input_event(_camera: Node, event: InputEvent, _event_position: Vector3,
 ## useful on inheritance 
 func _on_view_change(_is_focused: bool) -> void: __uppdate_usabilty(_is_focused)
 ## useful on inheritance 
-func _on_event_change(_id_triggered: bool) -> void: __uppdate_usabilty(_id_triggered)
+func _on_event_change(_is_triggered: bool) -> void: __uppdate_usabilty(_is_triggered)
 
 func _is_usable() -> bool: 
 	if _view_dependency:
@@ -39,6 +43,9 @@ func _is_usable() -> bool:
 			return false
 	if _event_dependency:
 		if !_event_dependency.is_triggered():
+			return false
+	if _unevent_dependency:
+		if _unevent_dependency.is_triggered():
 			return false
 	if _usable_dependency:
 		if !_usable_dependency.is_equiped():

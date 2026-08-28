@@ -326,6 +326,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0043258667, 0.4775138, -0.4
 script = ExtResource("7_np25w")
 _nav_link = SubResource("Resource_8qede")
 _view_dependency = ExtResource("4_6pcc3")
+_unevent_dependency = ExtResource("10_6pcc3")
 metadata/_custom_type_script = "uid://70tbmn58ivrj"
 metadata/_edit_group_ = true
 
@@ -346,6 +347,7 @@ script = ExtResource("7_wf3jw")
 _event = ExtResource("8_wf3jw")
 untrigger_on_view_break = true
 _view_dependency = ExtResource("5_m3e1j")
+_unevent_dependency = ExtResource("10_6pcc3")
 metadata/_custom_type_script = "uid://ys2nvu6uaei1"
 metadata/_edit_group_ = true
 
