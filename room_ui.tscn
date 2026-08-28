@@ -68,6 +68,12 @@ layout_mode = 2
 [node name="ShowUsable7" parent="Control/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Inventory" unique_id=1096347328 instance=ExtResource("2_6x0u6")]
 layout_mode = 2
 
+[node name="Button" type="Button" parent="Control/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer" unique_id=27987280]
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("7_optvc")
+text = "Spell"
+
 [node name="CenterContainer" type="MarginContainer" parent="Control/MarginContainer/HBoxContainer" unique_id=708833900]
 layout_mode = 2
 size_flags_horizontal = 3

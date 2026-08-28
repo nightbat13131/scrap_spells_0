@@ -60,4 +60,4 @@ func _remove_item(thing: Usable) -> void:
 	for each in _show_usables:
 		if each.match_usable(thing):
 			each.set_usable(null)
-			return
+	_button_group.pressed.emit(null) # helps tell the hand that this is no longer equipabble

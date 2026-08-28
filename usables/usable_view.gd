@@ -10,14 +10,12 @@ func _ready() -> void:
 
 func set_usable(thing: Usable) -> void:
 	_usable = thing
-	#set_disabled(_usable == null)
+	set_disabled(_usable == null)
 	if _usable:
 		set_button_icon(_usable.get_icon())
 	else:
 		set_button_icon(null)
 		set_pressed(false)
-	set_disabled.call_deferred(_usable == null)
-		
 
 func has_usable() -> bool: return _usable != null
 

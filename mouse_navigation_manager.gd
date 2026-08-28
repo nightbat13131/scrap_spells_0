@@ -22,12 +22,13 @@ func _process(_delta: float) -> void:
 	global_position = get_global_mouse_position()
 
 func _on_pressed( _button: BaseButton) -> void:
+	#print("Group pressed", _button)
 	var active : BaseButton = _inventory_button_group.get_pressed_button()
 	if active:
 		if active is ShowUsable:
 			_set_active_usable(active.get_usable())
-	else:
-		_set_active_usable(null)
+			return
+	_set_active_usable(null)
 
 func _set_active_usable(thing: Usable)  -> void:
 	if _active_usable:
