@@ -7,7 +7,7 @@ extends Node2D
 
 @export var hand_idle : Texture2D
 @export var hand_holding_item : Texture2D
-
+@export var hand_spell : Texture2D
 
 var _active_usable : Usable
 
@@ -25,8 +25,13 @@ func _on_pressed( _button: BaseButton) -> void:
 	#print("Group pressed", _button)
 	var active : BaseButton = _inventory_button_group.get_pressed_button()
 	if active:
-		if active is ShowUsable:
+		if active is ShowUsableButton:
 			_set_active_usable(active.get_usable())
+			return
+		else:
+			# spall place holder
+			_set_active_usable(null)
+			hand_sprite_2d.set_texture(hand_spell)
 			return
 	_set_active_usable(null)
 

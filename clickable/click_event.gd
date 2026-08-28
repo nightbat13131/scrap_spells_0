@@ -5,6 +5,7 @@ class_name ClickEvent extends Area3D_Mousable
 
 
 func _ready() -> void:
+	assert(_event)
 	super._ready()
 	triggered.connect(_on_triggered)
 

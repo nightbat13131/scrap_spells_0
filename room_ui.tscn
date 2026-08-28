@@ -5,8 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://bjenx6b1byvbq" path="res://map/world_3d.tscn" id="1_14tkw"]
 [ext_resource type="PackedScene" uid="uid://do20egm18mcix" path="res://usables/show_usable.tscn" id="2_6x0u6"]
 [ext_resource type="Texture2D" uid="uid://dy3tq73wpopy" path="res://assets/images/hands/hand_thin_open.svg" id="5_7b5bc"]
+[ext_resource type="Texture2D" uid="uid://b8nddg81aosxp" path="res://assets/images/zoom_out.svg" id="7_i0rul"]
 [ext_resource type="ButtonGroup" uid="uid://ny5qvexdynkx" path="res://usables/inventory_usables_button_group.tres" id="7_optvc"]
 [ext_resource type="Texture2D" uid="uid://vy18r53vvpq" path="res://assets/images/hands/hand_thin_closed.svg" id="9_dfjqo"]
+[ext_resource type="Texture2D" uid="uid://bn24r0tx22seo" path="res://assets/images/hands/hand_thin_open flipped.svg" id="11_xd5k5"]
 [ext_resource type="Script" uid="uid://cd4n4f70da5wp" path="res://map/room_navigation3d.gd" id="17_c6oil"]
 [ext_resource type="Script" uid="uid://bjwg0fl4u77lb" path="res://map/button_view_navigation.gd" id="18_l1fid"]
 
@@ -135,11 +137,24 @@ size_flags_vertical = 4
 text = "next"
 script = ExtResource("18_l1fid")
 
-[node name="Control3" type="Control" parent="Control/MarginContainer/HBoxContainer/CenterContainer/RoomNavButtons" unique_id=1124486756]
+[node name="MarginContainer2" type="MarginContainer" parent="Control/MarginContainer/HBoxContainer/CenterContainer/RoomNavButtons" unique_id=1419241970]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
+
+[node name="InspectUsable" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/CenterContainer/RoomNavButtons/MarginContainer2" unique_id=875441748]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+stretch_mode = 5
+
+[node name="UnInspect" type="Button" parent="Control/MarginContainer/HBoxContainer/CenterContainer/RoomNavButtons/MarginContainer2" unique_id=1123891115]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+icon = ExtResource("7_i0rul")
 
 [node name="Control8" type="MarginContainer" parent="Control/MarginContainer/HBoxContainer/CenterContainer/RoomNavButtons" unique_id=409371086]
 layout_mode = 2
@@ -186,6 +201,7 @@ script = ExtResource("1_7b5bc")
 _inventory_button_group = ExtResource("7_optvc")
 hand_idle = ExtResource("5_7b5bc")
 hand_holding_item = ExtResource("9_dfjqo")
+hand_spell = ExtResource("11_xd5k5")
 
 [node name="HandSprite2D" type="Sprite2D" parent="MouseNavigationManager" unique_id=1871235343]
 unique_name_in_owner = true

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EventLoot" format=3 uid="uid://1da7lqfvwq1g"]
+
+[ext_resource type="Resource" uid="uid://f42t7gx6u5yb" path="res://usables/debug_usable_2.tres" id="1_4g25k"]
+[ext_resource type="Script" uid="uid://claeuj6pbos5l" path="res://clickable/event_loot_info.gd" id="2_5pmnd"]
+
+[resource]
+script = ExtResource("2_5pmnd")
+_usable_pickup = ExtResource("1_4g25k")
+_note = "pick up wall hang"
+metadata/_custom_type_script = "uid://dytnek62ymhnf"

@@ -2,11 +2,36 @@
 
 [ext_resource type="Script" uid="uid://eewuhp8322b8" path="res://usables/usable_view.gd" id="1_05ujj"]
 [ext_resource type="ButtonGroup" uid="uid://ny5qvexdynkx" path="res://usables/inventory_usables_button_group.tres" id="1_mhbav"]
+[ext_resource type="Script" uid="uid://cl0ub41sbjk6u" path="res://usables/show_usable_button.gd" id="3_gy1cx"]
+[ext_resource type="Texture2D" uid="uid://cb2kkq3clo6ge" path="res://assets/images/zoom_in.svg" id="3_op462"]
 
-[node name="ShowUsable" type="Button" unique_id=1653365286]
+[node name="ShowUsable" type="Control" unique_id=324187529]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_05ujj")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1267981964]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UsableButton" type="Button" parent="MarginContainer" unique_id=1653365286]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(64, 64)
-offset_right = 8.0
-offset_bottom = 8.0
+layout_mode = 2
 toggle_mode = true
 button_group = ExtResource("1_mhbav")
-script = ExtResource("1_05ujj")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("3_gy1cx")
+
+[node name="InspectButton" type="Button" parent="MarginContainer" unique_id=260603954]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+icon = ExtResource("3_op462")
