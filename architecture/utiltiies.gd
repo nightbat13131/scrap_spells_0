@@ -4,17 +4,18 @@ class_name Utilties extends RefCounted
 enum StickerID {NA = 0,  GODOT = -1 , 
 	TAPE_0 = 1, 
 	KEY_0 = 10,
+	SUN_0 = 20,
 }
 
 static var StickerUID : Dictionary[StickerID, String ] = {
 # Remember to add resoruce to the StickerManager autoload
 		StickerID.GODOT : "uid://dp3yhwlavt14t", 
 		StickerID.TAPE_0: "uid://m6tw46tv8s1i",
-		StickerID.KEY_0: "uid://cdwq4dms4b3nm"
-		
+		StickerID.KEY_0: "uid://cdwq4dms4b3nm",
+		StickerID.SUN_0: "",
 	}
 
-enum Socket_Gem { SOCKET_0 = -1 , NA = 0, GEM_BOT = 1}
+enum Socket_Gem { SOCKET_0 = -1 , NA = 0, GEM_BOT = 1, GEM_SUN = 20}
 
 enum COLLISION_LAYER { 
 	STICKER = 5, 
@@ -22,7 +23,7 @@ enum COLLISION_LAYER {
 	GEM = 7,
 	}
 
-enum EventStates { NA = 0, INIT = 1 }
+#enum EventStates { NA = 0, INIT = 1 }
 
 const PAGE_SIZE := Vector2(280,280)
 const PAGE_SPINE := 25

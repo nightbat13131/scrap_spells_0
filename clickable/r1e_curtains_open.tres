@@ -5,5 +5,4 @@
 [resource]
 script = ExtResource("1_p1274")
 _note = "r1 curtains are open"
-_do_toggle = true
 metadata/_custom_type_script = "uid://dytnek62ymhnf"

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bo8cu80q7pmed" path="res://map/_script_r1curtains.gd" id="1_m3e1j"]
 [ext_resource type="Environment" uid="uid://c0erp1bbiqr4r" path="res://environment_0.tres" id="1_u2keh"]
+[ext_resource type="PackedScene" uid="uid://b60gnun1asev6" path="res://assets/3d/door_0.glb" id="2_fhoj7"]
 [ext_resource type="Script" uid="uid://bq850lnoatow3" path="res://map/marker3d_enhanced.gd" id="2_wf3jw"]
 [ext_resource type="Resource" uid="uid://1da7lqfvwq1g" path="res://clickable/r1e_wall_hang_loot.tres" id="3_np2o1"]
 [ext_resource type="Script" uid="uid://bs2sqv4mli5hm" path="res://map/view_3d_navigation_link.gd" id="3_o7l3u"]
@@ -18,7 +19,10 @@
 [ext_resource type="Resource" uid="uid://bqwfdwt71sqf2" path="res://usables/debug_usable_0.tres" id="9_2pq2l"]
 [ext_resource type="Resource" uid="uid://bv03jf18pgo6b" path="res://map/room1/r1_window_zoom.tres" id="9_4orxc"]
 [ext_resource type="Script" uid="uid://driduwhwv36l4" path="res://map/entity_loot_item.gd" id="9_6pcc3"]
+[ext_resource type="Script" uid="uid://claeuj6pbos5l" path="res://clickable/event_loot_info.gd" id="10_0qiqn"]
 [ext_resource type="Resource" uid="uid://dafx31rh2also" path="res://clickable/r1e_drawr_loot.tres" id="10_6pcc3"]
+[ext_resource type="Texture2D" uid="uid://cdctv6n7ubqxt" path="res://assets/images/stickers_1.png" id="10_e1ate"]
+[ext_resource type="Resource" uid="uid://1ljwebvr4vip" path="res://stickers/resources/sun_sticker.tres" id="10_jfj2w"]
 [ext_resource type="Resource" uid="uid://da207n1i03x1y" path="res://map/room1/r1_wall_hatch.tres" id="10_ntgq4"]
 [ext_resource type="Resource" uid="uid://cytr5emj3a523" path="res://map/room1/r1_hatch_zoom.tres" id="11_jjv41"]
 [ext_resource type="Resource" uid="uid://0dxbaor117py" path="res://map/room1/r1_wall_door.tres" id="12_ake51"]
@@ -43,6 +47,18 @@ size = Vector3(0.2290039, 1.2452393, 0.4560547)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yvuh7"]
 size = Vector3(0.36376953, 1.2471924, 1)
+
+[sub_resource type="Resource" id="Resource_mv0v8"]
+script = ExtResource("10_0qiqn")
+_sticker_pickup = ExtResource("10_jfj2w")
+metadata/_custom_type_script = "uid://claeuj6pbos5l"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8qede"]
+size = Vector3(0.1, 0.15, 0.15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86tsd"]
+atlas = ExtResource("10_e1ate")
+region = Rect2(-2, 48, 132, 138)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v1tsq"]
 transparency = 1
@@ -106,7 +122,7 @@ radius = 0.55
 size = Vector3(0.37597656, 0.8574829, 1.114685)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kjanm"]
-size = Vector3(0.24853516, 1.6883545, 1.2572937)
+size = Vector3(0.24853516, 2.183258, 0.9578781)
 
 [sub_resource type="Resource" id="Resource_u2keh"]
 script = ExtResource("3_o7l3u")
@@ -227,8 +243,10 @@ shadow_enabled = true
 [node name="RoomStuff" type="Node3D" parent="." unique_id=205842774]
 metadata/_edit_lock_ = true
 
+[node name="door_0" parent="RoomStuff" unique_id=998313622 instance=ExtResource("2_fhoj7")]
+
 [node name="WallThing" type="MeshInstance3D" parent="RoomStuff" unique_id=1042081595]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6116111, 0.82182825, -2.5007842)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6116111, 0.82182825, -1.9310914)
 mesh = SubResource("SphereMesh_86tsd")
 script = ExtResource("9_6pcc3")
 event_loot = ExtResource("3_np2o1")
@@ -244,7 +262,7 @@ metadata/_custom_type_script = "uid://c3t7jmtmwswwn"
 shape = SubResource("SphereShape3D_fhoj7")
 
 [node name="curtains" type="Node3D" parent="RoomStuff" unique_id=404283779]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8675064, 1.2118679, -0.6864778)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2504444, 1.1529149, -0.014221519)
 script = ExtResource("1_m3e1j")
 _event = ExtResource("3_w2lvg")
 _environment = ExtResource("1_u2keh")
@@ -266,19 +284,35 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.38549805, 0.107856035, 0.26663628)
 mesh = SubResource("BoxMesh_axj8b")
 
-[node name="ClickEvent" type="Area3D" parent="RoomStuff/curtains" unique_id=1907270928]
+[node name="ClickEvent_OpenCurtains" type="Area3D" parent="RoomStuff/curtains" unique_id=1907270928]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3269999, 0.11421692, 0)
 script = ExtResource("7_wf3jw")
 _event = ExtResource("3_w2lvg")
 _view_dependency = ExtResource("9_4orxc")
+_unevent_dependency = ExtResource("3_w2lvg")
 metadata/_custom_type_script = "uid://c3t7jmtmwswwn"
 metadata/_edit_group_ = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomStuff/curtains/ClickEvent" unique_id=1981422576]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomStuff/curtains/ClickEvent_OpenCurtains" unique_id=1981422576]
 shape = SubResource("BoxShape3D_yvuh7")
 
+[node name="ClickEvent_LootStickerSun" type="Area3D" parent="RoomStuff/curtains" unique_id=1412933304]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17329979, 0.42553163, -0.18152976)
+script = ExtResource("7_wf3jw")
+_event = SubResource("Resource_mv0v8")
+metadata/_custom_type_script = "uid://c3t7jmtmwswwn"
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomStuff/curtains/ClickEvent_LootStickerSun" unique_id=519591922]
+shape = SubResource("BoxShape3D_8qede")
+
+[node name="Sprite3D" type="Sprite3D" parent="RoomStuff/curtains/ClickEvent_LootStickerSun" unique_id=1182445668]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+pixel_size = 0.001
+texture = SubResource("AtlasTexture_86tsd")
+
 [node name="lamp" type="MeshInstance3D" parent="RoomStuff" unique_id=1696149386]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.73478407, 1.3265424, 1.0530694)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1584813, 1.3265424, 1.590676)
 mesh = SubResource("SphereMesh_w2g74")
 metadata/_edit_group_ = true
 
@@ -288,7 +322,7 @@ light_color = Color(0.8666667, 0.9098039, 0.94509804, 1)
 distance_fade_enabled = true
 
 [node name="hatch" type="Node3D" parent="RoomStuff" unique_id=701322450]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, -0.69327223, 2.2480688, -2.6095297)
+transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 0.03835073, 3.3770878, -2.6095297)
 script = ExtResource("6_2b6r3")
 _event = ExtResource("7_2b6r3")
 
@@ -310,7 +344,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.041058302, 0.043983936)
 shape = SubResource("SphereShape3D_axj8b")
 
 [node name="table" type="MeshInstance3D" parent="RoomStuff" unique_id=1402616252]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7168585, 0.36253083, 1.0727181)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.048062384, 0.36253083, 1.611317)
 mesh = SubResource("BoxMesh_ake51")
 
 [node name="looking_in_drawr" type="Marker3D" parent="RoomStuff/table" unique_id=1859363835]
@@ -374,7 +408,7 @@ shape = SubResource("SphereShape3D_86tsd")
 metadata/_edit_lock_ = true
 
 [node name="HatchZoom" type="Area3D" parent="RoomStuff/AreaNavigations" unique_id=1454224618]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.70511764, 2.6398072, -2.1461053)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.008923829, 2.7044382, -1.4575181)
 monitorable = false
 script = ExtResource("7_np25w")
 _nav_link = SubResource("Resource_86tsd")
@@ -382,11 +416,10 @@ _view_dependency = ExtResource("10_ntgq4")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RoomStuff/AreaNavigations/HatchZoom" unique_id=912541150]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.43017578, 0)
 shape = SubResource("BoxShape3D_evoi6")
 
 [node name="WindowZoom" type="Area3D" parent="RoomStuff/AreaNavigations" unique_id=527223971]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5809453, 1.0519533, -0.6126631)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8867011, 1.0519533, 0.04124713)
 monitorable = false
 script = ExtResource("7_np25w")
 _nav_link = SubResource("Resource_7uoqy")
@@ -401,7 +434,7 @@ shape = SubResource("CylinderShape3D_g8r6x")
 shape = SubResource("BoxShape3D_86tsd")
 
 [node name="DoorZoom" type="Area3D" parent="RoomStuff/AreaNavigations" unique_id=131668464]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.338737, 0.7579719, -0.5319983)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.031405, 0.9991933, -0.062177896)
 monitorable = false
 script = ExtResource("7_np25w")
 _nav_link = ExtResource("19_on0u5")
@@ -412,7 +445,7 @@ metadata/_edit_group_ = true
 shape = SubResource("BoxShape3D_kjanm")
 
 [node name="DoorKnobZoom" type="Area3D" parent="RoomStuff/AreaNavigations" unique_id=1760807288]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3348866, 0.4240377, 0.15048122)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9613765, 0.89071435, 0.2528658)
 monitorable = false
 script = ExtResource("7_np25w")
 _nav_link = SubResource("Resource_u2keh")
@@ -420,74 +453,79 @@ _view_dependency = ExtResource("13_2pq2l")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RoomStuff/AreaNavigations/DoorKnobZoom" unique_id=460945978]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27647072, -0.3612738)
 shape = SubResource("BoxShape3D_g8r6x")
-
-[node name="tower_0" parent="." unique_id=44202357 instance=ExtResource("15_np2o1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51752937, 1.1920929e-07, -0.63971424)
-metadata/_edit_lock_ = true
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=316072588]
 transform = Transform3D(0.7171211, 0, -0.69694865, 0, 1, 0, 0.69694865, 0, 0.7171211, -0.51752937, 1.2490469, -0.63971424)
+visible = false
 
 [node name="RoomCameraManager" type="Node3D" parent="." unique_id=1684840818 node_paths=PackedStringArray("camera", "_initial")]
+visible = false
 script = ExtResource("16_fhoj7")
 camera = NodePath("../Camera3D")
 _initial = NodePath("wall_window")
 metadata/_edit_lock_ = true
 
 [node name="wall_window" type="Marker3D" parent="RoomCameraManager" unique_id=56709604]
-transform = Transform3D(0.039497793, 0, -0.99921966, 0, 1, 0, 0.99921966, 0, 0.039497793, -0.51752937, 1.2490469, -0.63971424)
+transform = Transform3D(0.039497793, 0, -0.99921966, 0, 1, 0, 0.99921966, 0, 0.039497793, -0.2871037, 1.2490469, -0.09099293)
 gizmo_extents = 2.0
 script = ExtResource("2_wf3jw")
 _neighbors = Array[ExtResource("3_o7l3u")]([SubResource("Resource_vqn2q"), SubResource("Resource_kjanm")])
 _info = ExtResource("8_u2keh")
 
 [node name="window_zoom" type="Marker3D" parent="RoomCameraManager" unique_id=190645274]
-transform = Transform3D(0.039497793, 0, -0.99921966, 0, 1, 0, 0.99921966, 0, 0.039497793, 0.5066531, 1.2490469, -0.63971424)
+transform = Transform3D(0.039497793, 0, -0.99921966, 0, 1, 0, 0.99921966, 0, 0.039497793, 0.5066531, 1.2490469, -0.006401181)
+visible = false
 gizmo_extents = 2.0
 script = ExtResource("2_wf3jw")
 _neighbors = Array[ExtResource("3_o7l3u")]([SubResource("Resource_qt16q")])
 _info = ExtResource("9_4orxc")
 
 [node name="wall_drawr" type="Marker3D" parent="RoomCameraManager" unique_id=1918123455]
-transform = Transform3D(-0.99878985, 0, -0.04918323, 0, 1, 0, 0.04918323, 0, -0.99878985, -0.51752937, 1.2490469, -0.63971424)
+transform = Transform3D(-0.99878985, 0, -0.04918323, 0, 1, 0, 0.04918323, 0, -0.99878985, -0.008172035, 1.2490469, -0.54345137)
 gizmo_extents = 2.0
 script = ExtResource("2_wf3jw")
 _neighbors = Array[ExtResource("3_o7l3u")]([SubResource("Resource_by05c"), SubResource("Resource_g8r6x")])
 _info = ExtResource("4_6pcc3")
 
 [node name="wall_hatch" type="Marker3D" parent="RoomCameraManager" unique_id=25009586]
-transform = Transform3D(0.9991441, 0, 0.04136813, 0, 1, 0, -0.04136813, 0, 0.9991441, -0.51752937, 1.2490469, -0.63971424)
+transform = Transform3D(0.9991441, 0, 0.04136813, 0, 1, 0, -0.04136813, 0, 0.9991441, -0.0031160116, 1.2490469, 0.25503784)
+visible = false
 gizmo_extents = 2.0
 script = ExtResource("2_wf3jw")
 _neighbors = Array[ExtResource("3_o7l3u")]([SubResource("Resource_ob6f3"), SubResource("Resource_vx84k")])
 _info = ExtResource("10_ntgq4")
 
 [node name="hatch_zoom" type="Marker3D" parent="RoomCameraManager" unique_id=718765717]
-transform = Transform3D(0.999144, -2.220446e-16, 0.04136813, 0.03942925, 0.30255798, -0.95231515, -0.012516257, 0.9531309, 0.302299, -0.51752937, 1.5654536, -1.7694387)
+transform = Transform3D(0.999144, -2.220446e-16, 0.04136813, 0.03942925, 0.30255798, -0.95231515, -0.012516257, 0.9531309, 0.302299, -0.070001125, 1.5654536, -0.70962214)
+visible = false
 gizmo_extents = 2.0
 script = ExtResource("2_wf3jw")
 _neighbors = Array[ExtResource("3_o7l3u")]([SubResource("Resource_ri43h")])
 _info = ExtResource("11_jjv41")
 
-[node name="door" type="Marker3D" parent="RoomCameraManager" unique_id=1628054060]
-transform = Transform3D(-0.07169628, 0, 0.9974265, 0, 1, 0, -0.9974265, 0, -0.07169628, -0.51752937, 1.2490469, -0.63971424)
+[node name="wall_door" type="Marker3D" parent="RoomCameraManager" unique_id=1628054060]
+transform = Transform3D(-0.07169628, 0, 0.9974265, 0, 1, 0, -0.9974265, 0, -0.07169628, 0.034425855, 1.2490469, 0.0010055304)
 gizmo_extents = 2.0
 script = ExtResource("2_wf3jw")
 _neighbors = Array[ExtResource("3_o7l3u")]([SubResource("Resource_nbiok"), SubResource("Resource_xg2st")])
 _info = ExtResource("12_ake51")
 
 [node name="doorzoom" type="Marker3D" parent="RoomCameraManager" unique_id=784560687]
-transform = Transform3D(-0.07169628, 0, 0.9974265, 0, 1, 0, -0.9974265, 0, -0.07169628, -1.5727146, 0.7030788, -0.38259655)
+transform = Transform3D(-0.07169628, 0, 0.9974265, 0, 1, 0, -0.9974265, 0, -0.07169628, -0.94726527, 1.062507, 0.007096827)
+visible = false
 gizmo_extents = 2.0
 script = ExtResource("2_wf3jw")
 _neighbors = Array[ExtResource("3_o7l3u")]([SubResource("Resource_yfaoa")])
 _info = ExtResource("13_2pq2l")
 
 [node name="doorknobzoom" type="Marker3D" parent="RoomCameraManager" unique_id=530077070]
-transform = Transform3D(-0.06847573, 0.2963461, 0.9526227, 0.021246914, 0.9550806, -0.29558346, -0.9974265, 0, -0.07169628, -1.8738571, 0.5512079, -0.22124544)
+transform = Transform3D(-0.06847573, 0.2963461, 0.9526227, 0.021246914, 0.9550806, -0.29558346, -0.9974265, 0, -0.07169628, -1.3400145, 0.5512079, 0.17186835)
+visible = false
 gizmo_extents = 2.0
 script = ExtResource("2_wf3jw")
 _neighbors = Array[ExtResource("3_o7l3u")]([SubResource("Resource_rwdvf")])
 _info = ExtResource("14_2b6r3")
+
+[node name="tower_0" parent="." unique_id=865027515 instance=ExtResource("15_np2o1")]
+metadata/_edit_lock_ = true

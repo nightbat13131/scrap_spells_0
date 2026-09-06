@@ -4,13 +4,13 @@ class_name Area3D_Mousable extends Area3D
 
 signal triggered(mousable: Area3D_Mousable)
 
-# Only work when this view is active
+## Only work when this view is active
 @export var _view_dependency : View3D
-# Only work when this event is active
+## Only work when this event is active
 @export var _event_dependency : Event
-# Only work when this event is NOT triggered
+## Only work when this event is NOT triggered
 @export var _unevent_dependency : Event
-# Only work when this usable is equiped
+## Only work when this usable is equiped
 @export var _usable_dependency : Usable
 
 func _ready() -> void:

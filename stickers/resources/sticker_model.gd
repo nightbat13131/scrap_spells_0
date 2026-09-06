@@ -62,3 +62,6 @@ func get_gem_type() -> Utilties.Socket_Gem:
 	if is_gem():
 		return socket_v_gem
 	return Utilties.Socket_Gem.NA
+
+func be_looted() -> void:
+	print("sticker looted")
