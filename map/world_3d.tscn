@@ -19,11 +19,10 @@
 [ext_resource type="Resource" uid="uid://bqwfdwt71sqf2" path="res://usables/debug_usable_0.tres" id="9_2pq2l"]
 [ext_resource type="Resource" uid="uid://bv03jf18pgo6b" path="res://map/room1/r1_window_zoom.tres" id="9_4orxc"]
 [ext_resource type="Script" uid="uid://driduwhwv36l4" path="res://map/entity_loot_item.gd" id="9_6pcc3"]
-[ext_resource type="Script" uid="uid://claeuj6pbos5l" path="res://clickable/event_loot_info.gd" id="10_0qiqn"]
 [ext_resource type="Resource" uid="uid://dafx31rh2also" path="res://clickable/r1e_drawr_loot.tres" id="10_6pcc3"]
 [ext_resource type="Texture2D" uid="uid://cdctv6n7ubqxt" path="res://assets/images/stickers_1.png" id="10_e1ate"]
-[ext_resource type="Resource" uid="uid://1ljwebvr4vip" path="res://stickers/resources/sun_sticker.tres" id="10_jfj2w"]
 [ext_resource type="Resource" uid="uid://da207n1i03x1y" path="res://map/room1/r1_wall_hatch.tres" id="10_ntgq4"]
+[ext_resource type="Resource" uid="uid://b50rqrxx0rj8v" path="res://clickable/r1e_loot_sticker_sun.tres" id="11_0qiqn"]
 [ext_resource type="Resource" uid="uid://cytr5emj3a523" path="res://map/room1/r1_hatch_zoom.tres" id="11_jjv41"]
 [ext_resource type="Resource" uid="uid://0dxbaor117py" path="res://map/room1/r1_wall_door.tres" id="12_ake51"]
 [ext_resource type="Resource" uid="uid://b0m300xqhfkyo" path="res://map/room1/r1_door_zoom.tres" id="13_2pq2l"]
@@ -48,17 +47,12 @@ size = Vector3(0.2290039, 1.2452393, 0.4560547)
 [sub_resource type="BoxShape3D" id="BoxShape3D_yvuh7"]
 size = Vector3(0.36376953, 1.2471924, 1)
 
-[sub_resource type="Resource" id="Resource_mv0v8"]
-script = ExtResource("10_0qiqn")
-_sticker_pickup = ExtResource("10_jfj2w")
-metadata/_custom_type_script = "uid://claeuj6pbos5l"
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_8qede"]
-size = Vector3(0.1, 0.15, 0.15)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_86tsd"]
 atlas = ExtResource("10_e1ate")
 region = Rect2(-2, 48, 132, 138)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8qede"]
+size = Vector3(0.1, 0.15, 0.15)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v1tsq"]
 transparency = 1
@@ -296,20 +290,22 @@ metadata/_edit_group_ = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RoomStuff/curtains/ClickEvent_OpenCurtains" unique_id=1981422576]
 shape = SubResource("BoxShape3D_yvuh7")
 
-[node name="ClickEvent_LootStickerSun" type="Area3D" parent="RoomStuff/curtains" unique_id=1412933304]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17329979, 0.42553163, -0.18152976)
+[node name="Sprite3D" type="Sprite3D" parent="RoomStuff/curtains" unique_id=1182445668]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17329979, 0.42553163, -0.18152976)
+pixel_size = 0.001
+texture = SubResource("AtlasTexture_86tsd")
+script = ExtResource("9_6pcc3")
+event_loot = ExtResource("11_0qiqn")
+
+[node name="ClickEvent_LootStickerSun" type="Area3D" parent="RoomStuff/curtains/Sprite3D" unique_id=1412933304]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 script = ExtResource("7_wf3jw")
-_event = SubResource("Resource_mv0v8")
+_event = ExtResource("11_0qiqn")
 metadata/_custom_type_script = "uid://c3t7jmtmwswwn"
 metadata/_edit_group_ = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomStuff/curtains/ClickEvent_LootStickerSun" unique_id=519591922]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomStuff/curtains/Sprite3D/ClickEvent_LootStickerSun" unique_id=519591922]
 shape = SubResource("BoxShape3D_8qede")
-
-[node name="Sprite3D" type="Sprite3D" parent="RoomStuff/curtains/ClickEvent_LootStickerSun" unique_id=1182445668]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
-pixel_size = 0.001
-texture = SubResource("AtlasTexture_86tsd")
 
 [node name="lamp" type="MeshInstance3D" parent="RoomStuff" unique_id=1696149386]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1584813, 1.3265424, 1.590676)
@@ -322,9 +318,10 @@ light_color = Color(0.8666667, 0.9098039, 0.94509804, 1)
 distance_fade_enabled = true
 
 [node name="hatch" type="Node3D" parent="RoomStuff" unique_id=701322450]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 0.03835073, 3.3770878, -2.6095297)
+transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 0.03835073, 2.8736796, -1.832056)
 script = ExtResource("6_2b6r3")
 _event = ExtResource("7_2b6r3")
+metadata/_edit_group_ = true
 
 [node name="hatchdoor" type="MeshInstance3D" parent="RoomStuff/hatch" unique_id=1559712529]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.046276808, 0.45373082)

@@ -5,13 +5,8 @@ static var _instance : Inventory
 var _show_usables : Array[ShowUsable] = [] 
 @export var _button_group : ButtonGroup
 
-@onready var inspect_usable: TextureRect = %InspectUsable
-@onready var un_inspect: Button = %UnInspect
-
-
 func _ready() -> void:
 	_instance = self
-	un_inspect.pressed.connect(_on_zoom_request.bind(null))
 	for each_child in get_children():
 		if each_child is ShowUsable:
 			_show_usables.append(each_child)
@@ -69,9 +64,4 @@ func _remove_item(thing: Usable) -> void:
 			each.set_usable(null)
 	_button_group.pressed.emit(null) # helps tell the hand that this is no longer equipabble
 
-func _on_zoom_request(thing: Usable) -> void:
-	var texture : Texture2D = null
-	if thing:
-		texture = thing.get_icon()
-	un_inspect.set_visible(texture != null)
-	inspect_usable.set_texture(texture)
+func _on_zoom_request(thing: Usable) -> void: InspectionUI.request_inspection(thing)

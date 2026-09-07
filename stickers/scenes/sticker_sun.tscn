@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://d2yd6npmdglv0"]
+
+[ext_resource type="Script" uid="uid://bss35y14r27ct" path="res://stickers/sticker_gem.gd" id="1_3h2hs"]
+[ext_resource type="Resource" uid="uid://bqym0jocf4716" path="res://stickers/resources/godot_sticker.tres" id="2_6pul0"]
+[ext_resource type="Texture2D" uid="uid://cdctv6n7ubqxt" path="res://assets/images/stickers_1.png" id="3_3h2hs"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_1lwx6"]
+size = Vector2(134, 134)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mlwh0"]
+atlas = ExtResource("3_3h2hs")
+region = Rect2(0, 50, 128, 135)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nj5su"]
+radius = 70.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_86tsd"]
+
+[node name="Sun" type="Area2D" unique_id=1207061736 node_paths=PackedStringArray("gem_area")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_3h2hs")
+gem_area = NodePath("Area2DGem")
+_info = ExtResource("2_6pul0")
+metadata/_edit_group_ = true
+
+[node name="SpriteOutline" type="Sprite2D" parent="." unique_id=1626618487]
+unique_name_in_owner = true
+texture = SubResource("PlaceholderTexture2D_1lwx6")
+
+[node name="SpriteSticker" type="Sprite2D" parent="." unique_id=853671408]
+texture = SubResource("AtlasTexture_mlwh0")
+
+[node name="StickerCollision" type="CollisionShape2D" parent="." unique_id=135357915]
+position = Vector2(0, 0.5)
+shape = SubResource("CircleShape2D_nj5su")
+
+[node name="Area2DGem" type="Area2D" parent="." unique_id=1018638040]
+unique_name_in_owner = true
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DGem" unique_id=802390887]
+shape = SubResource("CircleShape2D_86tsd")

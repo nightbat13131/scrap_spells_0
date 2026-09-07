@@ -12,7 +12,7 @@ static var StickerUID : Dictionary[StickerID, String ] = {
 		StickerID.GODOT : "uid://dp3yhwlavt14t", 
 		StickerID.TAPE_0: "uid://m6tw46tv8s1i",
 		StickerID.KEY_0: "uid://cdwq4dms4b3nm",
-		StickerID.SUN_0: "",
+		StickerID.SUN_0: "uid://d2yd6npmdglv0",
 	}
 
 enum Socket_Gem { SOCKET_0 = -1 , NA = 0, GEM_BOT = 1, GEM_SUN = 20}
@@ -40,3 +40,6 @@ const FIRST_PAGE_TEXT = """[color="black"]I don't want a journal as some "partin
 const COVER_TEXT = """C\n O\n  V\n   E\n    R"""
 
 const BACK_TEST = """Know that I'll miss you more than you can know\n        -M"""
+
+const STATE_IS_INSPECTING = &"INSPECTING_ITEM"
+const STATE_IS_NOT_INSPECTING = &"INSPECTING_NOTHING"

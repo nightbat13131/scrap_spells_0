@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://dxtnqftiih088"]
+
+[ext_resource type="Script" uid="uid://cd4n4f70da5wp" path="res://map/room_navigation3d.gd" id="1_rga5n"]
+[ext_resource type="Script" uid="uid://bjwg0fl4u77lb" path="res://map/button_view_navigation.gd" id="2_alk6p"]
+
+[node name="RoomNavButtons" type="GridContainer" unique_id=1496005867]
+size_flags_horizontal = 3
+mouse_filter = 2
+columns = 3
+script = ExtResource("1_rga5n")
+
+[node name="Control" type="Control" parent="." unique_id=1466297538]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2144105429]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Button_up" type="Button" parent="MarginContainer" unique_id=1872140234]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "next"
+script = ExtResource("2_alk6p")
+
+[node name="Control2" type="Control" parent="." unique_id=239667915]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Control7" type="MarginContainer" parent="." unique_id=492395643]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Button_left" type="Button" parent="Control7" unique_id=715175991]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+text = "next"
+script = ExtResource("2_alk6p")
+
+[node name="Control3" type="Control" parent="." unique_id=1996947338]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Control8" type="MarginContainer" parent="." unique_id=757164335]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Button_right" type="Button" parent="Control8" unique_id=22713254]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+text = "next"
+script = ExtResource("2_alk6p")
+
+[node name="Control4" type="Control" parent="." unique_id=293007457]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Control9" type="MarginContainer" parent="." unique_id=1760898748]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Button_down" type="Button" parent="Control9" unique_id=133634311]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "next"
+script = ExtResource("2_alk6p")
+
+[node name="Control6" type="Control" parent="." unique_id=437864518]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2

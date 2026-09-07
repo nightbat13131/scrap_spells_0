@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dsofpb2njedud" path="res://inventory.gd" id="1_6x0u6"]
 [ext_resource type="Script" uid="uid://bqk2o2r4f7wp6" path="res://mouse_navigation_manager.gd" id="1_7b5bc"]
 [ext_resource type="PackedScene" uid="uid://bjenx6b1byvbq" path="res://map/world_3d.tscn" id="1_14tkw"]
+[ext_resource type="Script" uid="uid://cou8xids3uwyo" path="res://architecture/room_ui.gd" id="1_yn3nj"]
 [ext_resource type="PackedScene" uid="uid://do20egm18mcix" path="res://usables/show_usable.tscn" id="2_6x0u6"]
 [ext_resource type="Texture2D" uid="uid://55hbewrgtusx" path="res://assets/images/tracking_vertical_left.svg" id="4_051mu"]
 [ext_resource type="Texture2D" uid="uid://dy3tq73wpopy" path="res://assets/images/hands/hand_thin_open.svg" id="5_7b5bc"]
@@ -11,11 +12,12 @@
 [ext_resource type="Texture2D" uid="uid://b8nddg81aosxp" path="res://assets/images/zoom_out.svg" id="7_i0rul"]
 [ext_resource type="ButtonGroup" uid="uid://ny5qvexdynkx" path="res://usables/inventory_usables_button_group.tres" id="7_optvc"]
 [ext_resource type="Texture2D" uid="uid://vy18r53vvpq" path="res://assets/images/hands/hand_thin_closed.svg" id="9_dfjqo"]
+[ext_resource type="Script" uid="uid://cx2qdjoxqt1oa" path="res://architecture/inspection_layer.gd" id="9_x2cdp"]
+[ext_resource type="PackedScene" uid="uid://dxtnqftiih088" path="res://architecture/room_nav_buttons.tscn" id="11_yn3nj"]
 [ext_resource type="Texture2D" uid="uid://dqulcmcjr8k0j" path="res://assets/images/hands/hand_thin_open_flipped_outline.svg" id="14_051mu"]
-[ext_resource type="Script" uid="uid://cd4n4f70da5wp" path="res://map/room_navigation3d.gd" id="17_c6oil"]
-[ext_resource type="Script" uid="uid://bjwg0fl4u77lb" path="res://map/button_view_navigation.gd" id="18_l1fid"]
 
 [node name="RoomUI" type="CanvasLayer" unique_id=46330287]
+script = ExtResource("1_yn3nj")
 
 [node name="Control" type="Control" parent="." unique_id=243619204]
 layout_mode = 3
@@ -40,52 +42,52 @@ layout_mode = 2
 [node name="PanelContainer" type="PanelContainer" parent="Control/MarginContainer/HBoxContainer" unique_id=484933212]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/PanelContainer" unique_id=1289867761]
+[node name="SidePannel" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/PanelContainer" unique_id=1289867761]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Control/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer" unique_id=2126539291]
+[node name="Label" type="Label" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel" unique_id=2126539291]
 layout_mode = 2
 text = "Inventory"
 
-[node name="Inventory" type="GridContainer" parent="Control/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer" unique_id=43536829]
+[node name="Inventory" type="GridContainer" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel" unique_id=43536829]
 layout_mode = 2
 columns = 2
 script = ExtResource("1_6x0u6")
 _button_group = ExtResource("7_optvc")
 
-[node name="ShowUsable" parent="Control/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Inventory" unique_id=1653365286 instance=ExtResource("2_6x0u6")]
+[node name="ShowUsable" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/Inventory" unique_id=1653365286 instance=ExtResource("2_6x0u6")]
 layout_mode = 2
 
-[node name="ShowUsable2" parent="Control/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Inventory" unique_id=1590944997 instance=ExtResource("2_6x0u6")]
+[node name="ShowUsable2" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/Inventory" unique_id=1590944997 instance=ExtResource("2_6x0u6")]
 layout_mode = 2
 
-[node name="ShowUsable3" parent="Control/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Inventory" unique_id=132859765 instance=ExtResource("2_6x0u6")]
+[node name="ShowUsable3" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/Inventory" unique_id=132859765 instance=ExtResource("2_6x0u6")]
 layout_mode = 2
 
-[node name="ShowUsable4" parent="Control/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Inventory" unique_id=928237873 instance=ExtResource("2_6x0u6")]
+[node name="ShowUsable4" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/Inventory" unique_id=928237873 instance=ExtResource("2_6x0u6")]
 layout_mode = 2
 
-[node name="ShowUsable5" parent="Control/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Inventory" unique_id=1792054909 instance=ExtResource("2_6x0u6")]
+[node name="ShowUsable5" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/Inventory" unique_id=1792054909 instance=ExtResource("2_6x0u6")]
 layout_mode = 2
 
-[node name="ShowUsable6" parent="Control/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Inventory" unique_id=352388969 instance=ExtResource("2_6x0u6")]
+[node name="ShowUsable6" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/Inventory" unique_id=352388969 instance=ExtResource("2_6x0u6")]
 layout_mode = 2
 
-[node name="ShowUsable7" parent="Control/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Inventory" unique_id=1096347328 instance=ExtResource("2_6x0u6")]
+[node name="ShowUsable7" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/Inventory" unique_id=1096347328 instance=ExtResource("2_6x0u6")]
 layout_mode = 2
 
-[node name="ShowUsable8" parent="Control/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/Inventory" unique_id=324187529 instance=ExtResource("2_6x0u6")]
+[node name="ShowUsable8" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/Inventory" unique_id=324187529 instance=ExtResource("2_6x0u6")]
 layout_mode = 2
 
-[node name="HSeparator" type="HSeparator" parent="Control/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer" unique_id=1059173916]
+[node name="HSeparator" type="HSeparator" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel" unique_id=1059173916]
 layout_mode = 2
 
-[node name="BookInventory" type="Control" parent="Control/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer" unique_id=726094070]
+[node name="BookInventory" type="Control" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel" unique_id=726094070]
 custom_minimum_size = Vector2(192, 128)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/BookInventory" unique_id=1841303978]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory" unique_id=1841303978]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -93,41 +95,41 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/BookInventory/VBoxContainer" unique_id=1247485286]
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer" unique_id=1247485286]
 custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="Control/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/BookInventory/VBoxContainer/MarginContainer" unique_id=27987280]
+[node name="Button" type="Button" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/MarginContainer" unique_id=27987280]
 layout_mode = 2
 toggle_mode = true
 button_group = ExtResource("7_optvc")
 text = "Book"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/BookInventory/VBoxContainer" unique_id=652398278]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer" unique_id=652398278]
 layout_mode = 2
 alignment = 1
 
-[node name="FlipBook_Left" type="Button" parent="Control/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/BookInventory/VBoxContainer/HBoxContainer" unique_id=1692636498]
+[node name="FlipBook_Left" type="Button" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/HBoxContainer" unique_id=1692636498]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 icon = ExtResource("4_051mu")
 
-[node name="Control" type="Control" parent="Control/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/BookInventory/VBoxContainer/HBoxContainer" unique_id=1633909559]
+[node name="Control" type="Control" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/HBoxContainer" unique_id=1633909559]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="InspectBook2" type="Button" parent="Control/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/BookInventory/VBoxContainer/HBoxContainer" unique_id=577319290]
+[node name="InspectBook2" type="Button" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/HBoxContainer" unique_id=577319290]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 icon = ExtResource("5_yn3nj")
 
-[node name="Control2" type="Control" parent="Control/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/BookInventory/VBoxContainer/HBoxContainer" unique_id=901186380]
+[node name="Control2" type="Control" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/HBoxContainer" unique_id=901186380]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="FlipBook_Right" type="Button" parent="Control/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/BookInventory/VBoxContainer/HBoxContainer" unique_id=317120949]
+[node name="FlipBook_Right" type="Button" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/HBoxContainer" unique_id=317120949]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
@@ -149,109 +151,32 @@ render_target_update_mode = 4
 
 [node name="Node3D" parent="Control/MarginContainer/HBoxContainer/CenterContainer/SubViewportContainer/SubViewport" unique_id=1511830246 instance=ExtResource("1_14tkw")]
 
-[node name="RoomNavButtons" type="GridContainer" parent="Control/MarginContainer/HBoxContainer/CenterContainer" unique_id=926160803]
+[node name="InspectionLayer" type="GridContainer" parent="Control/MarginContainer/HBoxContainer/CenterContainer" unique_id=1582167516]
 layout_mode = 2
-size_flags_horizontal = 3
 mouse_filter = 2
-columns = 3
-script = ExtResource("17_c6oil")
+script = ExtResource("9_x2cdp")
 
-[node name="Control" type="Control" parent="Control/MarginContainer/HBoxContainer/CenterContainer/RoomNavButtons" unique_id=2061942110]
+[node name="MarginContainer2" type="MarginContainer" parent="Control/MarginContainer/HBoxContainer/CenterContainer/InspectionLayer" unique_id=1419241970]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/HBoxContainer/CenterContainer/RoomNavButtons" unique_id=484161884]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="Button_up" type="Button" parent="Control/MarginContainer/HBoxContainer/CenterContainer/RoomNavButtons/MarginContainer" unique_id=1824586123]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-text = "next"
-script = ExtResource("18_l1fid")
-
-[node name="Control2" type="Control" parent="Control/MarginContainer/HBoxContainer/CenterContainer/RoomNavButtons" unique_id=1049607935]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 2
-
-[node name="Control7" type="MarginContainer" parent="Control/MarginContainer/HBoxContainer/CenterContainer/RoomNavButtons" unique_id=163954855]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 2
-
-[node name="Button_left" type="Button" parent="Control/MarginContainer/HBoxContainer/CenterContainer/RoomNavButtons/Control7" unique_id=1255221102]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-text = "next"
-script = ExtResource("18_l1fid")
-
-[node name="MarginContainer2" type="MarginContainer" parent="Control/MarginContainer/HBoxContainer/CenterContainer/RoomNavButtons" unique_id=1419241970]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 2
-
-[node name="InspectUsable" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/CenterContainer/RoomNavButtons/MarginContainer2" unique_id=875441748]
+[node name="InspectUsable" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/CenterContainer/InspectionLayer/MarginContainer2" unique_id=875441748]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
 stretch_mode = 5
 
-[node name="UnInspect" type="Button" parent="Control/MarginContainer/HBoxContainer/CenterContainer/RoomNavButtons/MarginContainer2" unique_id=1123891115]
+[node name="UnInspect" type="Button" parent="Control/MarginContainer/HBoxContainer/CenterContainer/InspectionLayer" unique_id=1123891115]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 icon = ExtResource("7_i0rul")
 
-[node name="Control8" type="MarginContainer" parent="Control/MarginContainer/HBoxContainer/CenterContainer/RoomNavButtons" unique_id=409371086]
+[node name="RoomNavButtons" parent="Control/MarginContainer/HBoxContainer/CenterContainer" unique_id=1496005867 instance=ExtResource("11_yn3nj")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 2
-
-[node name="Button_right" type="Button" parent="Control/MarginContainer/HBoxContainer/CenterContainer/RoomNavButtons/Control8" unique_id=145779824]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-text = "next"
-script = ExtResource("18_l1fid")
-
-[node name="Control4" type="Control" parent="Control/MarginContainer/HBoxContainer/CenterContainer/RoomNavButtons" unique_id=1824535227]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 2
-
-[node name="Control9" type="MarginContainer" parent="Control/MarginContainer/HBoxContainer/CenterContainer/RoomNavButtons" unique_id=402105267]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 2
-
-[node name="Button_down" type="Button" parent="Control/MarginContainer/HBoxContainer/CenterContainer/RoomNavButtons/Control9" unique_id=394493581]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-text = "next"
-script = ExtResource("18_l1fid")
-
-[node name="Control6" type="Control" parent="Control/MarginContainer/HBoxContainer/CenterContainer/RoomNavButtons" unique_id=1692028692]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 2
 
 [node name="MouseNavigationManager" type="Node2D" parent="." unique_id=1059577252]
 script = ExtResource("1_7b5bc")

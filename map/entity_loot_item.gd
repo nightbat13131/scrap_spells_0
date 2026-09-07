@@ -1,5 +1,4 @@
-extends MeshInstance3D
-
+class_name EntityLootable extends Node3D
 
 @export var event_loot : Event
 
