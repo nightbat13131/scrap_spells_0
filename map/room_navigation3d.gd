@@ -1,4 +1,4 @@
-class_name RoomNavigation3D extends Control
+class_name RoomNavigation3D extends UIOverlay
 
 @onready var button_up: Button_NavigateView = %Button_up
 @onready var button_left: Button_NavigateView = %Button_left
@@ -17,7 +17,7 @@ static func set_navigation_links(links: Array[View3DNavigationLink]) -> void:
 		_instance._set_links(links)
 
 func _set_links(links: Array[View3DNavigationLink]) -> void:
-	_deactivate()
+	_deactivate_buttons()
 	var link: View3DNavigationLink
 	while !links.is_empty():
 		link = links.pop_back()
@@ -38,8 +38,8 @@ func _set_links(links: Array[View3DNavigationLink]) -> void:
 
 static func no_links() -> void:
 	if _instance:
-		_instance._deactivate()
+		_instance._deactivate_buttons()
 
-func _deactivate() -> void:
+func _deactivate_buttons() -> void:
 	for each in _buttons:
 		each.deactivate()

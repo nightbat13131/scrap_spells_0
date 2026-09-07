@@ -4,17 +4,35 @@ class_name RoomUI extends CanvasLayer
 
 @export var _naviation : RoomNavigation3D
 @export var _inspection: InspectionUI 
+@export var _book : BookUI
 
 var _is_inspecting := false
+var _is_booking := false
 
 func _ready() -> void:
-	if _inspection: 
-		_inspection.inspecting.connect(_on_inspection_state)
+	assert(_inspection and _book and _naviation)
+	_inspection.active.connect(_on_inspection_active)
+	_inspection.deactivate()
+	_book.active.connect(_on_book_active)
+	_book.deactivate()
+	_naviation.activate()
 	_update_views()
 
-func _on_inspection_state(is_inspecting: bool): 
+func _on_inspection_active(is_inspecting: bool): 
 	_is_inspecting = is_inspecting
+	if _is_inspecting:
+		_book.deactivate()
 	_update_views()
+
+func _on_book_active(is_booking: bool): 
+	_is_booking = is_booking
+	if _is_booking:
+		_inspection.deactivate()
+	_update_views()
+
 
 func _update_views() -> void:
-	_naviation.set_visible(!_is_inspecting)
+	if _is_booking or _is_inspecting:
+		_naviation.deactivate()
+	else:
+		_naviation.activate()
