@@ -7,7 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://do20egm18mcix" path="res://usables/show_usable.tscn" id="2_6x0u6"]
 [ext_resource type="Texture2D" uid="uid://55hbewrgtusx" path="res://assets/images/tracking_vertical_left.svg" id="4_051mu"]
 [ext_resource type="Texture2D" uid="uid://dy3tq73wpopy" path="res://assets/images/hands/hand_thin_open.svg" id="5_7b5bc"]
+[ext_resource type="Script" uid="uid://dvs32p2ibhr7r" path="res://scrap_book/book_ui.gd" id="5_x2cdp"]
 [ext_resource type="Texture2D" uid="uid://ceispvps43fq2" path="res://assets/images/tool_wand.svg" id="5_yn3nj"]
+[ext_resource type="Texture2D" uid="uid://8pqfocqavayg" path="res://assets/images/book_1.png" id="6_420pj"]
 [ext_resource type="Texture2D" uid="uid://tl7p7xs0b5pq" path="res://assets/images/tracking_vertical_right.svg" id="6_x2cdp"]
 [ext_resource type="Texture2D" uid="uid://b8nddg81aosxp" path="res://assets/images/zoom_out.svg" id="7_i0rul"]
 [ext_resource type="ButtonGroup" uid="uid://ny5qvexdynkx" path="res://usables/inventory_usables_button_group.tres" id="7_optvc"]
@@ -16,8 +18,42 @@
 [ext_resource type="PackedScene" uid="uid://dxtnqftiih088" path="res://architecture/room_nav_buttons.tscn" id="11_yn3nj"]
 [ext_resource type="Texture2D" uid="uid://dqulcmcjr8k0j" path="res://assets/images/hands/hand_thin_open_flipped_outline.svg" id="14_051mu"]
 
-[node name="RoomUI" type="CanvasLayer" unique_id=46330287]
+[sub_resource type="AtlasTexture" id="AtlasTexture_86tsd"]
+atlas = ExtResource("6_420pj")
+region = Rect2(300, 0, 64, 64)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_420pj"]
+load_path = "res://.godot/imported/book_1.png-950081322619b4e5e4a1de0f03bcd4d6.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nk25w"]
+atlas = SubResource("CompressedTexture2D_420pj")
+region = Rect2(0, 300, 64, 64)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nk25w"]
+load_path = "res://.godot/imported/book_1.png-950081322619b4e5e4a1de0f03bcd4d6.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xayn3"]
+atlas = SubResource("CompressedTexture2D_nk25w")
+region = Rect2(1, 601, 64, 64)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ncmfv"]
+load_path = "res://.godot/imported/book_1.png-950081322619b4e5e4a1de0f03bcd4d6.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0l4qv"]
+atlas = SubResource("CompressedTexture2D_ncmfv")
+region = Rect2(534, 602, 64, 64)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_22s6u"]
+load_path = "res://.godot/imported/book_1.png-950081322619b4e5e4a1de0f03bcd4d6.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5x5j8"]
+atlas = SubResource("CompressedTexture2D_22s6u")
+region = Rect2(533, 303, 64, 64)
+
+[node name="RoomUI" type="CanvasLayer" unique_id=46330287 node_paths=PackedStringArray("_naviation", "_inspection")]
 script = ExtResource("1_yn3nj")
+_naviation = NodePath("Control/MarginContainer/HBoxContainer/CenterContainer/RoomNavButtons")
+_inspection = NodePath("Control/MarginContainer/HBoxContainer/CenterContainer/InspectionLayer")
 
 [node name="Control" type="Control" parent="." unique_id=243619204]
 layout_mode = 3
@@ -86,6 +122,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(192, 128)
 layout_mode = 2
 size_flags_vertical = 3
+script = ExtResource("5_x2cdp")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory" unique_id=1841303978]
 layout_mode = 1
@@ -95,11 +132,68 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer" unique_id=1247485286]
+[node name="TinyBookHolder" type="MarginContainer" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer" unique_id=1247485286]
 custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/MarginContainer" unique_id=27987280]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/TinyBookHolder" unique_id=47538065]
+layout_mode = 2
+
+[node name="LeftSpacer" type="Control" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/TinyBookHolder/HBoxContainer" unique_id=902500776]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CoverOutside" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/TinyBookHolder/HBoxContainer" unique_id=822189296]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+texture = SubResource("AtlasTexture_86tsd")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="CoverInside" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/TinyBookHolder/HBoxContainer" unique_id=2130002353]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+texture = SubResource("AtlasTexture_nk25w")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="PageLeft" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/TinyBookHolder/HBoxContainer" unique_id=608117730]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+texture = SubResource("AtlasTexture_xayn3")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="PageRight" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/TinyBookHolder/HBoxContainer" unique_id=1102225290]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+texture = SubResource("AtlasTexture_0l4qv")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="BackInside" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/TinyBookHolder/HBoxContainer" unique_id=1384538653]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+texture = SubResource("AtlasTexture_5x5j8")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="RightSpacer" type="Control" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/TinyBookHolder/HBoxContainer" unique_id=2082151873]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BookButton" type="Button" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/TinyBookHolder" unique_id=27987280]
+unique_name_in_owner = true
 layout_mode = 2
 toggle_mode = true
 button_group = ExtResource("7_optvc")
@@ -110,6 +204,7 @@ layout_mode = 2
 alignment = 1
 
 [node name="FlipBook_Left" type="Button" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/HBoxContainer" unique_id=1692636498]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
@@ -119,7 +214,8 @@ icon = ExtResource("4_051mu")
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="InspectBook2" type="Button" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/HBoxContainer" unique_id=577319290]
+[node name="InspectBook" type="Button" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/HBoxContainer" unique_id=577319290]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
@@ -130,6 +226,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="FlipBook_Right" type="Button" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/HBoxContainer" unique_id=317120949]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
@@ -153,8 +250,28 @@ render_target_update_mode = 4
 
 [node name="InspectionLayer" type="GridContainer" parent="Control/MarginContainer/HBoxContainer/CenterContainer" unique_id=1582167516]
 layout_mode = 2
-mouse_filter = 2
+columns = 3
 script = ExtResource("9_x2cdp")
+
+[node name="Control" type="Control" parent="Control/MarginContainer/HBoxContainer/CenterContainer/InspectionLayer" unique_id=928320179]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Control2" type="Control" parent="Control/MarginContainer/HBoxContainer/CenterContainer/InspectionLayer" unique_id=1837097676]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Control3" type="Control" parent="Control/MarginContainer/HBoxContainer/CenterContainer/InspectionLayer" unique_id=1007825253]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Control4" type="Control" parent="Control/MarginContainer/HBoxContainer/CenterContainer/InspectionLayer" unique_id=1176372599]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="MarginContainer2" type="MarginContainer" parent="Control/MarginContainer/HBoxContainer/CenterContainer/InspectionLayer" unique_id=1419241970]
 layout_mode = 2
@@ -168,14 +285,30 @@ layout_mode = 2
 mouse_filter = 2
 stretch_mode = 5
 
+[node name="Control5" type="Control" parent="Control/MarginContainer/HBoxContainer/CenterContainer/InspectionLayer" unique_id=1558809550]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Control6" type="Control" parent="Control/MarginContainer/HBoxContainer/CenterContainer/InspectionLayer" unique_id=1996668515]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
 [node name="UnInspect" type="Button" parent="Control/MarginContainer/HBoxContainer/CenterContainer/InspectionLayer" unique_id=1123891115]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 8
+size_flags_vertical = 0
 icon = ExtResource("7_i0rul")
 
+[node name="Control7" type="Control" parent="Control/MarginContainer/HBoxContainer/CenterContainer/InspectionLayer" unique_id=1995079058]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
 [node name="RoomNavButtons" parent="Control/MarginContainer/HBoxContainer/CenterContainer" unique_id=1496005867 instance=ExtResource("11_yn3nj")]
+visible = false
 layout_mode = 2
 
 [node name="MouseNavigationManager" type="Node2D" parent="." unique_id=1059577252]

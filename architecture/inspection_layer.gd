@@ -1,9 +1,9 @@
 class_name InspectionUI extends GridContainer
+## Absorbes mouse clicks so that environment clicks behind don't activate
 
-signal inspecting(state: String)
+signal inspecting(is_inspectiong: bool)
 
 static var _instance : InspectionUI
-
 
 @onready var un_inspect: Button = %UnInspect
 @onready var inspect_usable: TextureRect = %InspectUsable
@@ -18,9 +18,7 @@ func _on_request_inspection(thing: Usable) -> void:
 	var texture : Texture2D = null
 	if thing:
 		texture = thing.get_icon()
-		inspecting.emit(Utilties.STATE_IS_NOT_INSPECTING)
-	else:
-		inspecting.emit(Utilties.STATE_IS_INSPECTING)
+	inspecting.emit(texture != null)
 	set_visible(texture != null)
 	inspect_usable.set_texture(texture)
 
