@@ -17,40 +17,40 @@
 [ext_resource type="Script" uid="uid://cx2qdjoxqt1oa" path="res://architecture/inspection_layer.gd" id="9_x2cdp"]
 [ext_resource type="Script" uid="uid://b2h2jsaed1pbj" path="res://architecture/book_layer.gd" id="11_xayn3"]
 [ext_resource type="PackedScene" uid="uid://dxtnqftiih088" path="res://architecture/room_nav_buttons.tscn" id="11_yn3nj"]
-[ext_resource type="Texture2D" uid="uid://dilw848ljs5ol" path="res://icon.svg" id="12_ncmfv"]
+[ext_resource type="PackedScene" uid="uid://c0ripq2vl8b5q" path="res://scrap_book/book_interactions.tscn" id="12_0l4qv"]
 [ext_resource type="Texture2D" uid="uid://dqulcmcjr8k0j" path="res://assets/images/hands/hand_thin_open_flipped_outline.svg" id="14_051mu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_86tsd"]
 atlas = ExtResource("6_420pj")
-region = Rect2(300, 0, 64, 64)
+region = Rect2(300, 0, 48, 64)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_420pj"]
 load_path = "res://.godot/imported/book_1.png-950081322619b4e5e4a1de0f03bcd4d6.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nk25w"]
 atlas = SubResource("CompressedTexture2D_420pj")
-region = Rect2(0, 300, 64, 64)
+region = Rect2(0, 300, 48, 64)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nk25w"]
 load_path = "res://.godot/imported/book_1.png-950081322619b4e5e4a1de0f03bcd4d6.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xayn3"]
 atlas = SubResource("CompressedTexture2D_nk25w")
-region = Rect2(1, 601, 64, 64)
+region = Rect2(1, 601, 48, 64)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ncmfv"]
 load_path = "res://.godot/imported/book_1.png-950081322619b4e5e4a1de0f03bcd4d6.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0l4qv"]
 atlas = SubResource("CompressedTexture2D_ncmfv")
-region = Rect2(534, 602, 64, 64)
+region = Rect2(534, 602, 48, 64)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_22s6u"]
 load_path = "res://.godot/imported/book_1.png-950081322619b4e5e4a1de0f03bcd4d6.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5x5j8"]
 atlas = SubResource("CompressedTexture2D_22s6u")
-region = Rect2(533, 303, 64, 64)
+region = Rect2(533, 303, 48, 64)
 
 [node name="RoomUI" type="CanvasLayer" unique_id=46330287 node_paths=PackedStringArray("_naviation", "_inspection", "_book")]
 script = ExtResource("1_yn3nj")
@@ -59,6 +59,7 @@ _inspection = NodePath("Control/MarginContainer/HBoxContainer/CenterContainer/In
 _book = NodePath("Control/MarginContainer/HBoxContainer/CenterContainer/BookUI")
 
 [node name="Control" type="Control" parent="." unique_id=243619204]
+custom_maximum_size = Vector2(1600, 900)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -200,7 +201,9 @@ unique_name_in_owner = true
 layout_mode = 2
 toggle_mode = true
 button_group = ExtResource("7_optvc")
-text = "Book"
+icon = ExtResource("5_yn3nj")
+icon_alignment = 1
+expand_icon = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer" unique_id=652398278]
 layout_mode = 2
@@ -251,28 +254,17 @@ render_target_update_mode = 4
 
 [node name="Node3D" parent="Control/MarginContainer/HBoxContainer/CenterContainer/SubViewportContainer/SubViewport" unique_id=1511830246 instance=ExtResource("1_14tkw")]
 
-[node name="BookUI" type="Control" parent="Control/MarginContainer/HBoxContainer/CenterContainer" unique_id=1805055702]
+[node name="BookUI" type="CenterContainer" parent="Control/MarginContainer/HBoxContainer/CenterContainer" unique_id=2138225234]
 layout_mode = 2
 script = ExtResource("11_xayn3")
 
 [node name="Control" type="Control" parent="Control/MarginContainer/HBoxContainer/CenterContainer/BookUI" unique_id=245735244]
-layout_mode = 1
-anchors_preset = 0
-offset_left = 115.0
-offset_top = 148.0
-offset_right = 115.0
-offset_bottom = 148.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
 
-[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/CenterContainer/BookUI/Control" unique_id=1210836676]
-layout_mode = 0
-offset_left = 89.0
-offset_top = 186.0
-offset_right = 217.0
-offset_bottom = 314.0
-texture = ExtResource("12_ncmfv")
+[node name="BookInteractions" parent="Control/MarginContainer/HBoxContainer/CenterContainer/BookUI/Control" unique_id=1284834048 instance=ExtResource("12_0l4qv")]
 
 [node name="InspectionUI" type="GridContainer" parent="Control/MarginContainer/HBoxContainer/CenterContainer" unique_id=1582167516]
 layout_mode = 2

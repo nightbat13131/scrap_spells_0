@@ -4,7 +4,6 @@ class_name BookContorl extends Control
 @onready var flip_book_right: Button = %FlipBook_Right
 @onready var inspect_book: Button = %InspectBook
 
-
 @onready var left_spacer: Control = %LeftSpacer
 @onready var cover_outside: TextureRect = %CoverOutside
 @onready var cover_inside: TextureRect = %CoverInside
@@ -29,7 +28,7 @@ func _ready() -> void:
 	inspect_book.pressed.connect(BookUI.request_toggle)
 	flip_book_left.pressed.connect(_on_turn_request.bind(Vector2i.LEFT))
 	flip_book_right.pressed.connect(_on_turn_request.bind(Vector2i.RIGHT))
-	_update_spread()
+	_update_spread.call_deferred()
 
 func _on_turn_request(direction: Vector2i) -> void:
 	if _model:
@@ -37,11 +36,23 @@ func _on_turn_request(direction: Vector2i) -> void:
 
 func _update_spread() -> void:
 	assert(_model)
-	var _shows : Array[Control]
+	var _shows : Array[Control] = []
+	var _spread: SpreadModel = _model.get_current_spread()
 	if !_model.is_open():
 		_shows = [cover_outside]
+		
 	else:
-		_shows = [cover_inside, back_inside]
+		if _spread: # first loads null
+		
+			if _spread.get_left_page():
+				_shows.append(page_left)
+			else:
+				_shows.append(cover_inside)
+			if _spread.get_right_page():
+				_shows.append(page_right)
+			else: 
+				_shows.append(back_inside)
+			
 	for each in _book_parts:
 		if _shows.has(each):
 			each.show()

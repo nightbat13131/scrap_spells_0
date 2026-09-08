@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://c0ripq2vl8b5q"]
 
+[ext_resource type="Script" uid="uid://02sgkrfa5vs1" path="res://scrap_book/book_interactions.gd" id="1_a1sjb"]
 [ext_resource type="PackedScene" uid="uid://obwawdcqq777" path="res://scrap_book/scrap_book.tscn" id="1_dxppu"]
 [ext_resource type="PackedScene" uid="uid://bec25qjnm4apa" path="res://sticker_tray/sticker_tray.tscn" id="2_1lwx6"]
 [ext_resource type="PackedScene" uid="uid://dp3yhwlavt14t" path="res://stickers/scenes/sticker_godot.tscn" id="4_dsnr4"]
@@ -16,13 +17,15 @@
 a = Vector2(1, 1)
 b = Vector2(-1, -1)
 
-[node name="Holder" type="Node2D" unique_id=1284834048]
+[node name="BookInteractions" type="Node2D" unique_id=1284834048]
+script = ExtResource("1_a1sjb")
+metadata/_edit_lock_ = true
 
 [node name="ScrapBook" parent="." unique_id=856058266 instance=ExtResource("1_dxppu")]
-position = Vector2(323, 387)
+position = Vector2(-245, 0)
 
 [node name="StickerTray" parent="." unique_id=657403163 instance=ExtResource("2_1lwx6")]
-position = Vector2(972, 297)
+position = Vector2(395, 1)
 
 [node name="Sticker" parent="StickerTray" unique_id=1207061736 instance=ExtResource("4_dsnr4")]
 position = Vector2(64, -137)
@@ -39,7 +42,8 @@ position = Vector2(-31, -58)
 [node name="Sticker5" parent="StickerTray" unique_id=487332714 instance=ExtResource("5_5457m")]
 position = Vector2(18, 76)
 
-[node name="DebugSave" type="Node" parent="." unique_id=408546582]
+[node name="DebugSave" type="Node2D" parent="." unique_id=1267136343]
+position = Vector2(-517, -333)
 script = ExtResource("4_lf0gk")
 
 [node name="Debug2" type="Button" parent="DebugSave" unique_id=1182324966]

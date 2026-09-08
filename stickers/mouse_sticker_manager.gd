@@ -14,7 +14,6 @@ class_name MouseSticker extends Node2D
 @export var _action_release : GUIDEAction
 @export var _action_rotate : GUIDEAction
 
-
 var _overlapping_stickers :Array [Sticker]
 var _held_sticker : Sticker
 var _sticker_offset : Vector2

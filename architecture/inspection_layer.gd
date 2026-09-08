@@ -5,6 +5,8 @@ static var _instance : InspectionUI
 
 @onready var un_inspect: Button = %UnInspect
 @onready var inspect_usable: TextureRect = %InspectUsable
+var _current_thing : Usable
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,10 +17,15 @@ func _ready() -> void:
 func _on_request_inspection(thing: Usable) -> void:
 	var texture : Texture2D = null
 	if thing:
+		if thing == _current_thing: # toggle 
+			_on_request_inspection(null)
+			return
+		
 		texture = thing.get_icon()
 		activate()
 	else:
 		deactivate()
+	_current_thing = thing
 	set_visible(texture != null)
 	inspect_usable.set_texture(texture)
 

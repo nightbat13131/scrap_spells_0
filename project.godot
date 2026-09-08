@@ -26,7 +26,7 @@ GUIDE="*uid://p2jwrgjcbexr"
 window/size/viewport_width=1440
 window/size/viewport_height=810
 window/stretch/mode="canvas_items"
-window/stretch/aspect="keep_height"
+window/stretch/aspect="expand"
 
 [dotnet]
 
@@ -52,3 +52,4 @@ theme/custom="uid://bmx3ux6e0b8g1"
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+environment/defaults/default_clear_color=Color(0.22745098, 0.19215687, 0.16470589, 1)

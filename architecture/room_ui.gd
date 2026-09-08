@@ -15,23 +15,23 @@ func _ready() -> void:
 	_inspection.deactivate()
 	_book.active.connect(_on_book_active)
 	_book.deactivate()
-	_naviation.activate()
-	_update_views()
+	#_naviation.activate()
+	#_update_nav_views()
 
 func _on_inspection_active(is_inspecting: bool): 
 	_is_inspecting = is_inspecting
 	if _is_inspecting:
 		_book.deactivate()
-	_update_views()
+	_update_nav_views()
 
 func _on_book_active(is_booking: bool): 
 	_is_booking = is_booking
 	if _is_booking:
 		_inspection.deactivate()
-	_update_views()
+	_update_nav_views()
 
 
-func _update_views() -> void:
+func _update_nav_views() -> void:
 	if _is_booking or _is_inspecting:
 		_naviation.deactivate()
 	else:
