@@ -28,14 +28,14 @@ func apply_spread(spread: SpreadModel) -> void:
 		var needed_stickers := spread.get_stickers().duplicate()
 		for each_child in get_children():
 			## useful when turning pages
-			if each_child is Sticker:
+			if each_child is StickerEntity:
 				if needed_stickers.has(each_child):
 					needed_stickers.erase(each_child)
 					each_child.activate()
 				else:
 					each_child.deactivate()
 		if !needed_stickers.is_empty():
-			for each_sticker: Sticker in needed_stickers:
+			for each_sticker: StickerEntity in needed_stickers:
 				## useful when loading from save file first time,
 				add_child(each_sticker)
 				each_sticker.set_spread(_spread.get_spread_index())
@@ -43,15 +43,15 @@ func apply_spread(spread: SpreadModel) -> void:
 	else:
 		hide()
 		for each_child in get_children():
-			if each_child is Sticker:
+			if each_child is StickerEntity:
 				each_child.deactivate()
 
 func _before_spread_change() -> void:
 	if !_spread:
 		return
-	var stickers : Array[Sticker]
+	var stickers : Array[StickerEntity]
 	for each_child in get_children():
-		if each_child is Sticker:
+		if each_child is StickerEntity:
 			if each_child.match_spread(_spread.get_spread_index()):
 				if each_child.is_fully_on_spread():
 					stickers.append(each_child)
@@ -59,7 +59,7 @@ func _before_spread_change() -> void:
 					each_child.spread_rejected()
 	_spread.set_stickers(stickers)
 
-func try_to_stick(sticker: Sticker) -> void:
+func try_to_stick(sticker: StickerEntity) -> void:
 	sticker.set_spread(_spread.get_spread_index())
 	sticker.reparent(self, true)
 
@@ -89,15 +89,15 @@ func _setup_collition_shape() -> void:
 			boundry_left.position.x = 0
 			boundry_right.position.x = Utilties.PAGE_SIZE.x
 
-func _on_sticker_lifted(node: Sticker) -> void:
+func _on_sticker_lifted(node: StickerEntity) -> void:
 	move_child(node, -1)
 
 func _on_child_entered_tree(node: Node) -> void:
-	if node is Sticker:
+	if node is StickerEntity:
 		if !node.picked_up.is_connected(_on_sticker_lifted):
 			node.picked_up.connect(_on_sticker_lifted)
 
 func _on_child_exiting_tree(node: Node) -> void:
-	if node is Sticker:
+	if node is StickerEntity:
 		if node.picked_up.is_connected(_on_sticker_lifted):
 			node.picked_up.disconnect(_on_sticker_lifted)

@@ -63,27 +63,27 @@ func set_scrapbook_model(scrapbook: ScrapBookModel) -> void:
 		if each_spread:
 			spreads_list.append({})
 			stickers_list = []
-			for each_sticker: Sticker in each_spread.get_stickers():
+			for each_sticker: StickerEntity in each_spread.get_stickers():
 				stickers_list.append(each_sticker.get_info().get_dict())
 
 		spreads_list[each_spread.get_spread_index()][STICKERS] = stickers_list.duplicate()
 
 
-func get_tray_stickers() -> Array[Sticker]:
+func get_tray_stickers() -> Array[StickerEntity]:
 	if !_loaded_json.has(STICKER_TRAY):
-		var a: Array[Sticker] = []
+		var a: Array[StickerEntity] = []
 		return a
 	var b : Array[Dictionary] = []
 	for each : Dictionary in _loaded_json[STICKER_TRAY].get(STICKERS):
 		b.append(each)
 	return _stickers_from_list_sticker_dicts(b)
 
-func _stickers_from_list_sticker_dicts(list: Array[Dictionary]) -> Array[Sticker]:
+func _stickers_from_list_sticker_dicts(list: Array[Dictionary]) -> Array[StickerEntity]:
 	if list.is_empty():
 		return []
-	var out : Array[Sticker] = []
+	var out : Array[StickerEntity] = []
 	var sticker_info : StickerResource
-	var sticker : Sticker
+	var sticker : StickerEntity
 	var _position : Vector2
 	var _rotation : float
 	for sticker_dict in list:

@@ -1,4 +1,5 @@
 class_name SpreadModel  extends Resource
+## limit to only 1 stocket at a time
 
 var _left_page : PageModel
 var _right_page : PageModel
@@ -33,9 +34,9 @@ func _to_string() -> String:
 	out += "]"
 	return out
 
-func get_stickers() -> Array[Sticker]: 
-	var out : Array[Sticker]
-	var holder: Sticker
+func get_stickers() -> Array[StickerEntity]: 
+	var out : Array[StickerEntity]
+	var holder: StickerEntity
 	for each in _stickeres:
 		if each:
 			holder = each.get_sticker(true)
@@ -50,11 +51,24 @@ func get_spread_index() -> int:
 	return 0
 
 # used by save and view/controler
-func set_stickers(list: Array[Sticker]) -> void: 
+func set_stickers(list: Array[StickerEntity]) -> void: 
 	_stickeres = []
 	for each in list:
 		if each:
 			_stickeres.append(each.get_info())
+
+func get_active_spell() -> StickerResource:
+	if _has_socket():
+		return _get_socket_sticker()
+	return null
+
+func _get_socket_sticker() -> StickerResource:
+	for each_sticker in _stickeres:
+		if each_sticker.is_socket():
+			return each_sticker
+	return null
+
+func _has_socket() -> bool: return _get_socket_sticker() != null
 
 #region save/load
 

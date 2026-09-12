@@ -8,8 +8,6 @@ var _usable : Usable : set = set_usable
 @onready var usable_button: ShowUsableButton = %UsableButton
 @onready var inspect_button: Button = %InspectButton
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	usable_button.set_show_usable(self)
 	inspect_button.pressed.connect(_on_zoom_pressed)

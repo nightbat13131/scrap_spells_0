@@ -66,6 +66,16 @@ func _set_is_open(value: bool) -> void:
 func set_spreads(list: Array[SpreadModel]) -> void:
 	_spreads = list
 
+static func get_active_spell() -> StickerResource:
+	if _instance:
+		return _instance._get_active_spell()
+	return null
+
+func _get_active_spell() -> StickerResource:
+	if !is_open() or !get_current_spread():
+		return null
+	return get_current_spread().get_active_spell()
+	
 
 #func _from_save(data: SaveResource) -> void:
 	#if data == null:

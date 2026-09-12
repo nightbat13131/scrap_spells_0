@@ -1,5 +1,8 @@
-[gd_resource type="ButtonGroup" format=3 uid="uid://ny5qvexdynkx"]
+[gd_resource type="ButtonGroup" script_class="ButtonGroupEnhanced" format=3 uid="uid://ny5qvexdynkx"]
+
+[ext_resource type="Script" uid="uid://drcma14gvq6d3" path="res://architecture/button_group_enhanced.gd" id="1_6t132"]
 
 [resource]
 resource_local_to_scene = false
 allow_unpress = true
+script = ExtResource("1_6t132")

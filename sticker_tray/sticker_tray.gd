@@ -19,12 +19,12 @@ func _ready() -> void:
 
 static func get_instance() -> StickerTray: return _instance
 
-static func return_to_tray(sticker: Sticker, use_random_pos := true) -> bool:
+static func return_to_tray(sticker: StickerEntity, use_random_pos := true) -> bool:
 	if _instance:
 		return _instance._return_home(sticker, use_random_pos)
 	return false
 
-func _return_home(sticker: Sticker, use_random_pos := true) -> bool:
+func _return_home(sticker: StickerEntity, use_random_pos := true) -> bool:
 	if sticker:
 		if sticker.is_visible_in_tree():
 			if sticker.get_parent() == self:
@@ -48,15 +48,15 @@ func _get_random_position(_depth := 5) -> Vector2 :
 			return _get_random_position(_depth)
 	return out
 
-func _on_sticker_lifted(node: Sticker) -> void: move_child(node, -1)
+func _on_sticker_lifted(node: StickerEntity) -> void: move_child(node, -1)
 
 func _on_child_entered_tree(node: Node) -> void:
-	if node is Sticker:
+	if node is StickerEntity:
 		if !node.picked_up.is_connected(_on_sticker_lifted):
 			node.picked_up.connect(_on_sticker_lifted)
 
 func _on_child_exiting_tree(node: Node) -> void:
-	if node is Sticker:
+	if node is StickerEntity:
 		if node.picked_up.is_connected(_on_sticker_lifted):
 			node.picked_up.disconnect(_on_sticker_lifted)
 
@@ -70,7 +70,7 @@ func _on_save() -> void:
 	var stickers : Array[StickerResource] = []
 	var sticker_info : StickerResource
 	for each_child in get_children():
-		if each_child is Sticker:
+		if each_child is StickerEntity:
 			sticker_info = each_child.get_info()
 			if sticker_info:
 				stickers.append(sticker_info)
@@ -84,7 +84,7 @@ func from_save() -> void:
 	var data := SaveResource0.get_save()
 	# remove any default/current children
 	for each_child in get_children():
-		if each_child is Sticker:
+		if each_child is StickerEntity:
 			each_child.queue_free()
 	# stickers from memory 
 	for each_new in data.get_tray_stickers():

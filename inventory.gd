@@ -3,7 +3,7 @@ class_name Inventory extends GridContainer
 static var _instance : Inventory
 
 var _show_usables : Array[ShowUsable] = [] 
-@export var _button_group : ButtonGroup
+@export var _button_group : ButtonGroupEnhanced
 
 func _ready() -> void:
 	_instance = self
@@ -62,6 +62,6 @@ func _remove_item(thing: Usable) -> void:
 	for each in _show_usables:
 		if each.match_usable(thing):
 			each.set_usable(null)
-	_button_group.pressed.emit(null) # helps tell the hand that this is no longer equipabble
+	_button_group.force_unpress()
 
 func _on_zoom_request(thing: Usable) -> void: InspectionUI.request_inspection(thing)

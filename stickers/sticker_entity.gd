@@ -1,10 +1,8 @@
-class_name Sticker extends Area2D
+class_name StickerEntity extends Area2D
 
-signal picked_up(sticker: Sticker)
+signal picked_up(sticker: StickerEntity)
 
 @onready var sprite_outline: Sprite2D = %SpriteOutline
-#@onready var sticker_collision: CollisionShape2D = %StickerCollision
-
 
 var _is_get_dragged := false : set = _set_get_dragged
 var _last_g_position := Vector2.ZERO
@@ -78,7 +76,7 @@ func set_mouse_focus(is_focused: bool) -> void:
 	else:
 		sprite_outline.set_scale(Vector2.ONE)
 
-func try_pickup() -> Sticker:  ## allows some stickers to be locked in place or have other rules
+func try_pickup() -> StickerEntity:  ## allows some stickers to be locked in place or have other rules
 	_is_get_dragged = true
 	_last_g_position = global_position
 	return self

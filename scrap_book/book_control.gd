@@ -14,12 +14,10 @@ class_name BookContorl extends Control
 
 @onready var _book_parts : Array[Control] = [cover_outside, cover_inside, page_left, page_right, back_inside]
 
-## The power of the ButtonGroup sends the 
 @onready var book_button: Button = %BookButton
 
 @export var _model : ScrapBookModel
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_model = ScrapBookModel.get_model()
 	_model.close_book.connect(_update_spread)

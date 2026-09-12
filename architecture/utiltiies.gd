@@ -4,6 +4,8 @@ class_name Utilties extends RefCounted
 enum StickerID {NA = 0,  GODOT = -1 , 
 	TAPE_0 = 1, 
 	KEY_0 = 10,
+	HAND_0 = 11,
+	BODY_0 = 12,
 	SUN_0 = 20,
 }
 
@@ -15,7 +17,7 @@ static var StickerUID : Dictionary[StickerID, String ] = {
 		StickerID.SUN_0: "uid://d2yd6npmdglv0",
 	}
 
-enum Socket_Gem { SOCKET_0 = -1 , NA = 0, GEM_BOT = 1, GEM_SUN = 20}
+#enum Socket_Gem { SOCKET_0 = -1 , NA = 0, GEM_BOT = 1, GEM_SUN = 20}
 
 enum COLLISION_LAYER { 
 	STICKER = 5, 

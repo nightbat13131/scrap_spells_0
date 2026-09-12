@@ -14,8 +14,8 @@ class_name MouseSticker extends Node2D
 @export var _action_release : GUIDEAction
 @export var _action_rotate : GUIDEAction
 
-var _overlapping_stickers :Array [Sticker]
-var _held_sticker : Sticker
+var _overlapping_stickers :Array [StickerEntity]
+var _held_sticker : StickerEntity
 var _sticker_offset : Vector2
 
 var _is_active := true
@@ -39,8 +39,12 @@ func _process(_delta: float) -> void:
 	if _held_sticker:
 		_held_sticker.set_global_position(get_global_mouse_position() + _sticker_offset)
 
+func activate() -> void: _is_active = true
+
+func deactivate() -> void: _is_active = false
+
 func _on_sticker_finder_area_entered(area: Area2D) -> void:
-	if area is Sticker:
+	if area is StickerEntity:
 		if !_overlapping_stickers.has(area):
 			var index := 0
 			if _is_dragging() and _overlapping_stickers.size() >= 1:
@@ -49,7 +53,7 @@ func _on_sticker_finder_area_entered(area: Area2D) -> void:
 		_overlapping_stickeres_updated()
 
 func _on_sticker_finder_area_exited(area: Area2D) -> void:
-	if area is Sticker:
+	if area is StickerEntity:
 		area.set_mouse_focus(false)
 		while _overlapping_stickers.has(area):
 			_overlapping_stickers.erase(area)

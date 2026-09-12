@@ -46,11 +46,11 @@ func set_loaded_string(string: String) -> void:
 
 func get_save_string() -> String: return JSON.stringify(_loaded_json)
 
-@abstract func _stickers_from_list_sticker_dicts(list: Array[Dictionary]) -> Array[Sticker]
+@abstract func _stickers_from_list_sticker_dicts(list: Array[Dictionary]) -> Array[StickerEntity]
 
 #region StickerTray
 
-@abstract func get_tray_stickers() -> Array[Sticker]
+@abstract func get_tray_stickers() -> Array[StickerEntity]
 
 @abstract func set_sticker_tray_stickers(_info: Array[StickerResource]) -> void
 

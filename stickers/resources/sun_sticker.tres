@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_nw6ye")
 sticker_ID = 20
-socket_v_gem = 20
+gem_color = Color(0.88, 0.62362665, 0.070399985, 1)
 metadata/_custom_type_script = "uid://dnrisihmmrbgf"

@@ -1,4 +1,4 @@
-class_name StickerGem extends Sticker
+class_name StickerGem extends StickerEntity
 
 @export var gem_area : Area2D
 

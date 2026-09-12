@@ -49,7 +49,7 @@ texture = SubResource("AtlasTexture_g1bxb")
 
 [node name="SpriteGemed" type="Sprite2D" parent="." unique_id=1641365668]
 unique_name_in_owner = true
-position = Vector2(76, -130)
+position = Vector2(-61, 40)
 texture = SubResource("AtlasTexture_ng2y2")
 
 [node name="SpriteSticker" type="Sprite2D" parent="." unique_id=853671408]

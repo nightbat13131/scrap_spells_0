@@ -6,4 +6,5 @@
 script = ExtResource("1_umb5u")
 sticker_ID = -1
 socket_v_gem = 1
+gem_color = Color(0, 0.31666684, 1, 1)
 metadata/_custom_type_script = "uid://dnrisihmmrbgf"

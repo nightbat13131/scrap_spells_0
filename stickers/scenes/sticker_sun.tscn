@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d2yd6npmdglv0"]
 
 [ext_resource type="Script" uid="uid://bss35y14r27ct" path="res://stickers/sticker_gem.gd" id="1_3h2hs"]
-[ext_resource type="Resource" uid="uid://bqym0jocf4716" path="res://stickers/resources/godot_sticker.tres" id="2_6pul0"]
+[ext_resource type="Resource" uid="uid://1ljwebvr4vip" path="res://stickers/resources/sun_sticker.tres" id="2_3h2hs"]
 [ext_resource type="Texture2D" uid="uid://cdctv6n7ubqxt" path="res://assets/images/stickers_1.png" id="3_3h2hs"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_1lwx6"]
@@ -21,7 +21,7 @@ collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_3h2hs")
 gem_area = NodePath("Area2DGem")
-_info = ExtResource("2_6pul0")
+_info = ExtResource("2_3h2hs")
 metadata/_edit_group_ = true
 
 [node name="SpriteOutline" type="Sprite2D" parent="." unique_id=1626618487]
