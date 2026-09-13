@@ -38,16 +38,16 @@ func _get_spread_model(spread_index: int) -> SpreadModel:
 	return spread 
 
 func _get_page_model(page_number: int) -> PageModel:
-	if page_number < 1 or page_number > _get_spread_count() * 2:
+	if page_number < 1 or page_number > (_get_spread_count()-1) * 2:
 		return null
 	var page := PageModel.new()
 	page.set_page_number(page_number)
+	
 	if page_number == 1:
 		page.set_page_text(Utilties.FIRST_PAGE_TEXT)
 	else: 
 		page.set_page_text("""[color="blue"]Page[/color]""")
 	return page
-
 
 func set_scrapbook_model(scrapbook: ScrapBookModel) -> void:
 	#scrapbook # get the spread_dicts
@@ -67,7 +67,6 @@ func set_scrapbook_model(scrapbook: ScrapBookModel) -> void:
 				stickers_list.append(each_sticker.get_info().get_dict())
 
 		spreads_list[each_spread.get_spread_index()][STICKERS] = stickers_list.duplicate()
-
 
 func get_tray_stickers() -> Array[StickerEntity]:
 	if !_loaded_json.has(STICKER_TRAY):

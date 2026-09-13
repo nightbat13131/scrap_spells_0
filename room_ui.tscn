@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://tl7p7xs0b5pq" path="res://assets/images/tracking_vertical_right.svg" id="6_x2cdp"]
 [ext_resource type="Texture2D" uid="uid://b8nddg81aosxp" path="res://assets/images/zoom_out.svg" id="7_i0rul"]
 [ext_resource type="ButtonGroup" uid="uid://ny5qvexdynkx" path="res://usables/inventory_usables_button_group.tres" id="7_optvc"]
+[ext_resource type="Texture2D" uid="uid://b0qraag8kktdc" path="res://assets/images/mark_exclamation.svg" id="8_ncmfv"]
 [ext_resource type="Texture2D" uid="uid://vy18r53vvpq" path="res://assets/images/hands/hand_thin_closed.svg" id="9_dfjqo"]
 [ext_resource type="Script" uid="uid://cx2qdjoxqt1oa" path="res://architecture/inspection_layer.gd" id="9_x2cdp"]
 [ext_resource type="Script" uid="uid://b2h2jsaed1pbj" path="res://architecture/book_layer.gd" id="11_xayn3"]
@@ -89,6 +90,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel" unique_id=2126539291]
 layout_mode = 2
 text = "Inventory"
+horizontal_alignment = 1
 
 [node name="Inventory" type="GridContainer" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel" unique_id=43536829]
 layout_mode = 2
@@ -210,7 +212,10 @@ expand_icon = true
 layout_mode = 2
 alignment = 1
 
-[node name="FlipBook_Left" type="Button" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/ButtonsUnder" unique_id=1692636498]
+[node name="MarginContainer2" type="MarginContainer" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/ButtonsUnder" unique_id=1360647483]
+layout_mode = 2
+
+[node name="FlipBook_Left" type="Button" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/ButtonsUnder/MarginContainer2" unique_id=1692636498]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
@@ -221,18 +226,32 @@ icon = ExtResource("4_051mu")
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="InspectBook" type="Button" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/ButtonsUnder" unique_id=577319290]
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/ButtonsUnder" unique_id=761599864]
+layout_mode = 2
+
+[node name="InspectBook" type="Button" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/ButtonsUnder/MarginContainer" unique_id=577319290]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 icon = ExtResource("5_yn3nj")
 
+[node name="Notification" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/ButtonsUnder/MarginContainer" unique_id=142311020]
+unique_name_in_owner = true
+modulate = Color(1, 0.68333334, 0, 1)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("8_ncmfv")
+stretch_mode = 3
+
 [node name="Control2" type="Control" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/ButtonsUnder" unique_id=901186380]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="FlipBook_Right" type="Button" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/ButtonsUnder" unique_id=317120949]
+[node name="MarginContainer3" type="MarginContainer" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/ButtonsUnder" unique_id=1449785565]
+layout_mode = 2
+
+[node name="FlipBook_Right" type="Button" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/ButtonsUnder/MarginContainer3" unique_id=317120949]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8

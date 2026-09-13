@@ -16,6 +16,7 @@ static func request_toggle() -> void:
 func activate() -> void:
 	super.activate()
 	book_interactions.activate()
+	BookControl.request_notification(false)
 
 func deactivate() -> void:
 	super.deactivate()

@@ -54,8 +54,7 @@ func get_save_string() -> String: return JSON.stringify(_loaded_json)
 
 @abstract func set_sticker_tray_stickers(_info: Array[StickerResource]) -> void
 
-func _get_spread_count() -> int: return 5  #front, back, 3 full
-
+func _get_spread_count() -> int: return 5  #front, 3 full, back
 
 
 #endregion

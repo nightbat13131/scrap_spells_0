@@ -3,6 +3,7 @@ class_name ScrapBookModel extends Resource
 signal page_turn
 signal open_book
 signal close_book
+signal spell_updated
 
 var _spread_number := 0: set = _set_spread_num
 var _is_open := true : set = _set_is_open, get = is_open
@@ -65,6 +66,8 @@ func _set_is_open(value: bool) -> void:
 
 func set_spreads(list: Array[SpreadModel]) -> void:
 	_spreads = list
+	for each in _spreads:
+		each.spell_updated.connect(spell_updated.emit)
 
 static func get_active_spell() -> StickerResource:
 	if _instance:

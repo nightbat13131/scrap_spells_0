@@ -47,4 +47,4 @@ func _on_gem_updated() -> void:
 	if _gem_info == null:
 		sprite_gemed.set_modulate(Color.TRANSPARENT)
 	else:
-		sprite_gemed.set_modulate(_gem_info.gem_color)
+		sprite_gemed.set_modulate(_gem_info.get_gem_color())

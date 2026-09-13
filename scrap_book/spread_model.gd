@@ -1,6 +1,8 @@
 class_name SpreadModel  extends Resource
 ## limit to only 1 stocket at a time
 
+signal spell_updated
+
 var _left_page : PageModel
 var _right_page : PageModel
 var _stickeres: Array[StickerResource]
@@ -50,16 +52,49 @@ func get_spread_index() -> int:
 		return get_left_page().get_page_number()/2
 	return 0
 
+func unstick(sticker) -> void:
+	if sticker == null: 
+		return
+	var _sticker_info : StickerResource = sticker.get_info()
+	if _sticker_info.gem_changed.is_connected(spell_updated.emit):
+		_sticker_info.gem_changed.disconnect(spell_updated.emit)
+	if _stickeres.has(_sticker_info):
+		while _stickeres.has(_sticker_info):
+			_stickeres.erase(_sticker_info)
+		spell_updated.emit()
+
+func try_stick(sticker: StickerEntity) -> bool: 
+	if sticker == null: 
+		return false
+	var _sticker_info : StickerResource = sticker.get_info()
+	assert(_sticker_info)
+	if _sticker_info.is_socket():
+		if _has_socket():
+			return false
+	if _stickeres.has(_sticker_info):
+		push_warning(sticker , "is already in the spreadmodel")
+		return true
+	_stickeres.append(_sticker_info)
+	if _sticker_info.is_socket():
+		if !_sticker_info.gem_changed.is_connected(spell_updated.emit):
+			_sticker_info.gem_changed.connect(spell_updated.emit)
+	spell_updated.emit()
+	return true
+
 # used by save and view/controler
 func set_stickers(list: Array[StickerEntity]) -> void: 
 	_stickeres = []
 	for each in list:
 		if each:
-			_stickeres.append(each.get_info())
+			try_stick(each)
+			#_stickeres.append(each.get_info())
+	spell_updated.emit()
 
 func get_active_spell() -> StickerResource:
 	if _has_socket():
-		return _get_socket_sticker()
+		var a : StickerResource = _get_socket_sticker()
+		if a.is_spell():
+			return a
 	return null
 
 func _get_socket_sticker() -> StickerResource:
