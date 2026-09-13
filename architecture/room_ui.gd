@@ -10,16 +10,20 @@ class_name RoomUI extends CanvasLayer
 var _is_inspecting := false
 var _is_booking := false
 
+static var _instance : RoomUI
+
 func _ready() -> void:
 	assert(_inspection and _book and _naviation)
 	_inspection.active.connect(_on_inspection_active)
 	_inspection.deactivate()
 	_book.active.connect(_on_book_active)
 	_book.deactivate()
+	_instance = self
 
 func _on_inspection_active(is_inspecting: bool): 
 	_is_inspecting = is_inspecting
 	if _is_inspecting:
+		_button_group.force_unpress()
 		_book.deactivate()
 	_update_nav_views()
 
@@ -30,9 +34,13 @@ func _on_book_active(is_booking: bool):
 		_inspection.deactivate()
 	_update_nav_views()
 
-
 func _update_nav_views() -> void:
 	if _is_booking or _is_inspecting:
 		_naviation.deactivate()
 	else:
 		_naviation.activate()
+
+static func can_select_inventory() -> bool:
+	if _instance:
+		return !_instance._is_booking and !_instance._is_inspecting
+	return true

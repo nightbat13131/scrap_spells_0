@@ -6,8 +6,9 @@ signal gem_changed
 @export_category("Gem/Socket")
 #@export var socket_v_gem := Utilties.Socket_Gem.NA
 @export var gem_color := Color.AQUA
-
-@export var _socketed_gem: StickerResource
+var _socketed_gem: StickerResource
+## icon for book to show when it has a spell
+@export var book_ui_icon : Texture2D
 
 #Save: remember position
 var _local_position : Vector2
@@ -93,9 +94,8 @@ func is_gem() -> bool:
 		Utilties.StickerID.GODOT, Utilties.StickerID.SUN_0
 	].has(sticker_ID)
 
-
-
-
 #endregion
 
-func be_looted() -> void:print("sticker looted")
+func be_looted() -> void:
+	StickerTray.return_to_tray(StickerManager_AL.request_sticker(sticker_ID))
+	print("sticker looted")

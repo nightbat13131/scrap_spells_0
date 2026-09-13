@@ -1,4 +1,4 @@
-class_name BookContorl extends Control
+class_name BookControl extends Control
 
 @onready var flip_book_left: Button = %FlipBook_Left
 @onready var flip_book_right: Button = %FlipBook_Right
@@ -18,7 +18,10 @@ class_name BookContorl extends Control
 
 @export var _model : ScrapBookModel
 
+static var _instance : BookControl
+
 func _ready() -> void:
+	_instance = self
 	_model = ScrapBookModel.get_model()
 	_model.close_book.connect(_update_spread)
 	_model.open_book.connect(_update_spread)
@@ -38,7 +41,6 @@ func _update_spread() -> void:
 	var _spread: SpreadModel = _model.get_current_spread()
 	if !_model.is_open():
 		_shows = [cover_outside]
-		
 	else:
 		if _spread: # first loads null
 		
@@ -56,4 +58,11 @@ func _update_spread() -> void:
 			each.show()
 		else:
 			each.hide()
-	
+
+static func request_notification(do_show: bool = true) -> void:
+	if _instance:
+		_instance._request_notification(do_show)
+
+
+func _request_notification(do_show: bool) -> void:
+	pass

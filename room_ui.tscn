@@ -206,33 +206,33 @@ icon = ExtResource("5_yn3nj")
 icon_alignment = 1
 expand_icon = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer" unique_id=652398278]
+[node name="ButtonsUnder" type="HBoxContainer" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer" unique_id=652398278]
 layout_mode = 2
 alignment = 1
 
-[node name="FlipBook_Left" type="Button" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/HBoxContainer" unique_id=1692636498]
+[node name="FlipBook_Left" type="Button" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/ButtonsUnder" unique_id=1692636498]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 icon = ExtResource("4_051mu")
 
-[node name="Control" type="Control" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/HBoxContainer" unique_id=1633909559]
+[node name="Control" type="Control" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/ButtonsUnder" unique_id=1633909559]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="InspectBook" type="Button" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/HBoxContainer" unique_id=577319290]
+[node name="InspectBook" type="Button" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/ButtonsUnder" unique_id=577319290]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 icon = ExtResource("5_yn3nj")
 
-[node name="Control2" type="Control" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/HBoxContainer" unique_id=901186380]
+[node name="Control2" type="Control" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/ButtonsUnder" unique_id=901186380]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="FlipBook_Right" type="Button" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/HBoxContainer" unique_id=317120949]
+[node name="FlipBook_Right" type="Button" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer/ButtonsUnder" unique_id=317120949]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
@@ -253,7 +253,7 @@ physics_object_picking = true
 size = Vector2i(1216, 786)
 render_target_update_mode = 4
 
-[node name="Node3D" parent="Control/MarginContainer/HBoxContainer/CenterContainer/SubViewportContainer/SubViewport" unique_id=1511830246 instance=ExtResource("1_14tkw")]
+[node name="World3D" parent="Control/MarginContainer/HBoxContainer/CenterContainer/SubViewportContainer/SubViewport" unique_id=1511830246 instance=ExtResource("1_14tkw")]
 
 [node name="BookUI" type="CenterContainer" parent="Control/MarginContainer/HBoxContainer/CenterContainer" unique_id=2138225234]
 layout_mode = 2
@@ -334,6 +334,7 @@ layout_mode = 2
 [node name="CanvasLayer_Mouse" type="CanvasLayer" parent="." unique_id=889100250]
 
 [node name="MouseNavigationManager" type="Node2D" parent="CanvasLayer_Mouse" unique_id=1059577252]
+position = Vector2(692, 322)
 script = ExtResource("1_7b5bc")
 _inventory_button_group = ExtResource("7_optvc")
 hand_idle = ExtResource("5_7b5bc")

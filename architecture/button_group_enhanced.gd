@@ -1,7 +1,14 @@
 class_name ButtonGroupEnhanced extends ButtonGroup
 
+func _init() -> void:
+	pressed.connect(_on_pressed)
 
 
+func _on_pressed(button: Button) -> void:
+	if button:
+		if !RoomUI.can_select_inventory():
+			force_unpress()
+		pass
 
 func force_unpress() -> void:
 	var current_button := get_pressed_button()

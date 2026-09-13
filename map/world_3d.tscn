@@ -223,7 +223,7 @@ _button_icon = ExtResource("26_jjv41")
 _text = "v Back"
 metadata/_custom_type_script = "uid://bs2sqv4mli5hm"
 
-[node name="Node3D" type="Node3D" unique_id=1511830246]
+[node name="World3D" type="Node3D" unique_id=1511830246]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=654173617]
 environment = ExtResource("1_u2keh")

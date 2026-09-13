@@ -1,6 +1,6 @@
-extends Node2D
+class_name MouseApearance extends Node2D
 
-@export var _inventory_button_group : ButtonGroup
+@export var _inventory_button_group : ButtonGroupEnhanced
 
 @onready var held_texture_rect: TextureRect = %HeldTextureRect
 @onready var hand_sprite_2d: Sprite2D = %HandSprite2D
@@ -13,10 +13,13 @@ var _active_usable : Usable
 var _active_spell : StickerResource
 var _is_holding_sticker : bool
 
+static var _instance : MouseApearance
+
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	if _inventory_button_group:
 		_inventory_button_group.pressed.connect(_on_pressed)
+	_instance = self
 
 func _process(_delta: float) -> void:
 	global_position = get_global_mouse_position()
@@ -35,7 +38,6 @@ func _on_pressed( _button: BaseButton) -> void:
 		_set_active_usable(null)
 		_active_spell = null
 	_update_hand()
-
 
 func _set_active_usable(thing: Usable)  -> void:
 	if _active_usable:
@@ -57,3 +59,15 @@ func _update_hand() -> void:
 		hand_sprite_2d.set_texture(hand_spell)
 	else: 
 		hand_sprite_2d.set_texture(hand_idle)
+
+func _set_sticker_held(is_held: bool) -> void:
+	_is_holding_sticker = is_held
+	_update_hand()
+
+static func sticker_held() -> void:
+	if _instance:
+		_instance._set_sticker_held(true)
+
+static func sticker_released() -> void:
+	if _instance:
+		_instance._set_sticker_held(false)

@@ -74,6 +74,7 @@ func _on_action_grab() -> void:
 		_held_sticker = _overlapping_stickers[0].try_pickup()
 		if _held_sticker:
 			_sticker_offset = _held_sticker.global_position - get_global_mouse_position()
+			MouseApearance.sticker_held()
 
 func _on_action_release() -> void:
 	if !_is_active:
@@ -85,6 +86,7 @@ func _on_action_release() -> void:
 		_held_sticker.release_pickup()
 		_held_sticker = null
 		_sticker_offset = Vector2.ZERO
+		MouseApearance.sticker_released()
 
 func _on_action_rotate() -> void:
 	if !_is_active:
