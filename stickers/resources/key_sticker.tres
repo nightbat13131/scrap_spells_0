@@ -1,9 +1,10 @@
 [gd_resource type="Resource" script_class="StickerResource" format=3 uid="uid://byppgfl6iy787"]
 
+[ext_resource type="Texture2D" uid="uid://caob7pqhkkany" path="res://assets/images/navigation_icons/navigation_nw.svg" id="1_02ah6"]
 [ext_resource type="Script" uid="uid://dnrisihmmrbgf" path="res://stickers/resources/sticker_model.gd" id="1_5gcs3"]
 
 [resource]
 script = ExtResource("1_5gcs3")
 sticker_ID = 10
-socket_v_gem = -1
+book_ui_icon = ExtResource("1_02ah6")
 metadata/_custom_type_script = "uid://dnrisihmmrbgf"

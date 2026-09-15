@@ -17,7 +17,10 @@ class_name BookControl extends Control
 
 @onready var book_button: Button = %BookButton
 
-@export var _model : ScrapBookModel
+@export var _inventory_button_group: ButtonGroupEnhanced
+
+var _model : ScrapBookModel
+
 
 static var _instance : BookControl
 
@@ -37,6 +40,8 @@ func _ready() -> void:
 func _on_turn_request(direction: Vector2i) -> void:
 	if _model:
 		_model.turn_page(direction)
+		if _inventory_button_group:
+			_inventory_button_group.request_refresh()
 
 func _update_spread() -> void:
 	assert(_model)
@@ -74,5 +79,11 @@ func _on_spell_update() -> void:
 	var color = Color.TRANSPARENT
 	if spell:
 		color = spell.get_gem_color() # Color(randf(), randf(), randf())
+		book_button.set_button_icon(spell.book_ui_icon)
+	else:
+		if book_button.is_pressed:
+			book_button.set_pressed(false)
 		pass
 	book_button.set_modulate(color)
+	book_button.set_disabled(spell == null)
+	

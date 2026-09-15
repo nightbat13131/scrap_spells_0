@@ -33,6 +33,8 @@
 [ext_resource type="Texture2D" uid="uid://bvxw2q7s8op0d" path="res://assets/images/navigation_icons/navigation_e.svg" id="24_ntgq4"]
 [ext_resource type="Texture2D" uid="uid://cdgyu727exp0u" path="res://assets/images/navigation_icons/navigation_w.svg" id="25_jjv41"]
 [ext_resource type="Texture2D" uid="uid://h14h3qph8x6v" path="res://assets/images/navigation_icons/rotate_cw.svg" id="26_jjv41"]
+[ext_resource type="Script" uid="uid://blrog0y7xyr7h" path="res://architecture/camera/camera_3d_enhanced.gd" id="30_1ncnd"]
+[ext_resource type="Material" uid="uid://c54isspipni86" path="res://architecture/camera/spell_sample_material.tres" id="31_ojwi4"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_86tsd"]
 radius = 0.1
@@ -126,6 +128,11 @@ metadata/_custom_type_script = "uid://bs2sqv4mli5hm"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g8r6x"]
 size = Vector3(0.2526245, 0.30791473, 0.36021423)
+
+[sub_resource type="SphereMesh" id="SphereMesh_axj8b"]
+material = ExtResource("31_ojwi4")
+radius = 0.1
+height = 0.2
 
 [sub_resource type="Resource" id="Resource_vqn2q"]
 script = ExtResource("3_o7l3u")
@@ -452,9 +459,15 @@ metadata/_edit_group_ = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RoomStuff/AreaNavigations/DoorKnobZoom" unique_id=460945978]
 shape = SubResource("BoxShape3D_g8r6x")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=316072588]
-transform = Transform3D(0.7171211, 0, -0.69694865, 0, 1, 0, 0.69694865, 0, 0.7171211, -0.51752937, 1.2490469, -0.63971424)
-visible = false
+[node name="Camera3D" type="Camera3D" parent="." unique_id=316072588 node_paths=PackedStringArray("spell_sampler")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51752937, 1.2490469, -3.7974443)
+script = ExtResource("30_1ncnd")
+spell_sampler = NodePath("MeshInstance3D")
+spell_sample_material = ExtResource("31_ojwi4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D" unique_id=699436055]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -0.681)
+mesh = SubResource("SphereMesh_axj8b")
 
 [node name="RoomCameraManager" type="Node3D" parent="." unique_id=1684840818 node_paths=PackedStringArray("camera", "_initial")]
 visible = false

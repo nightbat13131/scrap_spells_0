@@ -14,4 +14,6 @@ func force_unpress() -> void:
 	var current_button := get_pressed_button()
 	if current_button:
 		current_button.set_pressed(false) # does not trigger Button Group signal 
-	pressed.emit(null) # helps tell the hand that this is no longer equipabble
+	pressed.emit(null) # helps tell the hand that this is no longer equiped
+
+func request_refresh() -> void: pressed.emit(get_pressed_button())

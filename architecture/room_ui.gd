@@ -19,6 +19,7 @@ func _ready() -> void:
 	_book.active.connect(_on_book_active)
 	_book.deactivate()
 	_instance = self
+	Camera3DEnhanced.set_sub_viewport(%SubViewport)
 
 func _on_inspection_active(is_inspecting: bool): 
 	_is_inspecting = is_inspecting

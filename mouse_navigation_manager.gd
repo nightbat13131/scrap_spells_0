@@ -33,10 +33,11 @@ func _on_pressed( _button: BaseButton) -> void:
 			_active_spell = null
 		else:# spell place holder
 			_set_active_usable(null)
-			_active_spell = StickerResource.new()
+			_active_spell = ScrapBookModel.get_active_spell()
 	else: 
 		_set_active_usable(null)
 		_active_spell = null
+	Camera3DEnhanced.spell_cast(_active_spell)
 	_update_hand()
 
 func _set_active_usable(thing: Usable)  -> void:
