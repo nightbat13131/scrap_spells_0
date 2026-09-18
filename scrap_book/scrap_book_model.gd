@@ -69,12 +69,12 @@ func set_spreads(list: Array[SpreadModel]) -> void:
 	for each in _spreads:
 		each.spell_updated.connect(spell_updated.emit)
 
-static func get_active_spell() -> StickerResource:
+static func get_active_spell() -> StickerResource_Socket:
 	if _instance:
 		return _instance._get_active_spell()
 	return null
 
-func _get_active_spell() -> StickerResource:
+func _get_active_spell() -> StickerResource_Socket:
 	if !is_open() or !get_current_spread():
 		return null
 	return get_current_spread().get_active_spell()

@@ -12,6 +12,9 @@ signal triggered(mousable: Area3D_Mousable)
 @export var _unevent_dependency : Event
 ## Only work when this usable is equiped
 @export var _usable_dependency : Usable
+## Only work when this spell is aviailabe
+@export var _spell_dependency : Spell
+
 
 func _ready() -> void:
 	set_monitorable(false) # other area's don't care what this "doing"

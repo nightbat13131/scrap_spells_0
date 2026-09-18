@@ -1,16 +1,19 @@
 [gd_scene format=3 uid="uid://bjenx6b1byvbq"]
 
-[ext_resource type="Script" uid="uid://bo8cu80q7pmed" path="res://map/_script_r1curtains.gd" id="1_m3e1j"]
+[ext_resource type="Script" uid="uid://bo8cu80q7pmed" path="res://clickable/event_scripts/_script_r1curtains.gd" id="1_m3e1j"]
 [ext_resource type="Environment" uid="uid://c0erp1bbiqr4r" path="res://environment_0.tres" id="1_u2keh"]
 [ext_resource type="PackedScene" uid="uid://b60gnun1asev6" path="res://assets/3d/door_0.glb" id="2_fhoj7"]
 [ext_resource type="Script" uid="uid://bq850lnoatow3" path="res://map/marker3d_enhanced.gd" id="2_wf3jw"]
 [ext_resource type="Resource" uid="uid://1da7lqfvwq1g" path="res://clickable/r1e_wall_hang_loot.tres" id="3_np2o1"]
 [ext_resource type="Script" uid="uid://bs2sqv4mli5hm" path="res://map/view_3d_navigation_link.gd" id="3_o7l3u"]
 [ext_resource type="Resource" uid="uid://dkefd36kwmjar" path="res://clickable/r1e_curtains_open.tres" id="3_w2lvg"]
+[ext_resource type="Script" uid="uid://b4d0wayrgcm86" path="res://clickable/event_scripts/_script_r1_door.gd" id="3_ybqlh"]
 [ext_resource type="Resource" uid="uid://bxmi81xkcbvjx" path="res://map/room1/r1_wall_drawr.tres" id="4_6pcc3"]
+[ext_resource type="Resource" uid="uid://b5ce2noe7xrdw" path="res://clickable/spell_key_sun.tres" id="5_6gs64"]
+[ext_resource type="Script" uid="uid://dytnek62ymhnf" path="res://clickable/event_info.gd" id="5_ijjy0"]
 [ext_resource type="Resource" uid="uid://2mchmgolhjks" path="res://map/room1/r1_drawr_zoom.tres" id="5_m3e1j"]
-[ext_resource type="Script" uid="uid://caemuhh1sjhjw" path="res://clickable/_script_r1_hatch.gd" id="6_2b6r3"]
-[ext_resource type="Script" uid="uid://dlgxx2qol7y8f" path="res://clickable/_script_drawr.gd" id="6_wf3jw"]
+[ext_resource type="Script" uid="uid://caemuhh1sjhjw" path="res://clickable/event_scripts/_script_r1_hatch.gd" id="6_2b6r3"]
+[ext_resource type="Script" uid="uid://dlgxx2qol7y8f" path="res://clickable/event_scripts/_script_drawr.gd" id="6_wf3jw"]
 [ext_resource type="Resource" uid="uid://c8vu10hw1yqym" path="res://clickable/r1e_hatch_unlock.tres" id="7_2b6r3"]
 [ext_resource type="Script" uid="uid://70tbmn58ivrj" path="res://clickable/click_navigate.gd" id="7_np25w"]
 [ext_resource type="Script" uid="uid://c3t7jmtmwswwn" path="res://clickable/click_event.gd" id="7_wf3jw"]
@@ -35,6 +38,18 @@
 [ext_resource type="Texture2D" uid="uid://h14h3qph8x6v" path="res://assets/images/navigation_icons/rotate_cw.svg" id="26_jjv41"]
 [ext_resource type="Script" uid="uid://blrog0y7xyr7h" path="res://architecture/camera/camera_3d_enhanced.gd" id="30_1ncnd"]
 [ext_resource type="Material" uid="uid://c54isspipni86" path="res://architecture/camera/spell_sample_material.tres" id="31_ojwi4"]
+
+[sub_resource type="Resource" id="Resource_ybqlh"]
+script = ExtResource("5_ijjy0")
+metadata/_custom_type_script = "uid://dytnek62ymhnf"
+
+[sub_resource type="Resource" id="Resource_ojwi4"]
+script = ExtResource("5_ijjy0")
+metadata/_custom_type_script = "uid://dytnek62ymhnf"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_86tsd"]
+radius = 0.057128906
+height = 0.25997925
 
 [sub_resource type="SphereMesh" id="SphereMesh_86tsd"]
 radius = 0.1
@@ -245,6 +260,19 @@ shadow_enabled = true
 metadata/_edit_lock_ = true
 
 [node name="door_0" parent="RoomStuff" unique_id=998313622 instance=ExtResource("2_fhoj7")]
+script = ExtResource("3_ybqlh")
+_event = SubResource("Resource_ybqlh")
+
+[node name="ClickEvent_KeySpell" type="Area3D" parent="RoomStuff/door_0" unique_id=58271652]
+script = ExtResource("7_wf3jw")
+_event = SubResource("Resource_ojwi4")
+_view_dependency = ExtResource("13_2pq2l")
+_spell_dependency = ExtResource("5_6gs64")
+metadata/_custom_type_script = "uid://c3t7jmtmwswwn"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomStuff/door_0/ClickEvent_KeySpell" unique_id=390531046]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0239272, 0.8739933, 0.27325234)
+shape = SubResource("CapsuleShape3D_86tsd")
 
 [node name="WallThing" type="MeshInstance3D" parent="RoomStuff" unique_id=1042081595]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6116111, 0.82182825, -1.9310914)

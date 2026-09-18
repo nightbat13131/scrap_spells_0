@@ -10,7 +10,7 @@ class_name MouseApearance extends Node2D
 @export var hand_spell : Texture2D
 
 var _active_usable : Usable
-var _active_spell : StickerResource
+var _active_spell : StickerResource_Socket
 var _is_holding_sticker : bool
 
 static var _instance : MouseApearance
@@ -72,3 +72,8 @@ static func sticker_held() -> void:
 static func sticker_released() -> void:
 	if _instance:
 		_instance._set_sticker_held(false)
+
+static func get_active_spell() -> StickerResource_Socket:
+	if _instance:
+		return _instance._active_spell
+	return null

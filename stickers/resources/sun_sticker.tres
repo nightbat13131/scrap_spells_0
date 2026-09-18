@@ -1,9 +1,9 @@
-[gd_resource type="Resource" script_class="StickerResource" format=3 uid="uid://1ljwebvr4vip"]
+[gd_resource type="Resource" script_class="StickerResource_Gem" format=3 uid="uid://1ljwebvr4vip"]
 
-[ext_resource type="Script" uid="uid://dnrisihmmrbgf" path="res://stickers/resources/sticker_model.gd" id="1_nw6ye"]
+[ext_resource type="Script" uid="uid://dlwmwlkugmjsr" path="res://stickers/resources/sticker_model_gem.gd" id="1_nw6ye"]
 
 [resource]
 script = ExtResource("1_nw6ye")
+_gem_color = Color(1, 0.90000004, 0, 1)
 sticker_ID = 20
-_gem_color = Color(1, 0.6166667, 0, 1)
 metadata/_custom_type_script = "uid://dnrisihmmrbgf"

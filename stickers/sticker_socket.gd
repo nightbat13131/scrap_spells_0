@@ -4,9 +4,8 @@ class_name StickerSocket extends StickerEntity
 @export var sprite_gemed: Sprite2D
 var _gems : Array[StickerGem]
 
-
 func _ready() -> void:
-	assert(_info.is_socket())
+	assert(_info is StickerResource_Socket)
 	assert(socket_area)
 	assert(sprite_gemed)
 	socket_area.set_collision_mask_value(Utilties.COLLISION_LAYER.GEM, true)

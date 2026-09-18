@@ -68,14 +68,14 @@ func try_stick(sticker: StickerEntity) -> bool:
 		return false
 	var _sticker_info : StickerResource = sticker.get_info()
 	assert(_sticker_info)
-	if _sticker_info.is_socket():
+	if _sticker_info is StickerResource_Socket:
 		if _has_socket():
 			return false
 	if _stickeres.has(_sticker_info):
 		push_warning(sticker , "is already in the spreadmodel")
 		return true
 	_stickeres.append(_sticker_info)
-	if _sticker_info.is_socket():
+	if _sticker_info is StickerResource_Socket: 
 		if !_sticker_info.gem_changed.is_connected(spell_updated.emit):
 			_sticker_info.gem_changed.connect(spell_updated.emit)
 	spell_updated.emit()
@@ -90,16 +90,16 @@ func set_stickers(list: Array[StickerEntity]) -> void:
 			#_stickeres.append(each.get_info())
 	spell_updated.emit()
 
-func get_active_spell() -> StickerResource:
+func get_active_spell() -> StickerResource_Socket:
 	if _has_socket():
 		var a : StickerResource = _get_socket_sticker()
 		if a.is_spell():
 			return a
 	return null
 
-func _get_socket_sticker() -> StickerResource:
+func _get_socket_sticker() -> StickerResource_Socket:
 	for each_sticker in _stickeres:
-		if each_sticker.is_socket():
+		if each_sticker is StickerResource_Socket: 
 			return each_sticker
 	return null
 

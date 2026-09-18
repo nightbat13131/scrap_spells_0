@@ -4,6 +4,6 @@ class_name StickerGem extends StickerEntity
 
 func _ready() -> void:
 	super._ready()
-	assert(_info.is_gem())
+	assert(_info is StickerResource_Gem)
 	assert(gem_area)
 	gem_area.set_collision_layer_value(Utilties.COLLISION_LAYER.GEM, true)

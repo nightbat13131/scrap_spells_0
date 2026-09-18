@@ -5,8 +5,8 @@ signal gem_changed
 @export var sticker_ID : Utilties.StickerID
 @export_category("Gem/Socket")
 #@export var socket_v_gem := Utilties.Socket_Gem.NA
-@export var _gem_color := Color.AQUA
-var _socketed_gem: StickerResource
+
+
 ## icon for book to show when it has a spell
 @export var book_ui_icon : Texture2D
 
@@ -50,57 +50,7 @@ func set_object(sticker: StickerEntity) -> void:
 	else:
 		_object = sticker
 
-func get_gem_color() -> Color:
-	if is_spell():
-		return get_gem_info().get_gem_color()
-	elif is_gem():
-		return _gem_color
-	return Color.TRANSPARENT
-
-#region Is_SOCKET
-
-func is_socket() -> bool:
-	return [
-		Utilties.StickerID.KEY_0, Utilties.StickerID.HAND_0, Utilties.StickerID.BODY_0
-	].has(sticker_ID)
-
-func is_spell() -> bool:
-	if is_socket():
-		return _socketed_gem != null
-	return false
-
-func match_spell(socket_id: Utilties.StickerID, gem_id: Utilties.StickerID) -> bool:
-	if is_socket():
-		if match_id(socket_id):
-			if _socketed_gem:
-				return _socketed_gem.match_id(gem_id)
-	return false
-
-func try_insert_gem(gem: StickerResource) -> bool:
-	if !is_socket():
-		return false
-	if gem:
-		if !gem.is_gem():
-			return false
-	_socketed_gem = gem
-	gem_changed.emit()
-	return true
-
-func get_gem_info() -> StickerResource: 
-	if is_socket():
-		return _socketed_gem
-	return null
-
-#endregion
-
-#region IS_GEM
-
-func is_gem() -> bool:
-	return [
-		Utilties.StickerID.GODOT, Utilties.StickerID.SUN_0
-	].has(sticker_ID)
-
-#endregion
+func get_gem_color() -> Color: return Color.TRANSPARENT
 
 func be_looted() -> void:
 	StickerTray.return_to_tray(StickerManager_AL.request_sticker(sticker_ID))

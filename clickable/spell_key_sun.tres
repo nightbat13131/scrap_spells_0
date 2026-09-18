@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Spell" format=3 uid="uid://b5ce2noe7xrdw"]
+
+[ext_resource type="Resource" uid="uid://1ljwebvr4vip" path="res://stickers/resources/sun_sticker.tres" id="1_igd0d"]
+[ext_resource type="Script" uid="uid://cn42jjmt1ypdy" path="res://stickers/resources/spell.gd" id="2_igd0d"]
+[ext_resource type="Resource" uid="uid://byppgfl6iy787" path="res://stickers/resources/key_sticker.tres" id="3_1q0f0"]
+
+[resource]
+script = ExtResource("2_igd0d")
+socket = ExtResource("3_1q0f0")
+gem = ExtResource("1_igd0d")
+metadata/_custom_type_script = "uid://cn42jjmt1ypdy"
