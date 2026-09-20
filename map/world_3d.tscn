@@ -474,6 +474,7 @@ monitorable = false
 script = ExtResource("7_np25w")
 _nav_link = SubResource("Resource_u2keh")
 _view_dependency = ExtResource("13_2pq2l")
+_unevent_dependency = ExtResource("6_ybqlh")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RoomStuff/AreaNavigations/DoorKnobZoom" unique_id=460945978]
