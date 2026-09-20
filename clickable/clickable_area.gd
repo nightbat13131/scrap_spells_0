@@ -39,6 +39,7 @@ func _on_input_event(_camera: Node, event: InputEvent, _event_position: Vector3,
 
 ## useful on inheritance 
 func _on_view_change(_is_focused: bool) -> void: __uppdate_usabilty(_is_focused)
+
 ## useful on inheritance 
 func _on_event_change(_is_triggered: bool) -> void: __uppdate_usabilty(_is_triggered)
 

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Usable" format=3 uid="uid://ban73hafkrpch"]
+
+[ext_resource type="Texture2D" uid="uid://dqvbt0r8s6q6a" path="res://assets/images/hook.png" id="1_j1j1v"]
+[ext_resource type="Resource" uid="uid://c8vu10hw1yqym" path="res://clickable/r1e_hatch_unlock.tres" id="2_jwhy6"]
+[ext_resource type="Script" uid="uid://detw1fls8ll7j" path="res://usables/usable_info.gd" id="3_utro7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ktri1"]
+atlas = ExtResource("1_j1j1v")
+region = Rect2(-61, 11, 475, 475)
+
+[resource]
+script = ExtResource("3_utro7")
+_icon = SubResource("AtlasTexture_ktri1")
+_note = "Usable hook"
+_used_by_event = ExtResource("2_jwhy6")
+metadata/_custom_type_script = "uid://detw1fls8ll7j"

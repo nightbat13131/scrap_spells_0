@@ -4,8 +4,9 @@
 [ext_resource type="Resource" uid="uid://1ljwebvr4vip" path="res://stickers/resources/sun_sticker.tres" id="2_3h2hs"]
 [ext_resource type="Texture2D" uid="uid://cdctv6n7ubqxt" path="res://assets/images/stickers_1.png" id="3_3h2hs"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_1lwx6"]
-size = Vector2(134, 134)
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2dlh"]
+atlas = ExtResource("3_3h2hs")
+region = Rect2(137, 46, 143, 150)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mlwh0"]
 atlas = ExtResource("3_3h2hs")
@@ -26,7 +27,7 @@ metadata/_edit_group_ = true
 
 [node name="SpriteOutline" type="Sprite2D" parent="." unique_id=1626618487]
 unique_name_in_owner = true
-texture = SubResource("PlaceholderTexture2D_1lwx6")
+texture = SubResource("AtlasTexture_e2dlh")
 
 [node name="SpriteSticker" type="Sprite2D" parent="." unique_id=853671408]
 texture = SubResource("AtlasTexture_mlwh0")

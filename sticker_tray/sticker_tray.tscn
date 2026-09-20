@@ -13,7 +13,7 @@ input_pickable = false
 script = ExtResource("1_pmxlv")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=285308980]
-modulate = Color(0, 0, 0, 1)
+modulate = Color(0.64276874, 0.19313967, 0.0463833, 1)
 position = Vector2(-1, 1.5258789e-05)
 scale = Vector2(3, 4.949)
 texture = ExtResource("2_iutta")

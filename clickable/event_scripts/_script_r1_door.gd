@@ -2,7 +2,7 @@ extends Node3D
 # open door when spell is cast
 
 @export var _event : Event
-
+@export var post_event_navigate : View3DNavigationLink
 
 
 # Called when the node enters the scene tree for the first time.
@@ -26,6 +26,8 @@ func _on_triggered(is_triggered: bool) -> void:
 func __open_door(player: AnimationPlayer) -> void:
 	player.play("handle|open|Animation Base Layer")
 	await player.animation_finished
-	
+	if post_event_navigate:
+		post_event_navigate.trigger_navigation()
 	player.play("door|open|Animation Base Layer")
-	pass
+	#await player.animation_finished
+	

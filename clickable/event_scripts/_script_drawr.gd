@@ -11,6 +11,7 @@ var _is_drawr_open := false
 func _ready() -> void:
 	assert(_event)
 	_event.triggered.connect(_on_event_triggered)
+	_close_drawr()
 
 func _on_event_triggered(is_triggered: bool) -> void:
 	if is_triggered:

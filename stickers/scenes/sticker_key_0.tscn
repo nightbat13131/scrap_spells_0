@@ -2,12 +2,10 @@
 
 [ext_resource type="Script" uid="uid://c6ssqyojrkx1t" path="res://stickers/sticker_socket.gd" id="1_vv8ts"]
 [ext_resource type="Resource" uid="uid://byppgfl6iy787" path="res://stickers/resources/key_sticker.tres" id="2_vv8ts"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ng2y2"]
-load_path = "res://.godot/imported/stickers_1.png-27afab8a431312bcc0303f3c6af39871.ctex"
+[ext_resource type="Texture2D" uid="uid://cdctv6n7ubqxt" path="res://assets/images/stickers_1.png" id="3_ng2y2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g1bxb"]
-atlas = SubResource("CompressedTexture2D_ng2y2")
+atlas = ExtResource("3_ng2y2")
 region = Rect2(176, 267, 152, 332)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vv8ts"]
@@ -17,11 +15,8 @@ load_path = "res://.godot/imported/stickers_1.png-27afab8a431312bcc0303f3c6af398
 atlas = SubResource("CompressedTexture2D_vv8ts")
 region = Rect2(20, 0, 20, 45)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_g1bxb"]
-load_path = "res://.godot/imported/stickers_1.png-27afab8a431312bcc0303f3c6af39871.ctex"
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_m0k4m"]
-atlas = SubResource("CompressedTexture2D_g1bxb")
+atlas = ExtResource("3_ng2y2")
 region = Rect2(-2, 271, 185, 327)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dbuik"]

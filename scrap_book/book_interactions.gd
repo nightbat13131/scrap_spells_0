@@ -22,7 +22,8 @@ func _alone_test() -> void:
 		position = Vector2(ProjectSettings.get_setting("display/window/size/viewport_width"), ProjectSettings.get_setting("display/window/size/viewport_height") ) * .5
 
 func _draw() -> void: 
-	_dev_draw()
+	#_dev_draw()
+	pass
 
 ##Draw guidlines for spacing out this non-control UI
 func _dev_draw() -> void:
