@@ -18,7 +18,6 @@ func deactivate() -> void:
 
 ## If this scene is called as the rook (like in testing), move to the center instead of top left.
 func _alone_test() -> void:
-	print(get_parent())
 	if get_parent() == get_tree().get_root(): # being called out of scene, need to move
 		position = Vector2(ProjectSettings.get_setting("display/window/size/viewport_width"), ProjectSettings.get_setting("display/window/size/viewport_height") ) * .5
 

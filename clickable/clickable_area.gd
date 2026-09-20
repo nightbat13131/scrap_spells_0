@@ -31,8 +31,10 @@ func _ready() -> void:
 
 func _on_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if _is_usable():
+		if _spell_dependency:
+			if !_spell_dependency.is_equipted():
+				return
 		if event.is_pressed():
-			#print("0000")
 			triggered.emit(self)
 
 ## useful on inheritance 
@@ -42,6 +44,7 @@ func _on_event_change(_is_triggered: bool) -> void: __uppdate_usabilty(_is_trigg
 
 func _is_usable() -> bool: 
 	if _view_dependency:
+		#prints("view check A", self)
 		if !_view_dependency.is_focused():
 			return false
 	if _event_dependency:
@@ -53,6 +56,11 @@ func _is_usable() -> bool:
 	if _usable_dependency:
 		if !_usable_dependency.is_equiped():
 			return false
+	#if _spell_dependency: # not here because equipting is not detetable to refresh useable
+	#	prints("spell check A", self)
+	#	if !_spell_dependency.is_equipted():
+
+			#return false
 	return true
 
 func __uppdate_usabilty(_ignored: bool = true) -> void:

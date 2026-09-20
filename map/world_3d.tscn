@@ -10,10 +10,10 @@
 [ext_resource type="Script" uid="uid://b4d0wayrgcm86" path="res://clickable/event_scripts/_script_r1_door.gd" id="3_ybqlh"]
 [ext_resource type="Resource" uid="uid://bxmi81xkcbvjx" path="res://map/room1/r1_wall_drawr.tres" id="4_6pcc3"]
 [ext_resource type="Resource" uid="uid://b5ce2noe7xrdw" path="res://clickable/spell_key_sun.tres" id="5_6gs64"]
-[ext_resource type="Script" uid="uid://dytnek62ymhnf" path="res://clickable/event_info.gd" id="5_ijjy0"]
 [ext_resource type="Resource" uid="uid://2mchmgolhjks" path="res://map/room1/r1_drawr_zoom.tres" id="5_m3e1j"]
 [ext_resource type="Script" uid="uid://caemuhh1sjhjw" path="res://clickable/event_scripts/_script_r1_hatch.gd" id="6_2b6r3"]
 [ext_resource type="Script" uid="uid://dlgxx2qol7y8f" path="res://clickable/event_scripts/_script_drawr.gd" id="6_wf3jw"]
+[ext_resource type="Resource" uid="uid://lycqp2qiv0ey" path="res://clickable/r1e_door_open.tres" id="6_ybqlh"]
 [ext_resource type="Resource" uid="uid://c8vu10hw1yqym" path="res://clickable/r1e_hatch_unlock.tres" id="7_2b6r3"]
 [ext_resource type="Script" uid="uid://70tbmn58ivrj" path="res://clickable/click_navigate.gd" id="7_np25w"]
 [ext_resource type="Script" uid="uid://c3t7jmtmwswwn" path="res://clickable/click_event.gd" id="7_wf3jw"]
@@ -38,14 +38,6 @@
 [ext_resource type="Texture2D" uid="uid://h14h3qph8x6v" path="res://assets/images/navigation_icons/rotate_cw.svg" id="26_jjv41"]
 [ext_resource type="Script" uid="uid://blrog0y7xyr7h" path="res://architecture/camera/camera_3d_enhanced.gd" id="30_1ncnd"]
 [ext_resource type="Material" uid="uid://c54isspipni86" path="res://architecture/camera/spell_sample_material.tres" id="31_ojwi4"]
-
-[sub_resource type="Resource" id="Resource_ybqlh"]
-script = ExtResource("5_ijjy0")
-metadata/_custom_type_script = "uid://dytnek62ymhnf"
-
-[sub_resource type="Resource" id="Resource_ojwi4"]
-script = ExtResource("5_ijjy0")
-metadata/_custom_type_script = "uid://dytnek62ymhnf"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_86tsd"]
 radius = 0.057128906
@@ -261,12 +253,12 @@ metadata/_edit_lock_ = true
 
 [node name="door_0" parent="RoomStuff" unique_id=998313622 instance=ExtResource("2_fhoj7")]
 script = ExtResource("3_ybqlh")
-_event = SubResource("Resource_ybqlh")
+_event = ExtResource("6_ybqlh")
 
 [node name="ClickEvent_KeySpell" type="Area3D" parent="RoomStuff/door_0" unique_id=58271652]
 script = ExtResource("7_wf3jw")
-_event = SubResource("Resource_ojwi4")
-_view_dependency = ExtResource("13_2pq2l")
+_event = ExtResource("6_ybqlh")
+_view_dependency = ExtResource("14_2b6r3")
 _spell_dependency = ExtResource("5_6gs64")
 metadata/_custom_type_script = "uid://c3t7jmtmwswwn"
 
@@ -466,7 +458,7 @@ shape = SubResource("CylinderShape3D_g8r6x")
 shape = SubResource("BoxShape3D_86tsd")
 
 [node name="DoorZoom" type="Area3D" parent="RoomStuff/AreaNavigations" unique_id=131668464]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.031405, 0.9991933, -0.062177896)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1489468, 0.9991933, -0.062177896)
 monitorable = false
 script = ExtResource("7_np25w")
 _nav_link = ExtResource("19_on0u5")
@@ -477,7 +469,7 @@ metadata/_edit_group_ = true
 shape = SubResource("BoxShape3D_kjanm")
 
 [node name="DoorKnobZoom" type="Area3D" parent="RoomStuff/AreaNavigations" unique_id=1760807288]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9613765, 0.89071435, 0.2528658)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9613765, 0.9157181, 0.2528658)
 monitorable = false
 script = ExtResource("7_np25w")
 _nav_link = SubResource("Resource_u2keh")

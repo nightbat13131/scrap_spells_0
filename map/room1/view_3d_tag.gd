@@ -10,7 +10,7 @@ var _is_focused := false : set = set_focus, get = is_focused
 
 func set_marker(node: Marker3D_Enhanced) -> void:
 	if _marker:
-		print("this resource is setup wrong")
+		push_warning("this resource is setup wrong")
 	_marker = node
 
 func get_marker() -> Marker3D: return _marker

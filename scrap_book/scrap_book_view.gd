@@ -25,14 +25,10 @@ func _set_is_open(value: bool) -> void:
 func _on_book_open() -> void: 
 	if !_is_open:
 		_is_open = true
-		print("open book")
-		prints(_last_spread)
 
 func _on_book_close() -> void: 
 	if _is_open:
 		_is_open = false
-		print("close book")
-		prints("[ ]")
 
 func _on_page_turn() -> void:
 	assert(_model)
@@ -40,9 +36,10 @@ func _on_page_turn() -> void:
 	if _next_spread == _last_spread:
 		return
 	if _next_spread.get_page_sum() < _last_spread.get_page_sum():
-		print("Going smaller left")
+		#"Going smaller left")
+		pass
 	else:
-		print("Going larger right")
-	prints(str(_last_spread), "->", str(_next_spread))
+		#"Going larger right")
+		pass
 	_last_spread = _next_spread
 	_next_spread = null

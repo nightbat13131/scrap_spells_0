@@ -126,7 +126,8 @@ func _update_status_color() -> void:
 	elif has_spread: 
 		color = Utilties.STICKER_OUTLINE_BOOK
 	else:
-		print_debug("no match")
+		color = Color.CHOCOLATE
+		#print_debug("no match") # TODO
 	sprite_outline.set_modulate(color)
 
 func _area_test() -> void:
@@ -138,19 +139,16 @@ func _area_test() -> void:
 	var color := Utilties.STICKER_OUTLINE_TRAY
 	for each in get_overlapping_areas():
 		if each is StickerTray:
-			print("home")
 			is_void = false
 			reparent(each, true)
 			_spread_num = -1
 			_last_tray_position = global_position
 		elif each is SpreadView:
-			print("spread")
 			is_void = false
 			each.try_to_stick(self)
 		elif each is OutsideSpread:
 			has_void = true
 	if is_void:
-		print("void")
 		global_position = _last_g_position
 	else:
 		if _spread_num < 0:

@@ -27,7 +27,6 @@ func get_dict() -> Dictionary:
 	if _object:
 		out[SaveResource.LOCAL_POSITION] = JSON.from_native(_object.position)
 		out[SaveResource.LOCAL_ROTATION] = _object.rotation
-	print(out)
 	return out
 
 func set_saved_values(pos: Vector2, rotation: float) -> void:
@@ -44,9 +43,9 @@ func match_object(sticker: StickerEntity) -> bool: return _object == sticker
 
 func set_object(sticker: StickerEntity) -> void:
 	if _object == sticker:
-		print("STicker already set matching")
+		push_error("STicker already set matching")
 	elif _object != null:
-		print("STicker already something else")
+		push_error("STicker already something else")
 	else:
 		_object = sticker
 

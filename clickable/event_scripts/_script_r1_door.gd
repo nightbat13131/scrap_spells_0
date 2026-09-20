@@ -11,5 +11,4 @@ func _ready() -> void:
 
 func _on_triggered(is_triggered: bool) -> void:
 	if is_triggered:
-		print("boink")
-		set_rotation(Vector3(45,0,0))
+		print("Show spell, open door animation")

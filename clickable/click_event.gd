@@ -3,7 +3,6 @@ class_name ClickEvent extends Area3D_Mousable
 @export var _event: Event
 @export var untrigger_on_view_break := false
 
-
 func _ready() -> void:
 	assert(_event)
 	super._ready()

@@ -55,11 +55,8 @@ func _set_is_open(value: bool) -> void:
 	if value == _is_open: return
 	_is_open = value
 	if _is_open:
-		print("_book open")
 		open_book.emit()
-		print(get_current_spread())
 	else:
-		print("_book close")
 		close_book.emit()
 
 #region Save pushing in

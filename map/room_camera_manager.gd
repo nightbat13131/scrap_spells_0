@@ -14,9 +14,6 @@ static var _instance : ViewCameraManager
 func _ready() -> void:
 	assert(camera and _initial, "3d camera manager missing stuff")
 	_instance = self
-	#for each in get_children():
-		#if each is Marker3D_Enhanced:
-			#_things.append(each)
 	_move_camera.call_deferred(_initial)
 
 func _move_camera(next_marker: Marker3D_Enhanced, fast := true) -> void:
@@ -31,7 +28,6 @@ func _move_camera(next_marker: Marker3D_Enhanced, fast := true) -> void:
 	else: 
 		var tween = create_tween()
 		tween.tween_method(__tween_camera_interpolate, 0.0, 1.0, 1.0)
-		#print(tween)
 
 static func request_view(next_marker: Marker3D_Enhanced, fast := true) -> void:
 	if _instance:
@@ -39,7 +35,6 @@ static func request_view(next_marker: Marker3D_Enhanced, fast := true) -> void:
 
 #method for the tween to do the moving
 func __tween_camera_interpolate(weight: float):
-	#print(weight)
 	if _next_marker == null:
 		return
 	var _transform: Transform3D = _next_marker.get_global_transform()
@@ -47,7 +42,6 @@ func __tween_camera_interpolate(weight: float):
 		_transform = _last_marker.get_global_transform().interpolate_with(_transform, weight)
 	camera.set_global_transform(_transform)
 	if is_equal_approx(1.0, weight):
-		#print("cleanup")
 		_ariving_at_marker()
 
 func _ariving_at_marker() -> void:
