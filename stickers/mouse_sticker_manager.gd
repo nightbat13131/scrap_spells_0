@@ -67,11 +67,17 @@ func _overlapping_stickeres_updated() -> void:
 
 func _is_dragging() -> bool: return _held_sticker != null
 
+func _on_request_drop(sticker: StickerEntity) -> void:
+	if _held_sticker == sticker:
+		_on_action_release()
+
 func _on_action_grab() -> void:
 	if !_is_active:
 		return
 	if !_overlapping_stickers.is_empty():
 		_held_sticker = _overlapping_stickers[0].try_pickup()
+		if !_held_sticker.request_drop.is_connected(_on_request_drop):
+			_held_sticker.request_drop.connect(_on_request_drop)
 		if _held_sticker:
 			_sticker_offset = _held_sticker.global_position - get_global_mouse_position()
 			MouseApearance.sticker_held()

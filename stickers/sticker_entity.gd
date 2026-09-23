@@ -1,8 +1,10 @@
 class_name StickerEntity extends Area2D
-
+signal request_drop(sticker: StickerEntity)
 signal picked_up(sticker: StickerEntity)
 
 @onready var sprite_outline: Sprite2D = %SpriteOutline
+@onready var sprite_shadow: Sprite2D = %SpriteShadow
+@onready var visible_on_screen_notifier_2d: VisibleOnScreenNotifier2D = %VisibleOnScreenNotifier2D
 
 var _is_get_dragged := false : set = _set_get_dragged
 var _last_g_position := Vector2.ZERO
@@ -10,6 +12,10 @@ var _last_tray_position := Vector2.ZERO
 var _is_mouse_focus := false : set = set_mouse_focus
 var _spread_num := -1 
 var _collition_shapes : Array[CollisionShape2D]
+var _area_overlappingui := false
+var _area_outside_spread := false
+var _area_spreadview : SpreadView
+var _area_stickertray := false
 
 @export var _info : StickerResource: get = get_info
 
@@ -17,9 +23,18 @@ func _ready() -> void:
 	set_z_index(50)
 	set_collision_layer_value(Utilties.COLLISION_LAYER.STICKER, true)
 	set_collision_mask_value(Utilties.COLLISION_LAYER.STICKER_PAPER, true)
+	area_entered.connect(_on_area_entered)
+	area_exited.connect(_on_area_exited)
 	_connect_children() 
+	visible_on_screen_notifier_2d.screen_exited.connect(_screen_exited)
 	await get_tree().process_frame
 	_post_ready()
+
+# if being carried by the hand, requeset the hand drop 
+func _screen_exited() -> void:
+	print("fell out of scren")
+	request_drop.emit(self)
+	#StickerTray.return_to_tray(self, true)
 
 func _post_ready() -> void:
 	_update_status_color()
@@ -75,6 +90,7 @@ func set_mouse_focus(is_focused: bool) -> void:
 		sprite_outline.set_scale(Vector2.ONE*1.2)
 	else:
 		sprite_outline.set_scale(Vector2.ONE)
+	_update_status_color()
 
 func try_pickup() -> StickerEntity:  ## allows some stickers to be locked in place or have other rules
 	_is_get_dragged = true
@@ -84,11 +100,10 @@ func try_pickup() -> StickerEntity:  ## allows some stickers to be locked in pla
 func release_pickup() -> void: 
 	_is_get_dragged = false
 	_update_status_color()
-	for area in get_overlapping_areas():
-		if area is SpreadView:
-			area.try_to_stick(self)
-		elif area is StickerTray:
-			area.return_to_tray(self, false)
+	if _area_overlappingui and !_area_stickertray:
+		StickerTray.return_to_tray(self, true)
+	if _area_spreadview:
+		_area_spreadview.try_to_stick(self)
 
 func _set_get_dragged(value: bool) -> void:
 	if value == _is_get_dragged: 
@@ -96,8 +111,6 @@ func _set_get_dragged(value: bool) -> void:
 	_is_get_dragged = value
 	if _is_get_dragged:
 		picked_up.emit(self)
-	else:
-		_area_test()
 	_update_status_color()
 
 func try_rotation(direction: float) -> void:
@@ -105,56 +118,39 @@ func try_rotation(direction: float) -> void:
 	rotation = snappedf(rotation, TAU / 8.0)
 
 func _update_status_color() -> void:
-	var has_tray := false
-	var has_spread := false
-	var has_void := false
-	
-	for each_area in get_overlapping_areas():
-		if each_area is StickerTray:
-			has_tray = true
-		elif each_area is SpreadView:
-			has_spread = true
-		elif each_area is OutsideSpread:
-			has_void = true
-	
-	var color := Color.GREEN
-	
-	if has_tray:
-		color = Utilties.STICKER_OUTLINE_TRAY
-	elif has_void:
-		color = Utilties.STICKER_OUTLINE_WARNING
-	elif has_spread: 
-		color = Utilties.STICKER_OUTLINE_BOOK
-	else:
-		color = Color.CHOCOLATE
-		#print_debug("no match") # TODO
-	sprite_outline.set_modulate(color)
+	var outline_color : Color
+	if _area_overlappingui and !_area_stickertray:
+		outline_color = Utilties.STICKER_OUTLINE_WARNING_UI
+	else: 
+		if _area_outside_spread and !_area_stickertray:
+			outline_color = Utilties.STICKER_OUTLINE_WARNING
+		elif _is_mouse_focus:
+			outline_color = Color.WHITE
+		else: 
+			outline_color = Color.TRANSPARENT
 
-func _area_test() -> void:
-	return
-	
-	@warning_ignore("unreachable_code")
-	var is_void := true
-	var has_void := false
-	var color := Utilties.STICKER_OUTLINE_TRAY
-	for each in get_overlapping_areas():
-		if each is StickerTray:
-			is_void = false
-			reparent(each, true)
-			_spread_num = -1
-			_last_tray_position = global_position
-		elif each is SpreadView:
-			is_void = false
-			each.try_to_stick(self)
-		elif each is OutsideSpread:
-			has_void = true
-	if is_void:
-		global_position = _last_g_position
-	else:
-		if _spread_num < 0:
-			color = Utilties.STICKER_OUTLINE_TRAY
+		if _area_spreadview and !_area_outside_spread:
+			sprite_shadow.show()
 		else:
-			color = Utilties.STICKER_OUTLINE_BOOK
-			if has_void:
-				color = Utilties.STICKER_OUTLINE_WARNING
-	sprite_outline.set_modulate(color)
+			sprite_shadow.hide()
+	sprite_outline.set_modulate(outline_color)
+
+func __on_area_changed(area: Node2D, is_entered := true) -> void:
+	if area is OverlappingUI:
+		_area_overlappingui = is_entered
+	elif area is OutsideSpread:
+		_area_outside_spread = is_entered
+	elif area is SpreadView:
+		if is_entered:
+			_area_spreadview = area
+		else:
+			_area_spreadview = null
+	elif area is StickerTray:
+		_area_stickertray = is_entered
+	else:
+		push_warning(area, is_entered)
+	_update_status_color() 
+
+func _on_area_entered(area: Node2D) -> void: __on_area_changed(area, true)
+
+func _on_area_exited(area: Node2D) -> void: __on_area_changed(area, false)

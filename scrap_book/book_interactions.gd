@@ -22,7 +22,7 @@ func _alone_test() -> void:
 		position = Vector2(ProjectSettings.get_setting("display/window/size/viewport_width"), ProjectSettings.get_setting("display/window/size/viewport_height") ) * .5
 
 func _draw() -> void: 
-	#_dev_draw()
+	_dev_draw()
 	pass
 
 ##Draw guidlines for spacing out this non-control UI
@@ -35,7 +35,7 @@ func _dev_draw() -> void:
 	var _nwcorner := _window_size * -.5
 	draw_rect(
 		Rect2(_nwcorner, _window_size)
-		, Color.RED, false, 5
+		, Utilties.STICKER_OUTLINE_WARNING_UI, false, 5
 	)
 	_window_size *= .33
 	_nwcorner += _window_size

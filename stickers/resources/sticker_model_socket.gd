@@ -2,6 +2,8 @@ class_name StickerResource_Socket extends StickerResource
 
 var _socketed_gem: StickerResource_Gem
 
+
+
 func get_gem_color() -> Color:
 	if is_spell():
 		return get_gem_info().get_gem_color()

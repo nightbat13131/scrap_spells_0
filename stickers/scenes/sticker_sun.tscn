@@ -4,6 +4,10 @@
 [ext_resource type="Resource" uid="uid://1ljwebvr4vip" path="res://stickers/resources/sun_sticker.tres" id="2_3h2hs"]
 [ext_resource type="Texture2D" uid="uid://cdctv6n7ubqxt" path="res://assets/images/stickers_1.png" id="3_3h2hs"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_3h2hs"]
+atlas = ExtResource("3_3h2hs")
+region = Rect2(20, 0, 20, 45)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_e2dlh"]
 atlas = ExtResource("3_3h2hs")
 region = Rect2(137, 46, 143, 150)
@@ -25,6 +29,13 @@ gem_area = NodePath("Area2DGem")
 _info = ExtResource("2_3h2hs")
 metadata/_edit_group_ = true
 
+[node name="SpriteShadow" type="Sprite2D" parent="." unique_id=526457036]
+unique_name_in_owner = true
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(77.00001, -30.000004)
+scale = Vector2(1.05, 1.05)
+texture = SubResource("AtlasTexture_3h2hs")
+
 [node name="SpriteOutline" type="Sprite2D" parent="." unique_id=1626618487]
 unique_name_in_owner = true
 texture = SubResource("AtlasTexture_e2dlh")
@@ -42,3 +53,7 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DGem" unique_id=802390887]
 shape = SubResource("CircleShape2D_86tsd")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=851111555]
+unique_name_in_owner = true
+rect = Rect2(-50, -50, 100, 100)

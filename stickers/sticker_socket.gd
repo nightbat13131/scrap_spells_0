@@ -9,26 +9,27 @@ func _ready() -> void:
 	assert(socket_area)
 	assert(sprite_gemed)
 	socket_area.set_collision_mask_value(Utilties.COLLISION_LAYER.GEM, true)
-	_info.gem_changed.connect(_on_gem_updated)
 	super._ready()
 
 func _post_ready() -> void:
 	super._post_ready()
+	_info.gem_changed.connect(_on_gem_updated) # connecting during ready was somehow connecting to the wrong resource. 
 	_gem_entities_updated()
 
 func _connect_children() -> void:
 	super._connect_children()
-	socket_area.area_entered.connect(_on_area_entered)
-	socket_area.area_exited.connect(_on_area_exited)
+	socket_area.area_entered.connect(_on_socket_area_entered)
+	socket_area.area_exited.connect(_on_socket_area_exited)
 
-func _on_area_entered(area: Node2D) -> void:
+func _on_socket_area_entered(area: Node2D) -> void:
 	area = area.get_parent()
 	if area is StickerGem:
+		print("gem enter")
 		if !_gems.has(area):
 			_gems.append(area)
 		_gem_entities_updated()
 
-func _on_area_exited(area: Node2D) -> void:
+func _on_socket_area_exited(area: Node2D) -> void:
 	area = area.get_parent()
 	if area is StickerGem:
 		while _gems.has(area):

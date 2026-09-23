@@ -3,14 +3,27 @@
 [ext_resource type="Script" uid="uid://02sgkrfa5vs1" path="res://scrap_book/book_interactions.gd" id="1_a1sjb"]
 [ext_resource type="PackedScene" uid="uid://obwawdcqq777" path="res://scrap_book/scrap_book.tscn" id="1_dxppu"]
 [ext_resource type="PackedScene" uid="uid://bec25qjnm4apa" path="res://sticker_tray/sticker_tray.tscn" id="2_1lwx6"]
+[ext_resource type="Script" uid="uid://48keawa14s5n" path="res://scrap_book/area_overlapping_ui.gd" id="3_sn377"]
 [ext_resource type="PackedScene" uid="uid://dp3yhwlavt14t" path="res://stickers/scenes/sticker_godot.tscn" id="4_dsnr4"]
 [ext_resource type="Script" uid="uid://bfee2hak2offx" path="res://debugs/debug_save_load.gd" id="4_lf0gk"]
-[ext_resource type="PackedScene" uid="uid://m6tw46tv8s1i" path="res://stickers/scenes/sticker_tape_0.tscn" id="4_ud3vi"]
 [ext_resource type="Script" uid="uid://bwsecoun8nkod" path="res://stickers/mouse_sticker_manager.gd" id="5_lf0gk"]
 [ext_resource type="Resource" uid="uid://btwynxqbkmr87" path="res://architecture/guide/sticker_mover.tres" id="6_4tg7h"]
 [ext_resource type="Resource" uid="uid://csjc3wn7ljh4j" path="res://architecture/guide/select_sticker.tres" id="7_ud3vi"]
 [ext_resource type="Resource" uid="uid://d3go1ue010rcl" path="res://architecture/guide/release_sticker.tres" id="8_5457m"]
 [ext_resource type="Resource" uid="uid://t0d0qvadrqhl" path="res://architecture/guide/rotate_sticker.tres" id="9_ivea3"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sn377"]
+distance = -140.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_12a6j"]
+normal = Vector2(0, 1)
+distance = -140.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_erdjl"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yr878"]
+normal = Vector2(-1, 0)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_lf0gk"]
 a = Vector2(1, 1)
@@ -20,17 +33,34 @@ b = Vector2(-1, -1)
 script = ExtResource("1_a1sjb")
 metadata/_edit_lock_ = true
 
+[node name="OverlappingUI" type="Area2D" parent="." unique_id=1010456201]
+position = Vector2(-202, 0)
+script = ExtResource("3_sn377")
+metadata/_custom_type_script = "uid://48keawa14s5n"
+
+[node name="Boundry_Bottom" type="CollisionShape2D" parent="OverlappingUI" unique_id=2012974632]
+position = Vector2(-2, 245)
+shape = SubResource("WorldBoundaryShape2D_sn377")
+
+[node name="Boundry_Top" type="CollisionShape2D" parent="OverlappingUI" unique_id=394152268]
+position = Vector2(-3, -245)
+shape = SubResource("WorldBoundaryShape2D_12a6j")
+
+[node name="Boundry_Left" type="CollisionShape2D" parent="OverlappingUI" unique_id=448125500]
+position = Vector2(-395, 22)
+shape = SubResource("WorldBoundaryShape2D_erdjl")
+
+[node name="Boundry_Right" type="CollisionShape2D" parent="OverlappingUI" unique_id=923039250]
+position = Vector2(803, -20)
+shape = SubResource("WorldBoundaryShape2D_yr878")
+
 [node name="ScrapBook" parent="." unique_id=856058266 instance=ExtResource("1_dxppu")]
 position = Vector2(-202, 0)
 
 [node name="StickerTray" parent="." unique_id=657403163 instance=ExtResource("2_1lwx6")]
 position = Vector2(395, 1)
 
-[node name="Sticker" parent="StickerTray" unique_id=1638869864 instance=ExtResource("4_dsnr4")]
-position = Vector2(64, -137)
-
-[node name="Sticker2" parent="StickerTray" unique_id=249778916 instance=ExtResource("4_ud3vi")]
-position = Vector2(-77, -38)
+[node name="Robit" parent="StickerTray" unique_id=1207061736 instance=ExtResource("4_dsnr4")]
 
 [node name="DebugSave" type="Node2D" parent="." unique_id=1267136343]
 visible = false

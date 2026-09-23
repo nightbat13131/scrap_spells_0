@@ -27,19 +27,24 @@ static func return_to_tray(sticker: StickerEntity, use_random_pos := true) -> bo
 func _return_home(sticker: StickerEntity, use_random_pos := true) -> bool:
 	if sticker:
 		if sticker.is_visible_in_tree():
-			if sticker.get_parent() == self:
-				return true
-			sticker.reparent(self)
+			if !sticker.get_parent() == self:
+				#return true
+				sticker.reparent(self)
 		else:
 			add_child(sticker)
 		if use_random_pos:
-			sticker.position = ( Vector2( randf(), randf()  ) * collision_shape_2d.get_shape().size )  - ( collision_shape_2d.get_shape().size * .5 )
-			sticker.rotation = randf_range(0, TAU)
+			sticker.position =  _get_random_position()#  ( Vector2( randf(), randf()  ) * collision_shape_2d.get_shape().size )  - ( collision_shape_2d.get_shape().size * .5 )
+			print(sticker.position)
+			sticker.rotation = TAU / float(randi_range(0,8))
+			# randf_range(0, TAU)
 		return true
 	return false
 
 func _get_random_position(_depth := 5) -> Vector2 :
 	var out : Vector2 = ( Vector2( randf(), randf()  ) * collision_shape_2d.get_shape().size )  - ( collision_shape_2d.get_shape().size * .5 )
+	
+	return collision_shape_2d.get_shape().size * .35
+	
 	_depth -= 1
 	if _depth <= 0:
 		return out

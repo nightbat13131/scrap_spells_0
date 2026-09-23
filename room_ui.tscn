@@ -241,6 +241,7 @@ icon = ExtResource("5_yn3nj")
 unique_name_in_owner = true
 modulate = Color(1, 0.68333334, 0, 1)
 layout_mode = 2
+offset_transform_enabled = true
 mouse_filter = 2
 texture = ExtResource("8_ncmfv")
 stretch_mode = 3

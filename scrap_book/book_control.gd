@@ -14,13 +14,13 @@ class_name BookControl extends Control
 
 @onready var _book_parts : Array[Control] = [cover_outside, cover_inside, page_left, page_right, back_inside]
 @onready var _notification_texture: TextureRect = %Notification
+var _notification_on := false : set = _set_notification_on
 
 @onready var book_button: Button = %BookButton
 
 @export var _inventory_button_group: ButtonGroupEnhanced
 
 var _model : ScrapBookModel
-
 
 static var _instance : BookControl
 
@@ -34,8 +34,14 @@ func _ready() -> void:
 	flip_book_left.pressed.connect(_on_turn_request.bind(Vector2i.LEFT))
 	flip_book_right.pressed.connect(_on_turn_request.bind(Vector2i.RIGHT))
 	_update_spread.call_deferred()
-	_request_notification(false)
+	_set_notification_on(false)
 	_model.spell_updated.connect(_on_spell_update)
+
+func _process(delta: float) -> void:
+	if _notification_on:
+		var _scale: float = 1.5 + ( sin(Time.get_ticks_msec()/1000.0) * .5)
+		#print(_scale)
+		_notification_texture.offset_transform_scale = Vector2(_scale, _scale)
 
 func _on_turn_request(direction: Vector2i) -> void:
 	if _model:
@@ -69,9 +75,10 @@ func _update_spread() -> void:
 
 static func request_notification(do_show: bool = true) -> void:
 	if _instance:
-		_instance._request_notification(do_show)
+		_instance._set_notification_on(do_show)
 
-func _request_notification(do_show: bool) -> void:
+func _set_notification_on(do_show: bool) -> void:
+	_notification_on = do_show
 	_notification_texture.set_visible(do_show)
 
 func _on_spell_update() -> void:

@@ -15,12 +15,19 @@ region = Rect2(0, 0, 20, 45)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dbuik"]
 size = Vector2(16, 41)
 
-[node name="Sticker" type="Area2D" unique_id=1207061736]
+[node name="Tape" type="Area2D" unique_id=1207061736]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_dbuik")
 _info = ExtResource("2_dbuik")
 metadata/_edit_group_ = true
+
+[node name="SpriteShadow" type="Sprite2D" parent="." unique_id=644562577]
+unique_name_in_owner = true
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(2.0000002, 3.0000005)
+scale = Vector2(1.05, 1.05)
+texture = SubResource("AtlasTexture_ghqb3")
 
 [node name="SpriteOutline" type="Sprite2D" parent="." unique_id=1626618487]
 unique_name_in_owner = true
@@ -33,3 +40,7 @@ texture = SubResource("AtlasTexture_dbuik")
 visible = false
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_dbuik")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=529474807]
+unique_name_in_owner = true
+rect = Rect2(-50, -50, 100, 100)
