@@ -33,18 +33,13 @@ func _return_home(sticker: StickerEntity, use_random_pos := true) -> bool:
 		else:
 			add_child(sticker)
 		if use_random_pos:
-			sticker.position =  _get_random_position()#  ( Vector2( randf(), randf()  ) * collision_shape_2d.get_shape().size )  - ( collision_shape_2d.get_shape().size * .5 )
-			print(sticker.position)
-			sticker.rotation = TAU / float(randi_range(0,8))
-			# randf_range(0, TAU)
+			sticker.move_to.call_deferred(sticker.get_parent().to_global( _get_random_position()) )
+			#sticker.rotation = TAU / float(randi_range(0,8))  ## seems to trigger intermitant bug of flinging off screen? 
 		return true
 	return false
 
 func _get_random_position(_depth := 5) -> Vector2 :
 	var out : Vector2 = ( Vector2( randf(), randf()  ) * collision_shape_2d.get_shape().size )  - ( collision_shape_2d.get_shape().size * .5 )
-	
-	return collision_shape_2d.get_shape().size * .35
-	
 	_depth -= 1
 	if _depth <= 0:
 		return out
@@ -59,11 +54,17 @@ func _on_child_entered_tree(node: Node) -> void:
 	if node is StickerEntity:
 		if !node.picked_up.is_connected(_on_sticker_lifted):
 			node.picked_up.connect(_on_sticker_lifted)
+		if !node.fell_out_of_screen.is_connected(_on_fell_off_screen):
+			node.fell_out_of_screen.connect(_on_fell_off_screen)
 
 func _on_child_exiting_tree(node: Node) -> void:
 	if node is StickerEntity:
 		if node.picked_up.is_connected(_on_sticker_lifted):
 			node.picked_up.disconnect(_on_sticker_lifted)
+
+func _on_fell_off_screen(sticker: StickerEntity) -> void:
+	print("tray fell off ", sticker)
+	pass
 
 #region SaveLoad
 

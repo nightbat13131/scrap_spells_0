@@ -3,7 +3,6 @@ class_name BookUI extends UIOverlay
 static var _instance : BookUI
 @onready var book_interactions: BookInteractions = %BookInteractions
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_instance = self
 

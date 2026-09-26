@@ -1,5 +1,8 @@
 class_name StickerEntity extends Area2D
-signal request_drop(sticker: StickerEntity)
+
+signal fell_out_of_screen(sticker: StickerEntity)
+
+#signal request_drop(sticker: StickerEntity)
 signal picked_up(sticker: StickerEntity)
 
 @onready var sprite_outline: Sprite2D = %SpriteOutline
@@ -7,7 +10,7 @@ signal picked_up(sticker: StickerEntity)
 @onready var visible_on_screen_notifier_2d: VisibleOnScreenNotifier2D = %VisibleOnScreenNotifier2D
 
 var _is_get_dragged := false : set = _set_get_dragged
-var _last_g_position := Vector2.ZERO
+#var _last_g_position := Vector2.ZERO
 var _last_tray_position := Vector2.ZERO
 var _is_mouse_focus := false : set = set_mouse_focus
 var _spread_num := -1 
@@ -30,10 +33,18 @@ func _ready() -> void:
 	await get_tree().process_frame
 	_post_ready()
 
+func move_to(global_pos) -> void:
+	var _tween := get_tree().create_tween()
+	_tween.set_trans(Tween.TRANS_BACK)
+	_tween.set_ease(Tween.EASE_OUT)
+	print(global_pos)
+	_tween.tween_method(self.set_global_position, get_global_position(), global_pos, .25)
+
 # if being carried by the hand, requeset the hand drop 
 func _screen_exited() -> void:
-	print("fell out of scren")
-	request_drop.emit(self)
+	print("fell out of scren", self, get_parent())
+	#request_drop.emit(self)
+	fell_out_of_screen.emit(self)
 	#StickerTray.return_to_tray(self, true)
 
 func _post_ready() -> void:
@@ -74,7 +85,7 @@ func spread_rejected() -> void:
 	if StickerTray.return_to_tray(self):
 		sprite_outline.set_modulate(Utilties.STICKER_OUTLINE_TRAY)
 		_last_tray_position = position
-		_last_g_position = global_position
+		#_last_g_position = global_position
 
 func is_fully_on_spread() -> bool:
 	if _spread_num < 0:
@@ -94,7 +105,7 @@ func set_mouse_focus(is_focused: bool) -> void:
 
 func try_pickup() -> StickerEntity:  ## allows some stickers to be locked in place or have other rules
 	_is_get_dragged = true
-	_last_g_position = global_position
+	#_last_g_position = global_position
 	return self
 
 func release_pickup() -> void: 

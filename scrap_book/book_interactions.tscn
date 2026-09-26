@@ -62,6 +62,10 @@ position = Vector2(395, 1)
 
 [node name="Robit" parent="StickerTray" unique_id=1207061736 instance=ExtResource("4_dsnr4")]
 
+[node name="Robit2" parent="StickerTray" unique_id=514918175 instance=ExtResource("4_dsnr4")]
+
+[node name="Robit3" parent="StickerTray" unique_id=104913261 instance=ExtResource("4_dsnr4")]
+
 [node name="DebugSave" type="Node2D" parent="." unique_id=1267136343]
 visible = false
 position = Vector2(-517, -333)
