@@ -25,14 +25,14 @@ static func return_to_tray(sticker: StickerEntity, use_random_pos := true) -> bo
 	return false
 
 func _return_home(sticker: StickerEntity, use_random_pos := true) -> bool:
+	var needs_move := use_random_pos and !sticker.is_on_tray()
 	if sticker:
 		if sticker.is_visible_in_tree():
 			if !sticker.get_parent() == self:
-				#return true
 				sticker.reparent(self)
 		else:
 			add_child(sticker)
-		if use_random_pos:
+		if needs_move:
 			sticker.move_to.call_deferred(sticker.get_parent().to_global( _get_random_position()) )
 			#sticker.rotation = TAU / float(randi_range(0,8))  ## seems to trigger intermitant bug of flinging off screen? 
 		return true

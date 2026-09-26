@@ -10,7 +10,6 @@ signal picked_up(sticker: StickerEntity)
 @onready var visible_on_screen_notifier_2d: VisibleOnScreenNotifier2D = %VisibleOnScreenNotifier2D
 
 var _is_get_dragged := false : set = _set_get_dragged
-#var _last_g_position := Vector2.ZERO
 var _last_tray_position := Vector2.ZERO
 var _is_mouse_focus := false : set = set_mouse_focus
 var _spread_num := -1 
@@ -40,7 +39,8 @@ func move_to(global_pos) -> void:
 	print(global_pos)
 	_tween.tween_method(self.set_global_position, get_global_position(), global_pos, .25)
 
-# if being carried by the hand, requeset the hand drop 
+## if being carried by the hand, requeset the hand drop.
+## With the hand bounds limit, ideally, this would never be called
 func _screen_exited() -> void:
 	print("fell out of scren", self, get_parent())
 	#request_drop.emit(self)
@@ -82,18 +82,17 @@ func match_spread(spraed: int) -> bool: return spraed == _spread_num
 
 func spread_rejected() -> void:
 	_spread_num = -1
-	if StickerTray.return_to_tray(self):
-		sprite_outline.set_modulate(Utilties.STICKER_OUTLINE_TRAY)
-		_last_tray_position = position
-		#_last_g_position = global_position
+	StickerTray.return_to_tray(self)
+	#if StickerTray.return_to_tray(self):
+	#	sprite_outline.set_modulate(Utilties.STICKER_OUTLINE_TRAY)
+	#	_last_tray_position = position
 
 func is_fully_on_spread() -> bool:
 	if _spread_num < 0:
 		return false
-	for each in get_overlapping_areas():
-		if each is OutsideSpread:
-			return false
-	return true
+	if _area_spreadview:
+		return not(_area_overlappingui or _area_outside_spread or _area_stickertray)
+	return false
 
 func set_mouse_focus(is_focused: bool) -> void: 
 	_is_mouse_focus = is_focused
@@ -105,16 +104,17 @@ func set_mouse_focus(is_focused: bool) -> void:
 
 func try_pickup() -> StickerEntity:  ## allows some stickers to be locked in place or have other rules
 	_is_get_dragged = true
-	#_last_g_position = global_position
 	return self
 
 func release_pickup() -> void: 
 	_is_get_dragged = false
-	_update_status_color()
-	if _area_overlappingui and !_area_stickertray:
+	
+	#if (_area_overlappingui and !_area_stickertray):
+	if !_area_stickertray and !_area_spreadview:
 		StickerTray.return_to_tray(self, true)
-	if _area_spreadview:
+	elif _area_spreadview:
 		_area_spreadview.try_to_stick(self)
+	_update_status_color()
 
 func _set_get_dragged(value: bool) -> void:
 	if value == _is_get_dragged: 
@@ -128,18 +128,21 @@ func try_rotation(direction: float) -> void:
 	rotation += (direction * TAU / 8.0)
 	rotation = snappedf(rotation, TAU / 8.0)
 
+func is_on_tray() -> bool: return _area_stickertray and !_area_spreadview
+
 func _update_status_color() -> void:
 	var outline_color : Color
 	if _area_overlappingui and !_area_stickertray:
+		outline_color = Utilties.STICKER_OUTLINE_WARNING_UI
+	elif !_area_stickertray and !_area_spreadview:
 		outline_color = Utilties.STICKER_OUTLINE_WARNING_UI
 	else: 
 		if _area_outside_spread and !_area_stickertray:
 			outline_color = Utilties.STICKER_OUTLINE_WARNING
 		elif _is_mouse_focus:
-			outline_color = Color.WHITE
+			outline_color = Utilties.STICKER_OUTLINE_BOOK
 		else: 
 			outline_color = Color.TRANSPARENT
-
 		if _area_spreadview and !_area_outside_spread:
 			sprite_shadow.show()
 		else:

@@ -52,6 +52,7 @@ func _before_spread_change() -> void:
 	var stickers : Array[StickerEntity]
 	for each_child in get_children():
 		if each_child is StickerEntity:
+			# try_to_stick already did some of the logic
 			if each_child.match_spread(_spread.get_spread_index()):
 				if each_child.is_fully_on_spread():
 					stickers.append(each_child)
@@ -70,7 +71,6 @@ func _setup_collition_shape() -> void:
 		if each_child is CollisionShape2D:
 			each_child.set_disabled(_spread == null)
 	if !_spread:
-		
 		return
 	var has_left := _spread.get_left_page() != null
 	var has_right := _spread.get_right_page() != null
@@ -90,8 +90,7 @@ func _setup_collition_shape() -> void:
 			boundry_left.position.x = 0
 			boundry_right.position.x = Utilties.PAGE_SIZE.x
 
-func _on_sticker_lifted(node: StickerEntity) -> void:
-	move_child(node, -1)
+func _on_sticker_lifted(node: StickerEntity) -> void: move_child(node, -1)
 
 func _on_child_entered_tree(node: Node) -> void:
 	if node is StickerEntity:
