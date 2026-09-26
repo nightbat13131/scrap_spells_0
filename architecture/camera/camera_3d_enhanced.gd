@@ -1,8 +1,12 @@
 class_name Camera3DEnhanced extends Camera3D
 ## manipulating stuff connected to the 3d view
 
+@onready var spell_center: Node3D = %SpellCenter
+
 @export var spell_sampler :MeshInstance3D
 @export var spell_sample_material : Material
+
+
 
 static var _instance : Camera3DEnhanced
 
@@ -31,18 +35,26 @@ func _process(_delta: float) -> void:
 		return
 	var mouse_pos = _sub_viewport.get_mouse_position()
 	mouse_pos -= _viewport_size*.5
-	spell_sampler.position = Vector3(
+	spell_center.position = Vector3(
 		mouse_pos.x * screen_scale, 
 		mouse_pos.y * screen_scale*-1, 
 		-.5
 	)#.limit_length(1.0)
 
+static func spell_selected(spell: StickerResource_Socket) -> void:
+	if _instance:
+		_instance._spell_selected(spell)
 
-static func spell_cast(spell: StickerResource) -> void:
+func _spell_selected(spell: StickerResource_Socket) -> void:
+	print("Select spell ", spell)
+	_spell_cast(spell)
+
+static func spell_cast(spell: StickerResource_Socket) -> void:
 	if _instance:
 		_instance._spell_cast(spell)
 
-func _spell_cast(spell: StickerResource) -> void:
+func _spell_cast(spell: StickerResource_Socket) -> void:
+	prints("Cast spell", spell)
 	#var color := Color.TRANSPARENT
 	if spell:
 		if spell.is_spell():

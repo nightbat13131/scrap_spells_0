@@ -18,21 +18,18 @@ func deactivate() -> void:
 
 ## If this scene is called as the rook (like in testing), move to the center instead of top left.
 func _alone_test() -> void:
-	if get_parent() == get_tree().get_root(): # being called out of scene, need to move
+	if get_parent() == get_tree().get_root(): # being called as debug, need to move
 		position = Vector2(ProjectSettings.get_setting("display/window/size/viewport_width"), ProjectSettings.get_setting("display/window/size/viewport_height") ) * .5
 
-func _draw() -> void: 
-	_dev_draw()
+func _draw() -> void:
+	#draw_circle(Vector2.ZERO, 200, Color.AQUA) 
+	#_dev_draw()
 	pass
 
 ##Draw guidlines for spacing out this non-control UI
 func _dev_draw() -> void:
-	# display/window/size/viewport_width
-	# display/window/size/viewport_height
-	var _window_size := Vector2(ProjectSettings.get_setting("display/window/size/viewport_width"), ProjectSettings.get_setting("display/window/size/viewport_height") )
-	_window_size.x -= 200 # left inventory 
-	_window_size -= Vector2.ONE * 40 # ui padding
-	var _nwcorner := _window_size * -.5
+	var _window_size := Utilties.get_view_window_rect().size
+	var _nwcorner :=  _window_size * -.5
 	draw_rect(
 		Rect2(_nwcorner, _window_size)
 		, Utilties.STICKER_OUTLINE_WARNING_UI, false, 5

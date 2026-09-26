@@ -47,13 +47,13 @@ script = ExtResource("3_o7l3u")
 _link_to = ExtResource("12_ake51")
 metadata/_custom_type_script = "uid://bs2sqv4mli5hm"
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_86tsd"]
-radius = 0.057128906
-height = 0.25997925
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_g1bxb"]
 atlas = ExtResource("10_e1ate")
 region = Rect2(372, 368, 136, 232)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_86tsd"]
+radius = 0.057128906
+height = 0.25997925
 
 [sub_resource type="SphereMesh" id="SphereMesh_86tsd"]
 radius = 0.1
@@ -291,6 +291,12 @@ script = ExtResource("3_ybqlh")
 _event = ExtResource("6_ybqlh")
 post_event_navigate = SubResource("Resource_e2dlh")
 
+[node name="Hint_KeySun" type="Sprite3D" parent="RoomStuff/door_0" unique_id=1561716901]
+unique_name_in_owner = true
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.0028348, 0.8247307, 0.2723844)
+pixel_size = 0.0004
+texture = SubResource("AtlasTexture_g1bxb")
+
 [node name="ClickEvent_KeySpell" type="Area3D" parent="RoomStuff/door_0" unique_id=58271652]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0455837, 0.8614502, 0.28125)
 script = ExtResource("7_wf3jw")
@@ -301,12 +307,8 @@ metadata/_custom_type_script = "uid://c3t7jmtmwswwn"
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RoomStuff/door_0/ClickEvent_KeySpell" unique_id=390531046]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.007183075, -0.009147555)
 shape = SubResource("CapsuleShape3D_86tsd")
-
-[node name="Hint_KeySun" type="Sprite3D" parent="RoomStuff/door_0" unique_id=1561716901]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.0028348, 0.8175476, 0.28153196)
-pixel_size = 0.0002
-texture = SubResource("AtlasTexture_g1bxb")
 
 [node name="WallThing" type="MeshInstance3D" parent="RoomStuff" unique_id=1042081595]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6116111, 0.82182825, -1.9310914)
@@ -569,11 +571,14 @@ shape = SubResource("BoxShape3D_g8r6x")
 [node name="Camera3D" type="Camera3D" parent="." unique_id=316072588 node_paths=PackedStringArray("spell_sampler")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51752937, 1.2490469, -3.7974443)
 script = ExtResource("30_1ncnd")
-spell_sampler = NodePath("MeshInstance3D")
+spell_sampler = NodePath("SpellCenter/MeshInstance3D")
 spell_sample_material = ExtResource("31_ojwi4")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D" unique_id=699436055]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -0.681)
+[node name="SpellCenter" type="Node3D" parent="Camera3D" unique_id=2014867082]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24963427, 0, -1.2329655)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D/SpellCenter" unique_id=699436055]
 mesh = SubResource("SphereMesh_axj8b")
 
 [node name="RoomCameraManager" type="Node3D" parent="." unique_id=1684840818 node_paths=PackedStringArray("camera", "_initial")]

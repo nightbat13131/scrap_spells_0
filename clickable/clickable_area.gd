@@ -1,6 +1,7 @@
 @abstract
 class_name Area3D_Mousable extends Area3D
 # connect to the triggered signal to do stuff.
+# hidden if not usable
 
 signal triggered(mousable: Area3D_Mousable)
 

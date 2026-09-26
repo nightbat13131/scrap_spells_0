@@ -3,6 +3,7 @@ extends Node3D
 
 @export var _event : Event
 @export var post_event_navigate : View3DNavigationLink
+@onready var hint_key_sun: Sprite3D = %Hint_KeySun
 
 
 # Called when the node enters the scene tree for the first time.
@@ -21,13 +22,12 @@ func _on_triggered(is_triggered: bool) -> void:
 			for each1 in each0.get_children():
 				if each1 is AnimationPlayer:
 					__open_door(each1)
-				
 
 func __open_door(player: AnimationPlayer) -> void:
 	player.play("handle|open|Animation Base Layer")
 	await player.animation_finished
+	hint_key_sun.hide()
 	if post_event_navigate:
 		post_event_navigate.trigger_navigation()
 	player.play("door|open|Animation Base Layer")
 	#await player.animation_finished
-	

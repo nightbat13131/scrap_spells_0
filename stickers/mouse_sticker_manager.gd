@@ -17,6 +17,8 @@ class_name MouseSticker extends Node2D
 var _overlapping_stickers :Array [StickerEntity]
 var _held_sticker : StickerEntity
 var _sticker_offset : Vector2
+var _local_bounds : Rect2
+var _parent : Node2D
 
 var _is_active := true
 
@@ -30,14 +32,21 @@ func _ready() -> void:
 			_action_release.triggered.connect(_on_action_release)
 		if _action_rotate:
 			_action_rotate.triggered.connect(_on_action_rotate)
+	_set_bounds.call_deferred()
+	
 
 func _process(_delta: float) -> void:
 	if !_is_active:
 		return
-	set_global_position(get_global_mouse_position())
-	#prints(sticker_finder.get_overlapping_areas(), _overlapping_stickers, _held_sticker, _sticker_offset)
+	if _parent == null:
+		return
+	var _pos = _parent.get_local_mouse_position()
+	if !_local_bounds.has_point(_pos):
+		_pos.x = clampf(_pos.x, _local_bounds.position.x, _local_bounds.end.x)
+		_pos.y = clampf(_pos.y, _local_bounds.position.y, _local_bounds.end.y)
+	set_position(_pos)
 	if _held_sticker:
-		_held_sticker.set_global_position(get_global_mouse_position() + _sticker_offset)
+		_held_sticker.set_global_position(_parent.to_global( _pos + _sticker_offset) )
 
 func activate() -> void: _is_active = true
 
@@ -99,3 +108,8 @@ func _on_action_rotate() -> void:
 		return
 	if _held_sticker:
 		_held_sticker.try_rotation(_action_rotate.value_axis_1d)
+
+func _set_bounds() -> void:
+	_local_bounds = Utilties.get_view_window_rect() 
+	_parent = get_parent()
+	queue_redraw()

@@ -36,8 +36,8 @@ const STICKER_OUTLINE_WARNING_UI = Color.RED
 const STICKER_OUTLINE_BOOK = Color.WHITE
 
 const FIRST_PAGE_TEXT = """[color="black"]My heart,
-    I can't keep you with me, but take this peice of me with you
-	    - [i][b]M[/b][/i]
+	I can't keep you with me, but take this peice of me with you
+		- [i][b]M[/b][/i]
 
 I don't want some journal [i]PARTING GIFT[/i] I want TO BE [b]HOME[/b][/color]
 [hr color="black" height=4]
@@ -49,3 +49,10 @@ const BACK_TEST = """Know that I'll miss you more than you can know\n        -M"
 
 const STATE_IS_INSPECTING = &"INSPECTING_ITEM"
 const STATE_IS_NOT_INSPECTING = &"INSPECTING_NOTHING"
+
+static func get_view_window_rect() -> Rect2:
+	var _window_size := Vector2(ProjectSettings.get_setting("display/window/size/viewport_width"), ProjectSettings.get_setting("display/window/size/viewport_height") )
+	_window_size.x -= 200 # left inventory 
+	_window_size -= Vector2.ONE * 40 # ui padding
+	_window_size -= Vector2.ONE * 100 # sticker padding
+	return Rect2(_window_size * -.5, _window_size)
