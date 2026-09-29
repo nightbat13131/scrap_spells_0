@@ -11,10 +11,10 @@ func get_gem_color() -> Color:
 
 func is_spell() -> bool: return _socketed_gem != null
 
-func match_spell(socket_id: Utilties.StickerID, gem_id: Utilties.StickerID) -> bool:
-	if match_id(socket_id):
+func match_spell(spell: Spell): # socket_id: Utilties.StickerID, gem_id: Utilties.StickerID) -> bool:
+	if self == spell.socket:
 		if _socketed_gem:
-			return _socketed_gem.match_id(gem_id)
+			return _socketed_gem == spell.socket
 	return false
 
 func try_insert_gem(gem: StickerResource_Gem) -> bool:

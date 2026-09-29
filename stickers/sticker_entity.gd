@@ -10,7 +10,6 @@ signal picked_up(sticker: StickerEntity)
 @onready var visible_on_screen_notifier_2d: VisibleOnScreenNotifier2D = %VisibleOnScreenNotifier2D
 
 var _is_get_dragged := false : set = _set_get_dragged
-var _last_tray_position := Vector2.ZERO
 var _is_mouse_focus := false : set = set_mouse_focus
 var _spread_num := -1 
 var _collition_shapes : Array[CollisionShape2D]
@@ -28,7 +27,7 @@ func _ready() -> void:
 	area_entered.connect(_on_area_entered)
 	area_exited.connect(_on_area_exited)
 	_connect_children() 
-	visible_on_screen_notifier_2d.screen_exited.connect(_screen_exited)
+	#visible_on_screen_notifier_2d.screen_exited.connect(_screen_exited)
 	await get_tree().process_frame
 	_post_ready()
 
@@ -41,11 +40,11 @@ func move_to(global_pos) -> void:
 
 ## if being carried by the hand, requeset the hand drop.
 ## With the hand bounds limit, ideally, this would never be called
-func _screen_exited() -> void:
-	print("fell out of scren", self, get_parent())
-	#request_drop.emit(self)
-	fell_out_of_screen.emit(self)
-	#StickerTray.return_to_tray(self, true)
+#func _screen_exited() -> void:
+	#print("fell out of scren", self, get_parent())
+	##request_drop.emit(self)
+	#fell_out_of_screen.emit(self)
+	##StickerTray.return_to_tray(self, true)
 
 func _post_ready() -> void:
 	_update_status_color()
@@ -85,7 +84,6 @@ func spread_rejected() -> void:
 	StickerTray.return_to_tray(self)
 	#if StickerTray.return_to_tray(self):
 	#	sprite_outline.set_modulate(Utilties.STICKER_OUTLINE_TRAY)
-	#	_last_tray_position = position
 
 func is_fully_on_spread() -> bool:
 	if _spread_num < 0:

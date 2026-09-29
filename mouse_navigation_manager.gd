@@ -30,9 +30,11 @@ func _on_pressed( _button: BaseButton) -> void:
 		if active is ShowUsableButton:
 			_set_active_usable(active.get_usable())
 			_active_spell = null
-		else:# spell place holder
+		elif active is BookButton_UI:
 			_set_active_usable(null)
 			_active_spell = ScrapBookModel.get_active_spell()
+		else:
+			push_error("wrong kind of button in ButtonGroup", active)
 	else: 
 		_set_active_usable(null)
 		_active_spell = null
@@ -76,3 +78,12 @@ static func get_active_spell() -> StickerResource_Socket:
 	if _instance:
 		return _instance._active_spell
 	return null
+
+static func reqeuset_spell_drop(spell: Spell) -> void:
+	if _instance:
+		_instance._reqeuset_spell_drop(spell)
+
+func _reqeuset_spell_drop(spell: Spell) -> void:
+	if _active_spell:
+		if _active_spell.match_spell(spell):
+			_inventory_button_group.force_unpress()

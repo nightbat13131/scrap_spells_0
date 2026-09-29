@@ -1,0 +1,1 @@
+class_name BookButton_UI extends Button

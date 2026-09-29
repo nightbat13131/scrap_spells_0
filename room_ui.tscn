@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://tl7p7xs0b5pq" path="res://assets/images/tracking_vertical_right.svg" id="6_x2cdp"]
 [ext_resource type="Texture2D" uid="uid://b8nddg81aosxp" path="res://assets/images/zoom_out.svg" id="7_i0rul"]
 [ext_resource type="ButtonGroup" uid="uid://ny5qvexdynkx" path="res://usables/inventory_usables_button_group.tres" id="7_optvc"]
+[ext_resource type="Script" uid="uid://cfnkxgb77ilq1" path="res://book_button.gd" id="8_0l4qv"]
 [ext_resource type="Texture2D" uid="uid://b0qraag8kktdc" path="res://assets/images/mark_exclamation.svg" id="8_ncmfv"]
 [ext_resource type="Texture2D" uid="uid://vy18r53vvpq" path="res://assets/images/hands/hand_thin_closed.svg" id="9_dfjqo"]
 [ext_resource type="Script" uid="uid://cx2qdjoxqt1oa" path="res://architecture/inspection_layer.gd" id="9_x2cdp"]
@@ -208,6 +209,7 @@ button_group = ExtResource("7_optvc")
 icon = ExtResource("5_yn3nj")
 icon_alignment = 1
 expand_icon = true
+script = ExtResource("8_0l4qv")
 
 [node name="ButtonsUnder" type="HBoxContainer" parent="Control/MarginContainer/HBoxContainer/PanelContainer/SidePannel/BookInventory/VBoxContainer" unique_id=652398278]
 layout_mode = 2

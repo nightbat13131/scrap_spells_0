@@ -24,7 +24,6 @@ func _connect_children() -> void:
 func _on_socket_area_entered(area: Node2D) -> void:
 	area = area.get_parent()
 	if area is StickerGem:
-		print("gem enter")
 		if !_gems.has(area):
 			_gems.append(area)
 		_gem_entities_updated()

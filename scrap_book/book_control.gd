@@ -16,7 +16,7 @@ class_name BookControl extends Control
 @onready var _notification_texture: TextureRect = %Notification
 var _notification_on := false : set = _set_notification_on
 
-@onready var book_button: Button = %BookButton
+@onready var book_button: BookButton_UI = %BookButton
 
 @export var _inventory_button_group: ButtonGroupEnhanced
 
@@ -37,7 +37,7 @@ func _ready() -> void:
 	_set_notification_on(false)
 	_model.spell_updated.connect(_on_spell_update)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if _notification_on:
 		var _scale: float = 1.5 + ( sin(Time.get_ticks_msec()/1000.0) * .5)
 		#print(_scale)
@@ -93,4 +93,3 @@ func _on_spell_update() -> void:
 		pass
 	book_button.set_modulate(color)
 	book_button.set_disabled(spell == null)
-	
