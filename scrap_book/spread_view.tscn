@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://tgknopvupvb4" path="res://scrap_book/area_outside_spread.gd" id="3_do0bi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yjnuq"]
-size = Vector2(576, 275)
+size = Vector2(276, 570)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_khe7u"]
 distance = -140.0
@@ -36,10 +36,12 @@ metadata/_edit_lock_ = true
 
 [node name="PagesCollision" type="CollisionShape2D" parent="." unique_id=1877770137]
 unique_name_in_owner = true
+position = Vector2(138, 25)
 shape = SubResource("RectangleShape2D_yjnuq")
 
 [node name="AreaVoid" type="Area2D" parent="." unique_id=1292253019]
 unique_name_in_owner = true
+position = Vector2(0, 2)
 input_pickable = false
 script = ExtResource("3_do0bi")
 

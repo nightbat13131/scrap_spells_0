@@ -20,12 +20,11 @@ collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_dbuik")
 _info = ExtResource("2_dbuik")
-metadata/_edit_group_ = true
 
 [node name="SpriteShadow" type="Sprite2D" parent="." unique_id=644562577]
 unique_name_in_owner = true
 self_modulate = Color(0, 0, 0, 1)
-position = Vector2(2.0000002, 3.0000005)
+position = Vector2(0.9999999, 0.9999995)
 scale = Vector2(1.05, 1.05)
 texture = SubResource("AtlasTexture_ghqb3")
 
@@ -33,14 +32,22 @@ texture = SubResource("AtlasTexture_ghqb3")
 unique_name_in_owner = true
 texture = SubResource("AtlasTexture_ghqb3")
 
+[node name="SpriteMouse" type="Sprite2D" parent="." unique_id=430458701]
+unique_name_in_owner = true
+position = Vector2(-5, -4)
+texture = SubResource("AtlasTexture_ghqb3")
+
 [node name="SpriteSticker" type="Sprite2D" parent="." unique_id=853671408]
 texture = SubResource("AtlasTexture_dbuik")
+metadata/_edit_lock_ = true
 
 [node name="StickerCollision" type="CollisionShape2D" parent="." unique_id=135357915]
 visible = false
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_dbuik")
+metadata/_edit_lock_ = true
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=529474807]
 unique_name_in_owner = true
 rect = Rect2(-50, -50, 100, 100)
+metadata/_edit_lock_ = true

@@ -2,19 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bss35y14r27ct" path="res://stickers/sticker_gem.gd" id="1_3h2hs"]
 [ext_resource type="Resource" uid="uid://1ljwebvr4vip" path="res://stickers/resources/sun_sticker.tres" id="2_3h2hs"]
-[ext_resource type="Texture2D" uid="uid://cdctv6n7ubqxt" path="res://assets/images/stickers_1.png" id="3_3h2hs"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3h2hs"]
-atlas = ExtResource("3_3h2hs")
-region = Rect2(20, 0, 20, 45)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e2dlh"]
-atlas = ExtResource("3_3h2hs")
-region = Rect2(137, 46, 143, 150)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mlwh0"]
-atlas = ExtResource("3_3h2hs")
-region = Rect2(0, 50, 128, 135)
+[ext_resource type="Texture2D" uid="uid://jpnn4iv85dvn" path="res://assets/images/sun_sticker.png" id="3_3h2hs"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nj5su"]
 radius = 70.0
@@ -29,21 +17,46 @@ gem_area = NodePath("Area2DGem")
 _info = ExtResource("2_3h2hs")
 metadata/_edit_group_ = true
 
-[node name="SpriteShadow" type="Sprite2D" parent="." unique_id=526457036]
-unique_name_in_owner = true
-self_modulate = Color(0, 0, 0, 1)
-position = Vector2(77.00001, -30.000004)
-scale = Vector2(1.05, 1.05)
-texture = SubResource("AtlasTexture_3h2hs")
+[node name="ImageScale" type="Node2D" parent="." unique_id=644882110]
+rotation = 0.25307274
 
-[node name="SpriteOutline" type="Sprite2D" parent="." unique_id=1626618487]
+[node name="SpriteShadow" type="Sprite2D" parent="ImageScale" unique_id=526457036]
 unique_name_in_owner = true
-texture = SubResource("AtlasTexture_e2dlh")
+texture = ExtResource("3_3h2hs")
+hframes = 6
+frame = 5
 
-[node name="SpriteSticker" type="Sprite2D" parent="." unique_id=853671408]
-texture = SubResource("AtlasTexture_mlwh0")
+[node name="SpriteOutline" type="Sprite2D" parent="ImageScale" unique_id=1626618487]
+unique_name_in_owner = true
+texture = ExtResource("3_3h2hs")
+hframes = 6
+frame = 4
+
+[node name="SpriteMouse" type="Sprite2D" parent="ImageScale" unique_id=1854439122]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+texture = ExtResource("3_3h2hs")
+hframes = 6
+frame = 3
+
+[node name="Background" type="Sprite2D" parent="ImageScale" unique_id=904508916]
+texture = ExtResource("3_3h2hs")
+hframes = 6
+frame = 2
+
+[node name="Sun" type="Sprite2D" parent="ImageScale" unique_id=1810460992]
+z_index = 10
+texture = ExtResource("3_3h2hs")
+hframes = 6
+
+[node name="Gem" type="Sprite2D" parent="ImageScale" unique_id=709774238]
+unique_name_in_owner = true
+texture = ExtResource("3_3h2hs")
+hframes = 6
+frame = 1
 
 [node name="StickerCollision" type="CollisionShape2D" parent="." unique_id=135357915]
+visible = false
 position = Vector2(0, 0.5)
 shape = SubResource("CircleShape2D_nj5su")
 
@@ -56,4 +69,5 @@ shape = SubResource("CircleShape2D_86tsd")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=851111555]
 unique_name_in_owner = true
+visible = false
 rect = Rect2(-50, -50, 100, 100)

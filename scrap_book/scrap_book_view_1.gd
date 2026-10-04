@@ -2,7 +2,7 @@ class_name ScrapBookView_1 extends ScrapBookView
 
 const TWEEN_DURATION = .5
 
-@onready var sprite_open: Sprite2D = %Open
+@onready var sprite_open: Node2D = %Open
 @onready var sprite_cover: Sprite2D = %Cover
 @onready var spread_view: SpreadView = %SpreadView
 

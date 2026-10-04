@@ -2,35 +2,10 @@
 
 [ext_resource type="Script" uid="uid://c6ssqyojrkx1t" path="res://stickers/sticker_socket.gd" id="1_vv8ts"]
 [ext_resource type="Resource" uid="uid://byppgfl6iy787" path="res://stickers/resources/key_sticker.tres" id="2_vv8ts"]
-[ext_resource type="Texture2D" uid="uid://cdctv6n7ubqxt" path="res://assets/images/stickers_1.png" id="3_ng2y2"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ng2y2"]
-atlas = ExtResource("3_ng2y2")
-region = Rect2(20, 0, 20, 45)
-
-[sub_resource type="Gradient" id="Gradient_ng2y2"]
-offsets = PackedFloat32Array(1)
-colors = PackedColorArray(1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_hqgpd"]
-gradient = SubResource("Gradient_ng2y2")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_g1bxb"]
-atlas = ExtResource("3_ng2y2")
-region = Rect2(176, 267, 152, 332)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_m0k4m"]
-atlas = ExtResource("3_ng2y2")
-region = Rect2(-2, 271, 185, 327)
+[ext_resource type="Texture2D" uid="uid://b580lob1tingg" path="res://assets/images/key_sticker.png" id="3_ng2y2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dbuik"]
-size = Vector2(108.02698, 107.5553)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ng2y2"]
-size = Vector2(46.839043, 69.641815)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vv8ts"]
-size = Vector2(18.681435, 216.6724)
+size = Vector2(278.5, 567.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_86tsd"]
 
@@ -39,52 +14,58 @@ collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_vv8ts")
 socket_area = NodePath("Area2DSocket")
-sprite_gemed = NodePath("SpriteGemed")
+sprite_gemed = NodePath("ImageScale/SpriteGemed")
 _info = ExtResource("2_vv8ts")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1195294282]
 unique_name_in_owner = true
 rect = Rect2(-50, -50, 100, 100)
 
-[node name="SpriteShadow" type="Sprite2D" parent="." unique_id=270151281]
+[node name="ImageScale" type="Node2D" parent="." unique_id=1451709475]
+scale = Vector2(0.75, 0.75)
+
+[node name="SpriteShadow" type="Sprite2D" parent="ImageScale" unique_id=270151281]
 unique_name_in_owner = true
 self_modulate = Color(0, 0, 0, 1)
-position = Vector2(63.000008, -152.00002)
-scale = Vector2(1.05, 1.05)
-texture = SubResource("AtlasTexture_ng2y2")
+texture = ExtResource("3_ng2y2")
+hframes = 6
+frame = 5
 
-[node name="SpriteGemed" type="Sprite2D" parent="." unique_id=1641365668]
+[node name="SpriteOutline" type="Sprite2D" parent="ImageScale" unique_id=1626618487]
 unique_name_in_owner = true
-position = Vector2(-10.999999, -11)
-rotation = 0.2617994
-scale = Vector2(2.234375, 0.828125)
-texture = SubResource("GradientTexture2D_hqgpd")
+texture = ExtResource("3_ng2y2")
+hframes = 6
+frame = 4
 
-[node name="SpriteOutline" type="Sprite2D" parent="." unique_id=1626618487]
+[node name="SpriteMouse" type="Sprite2D" parent="ImageScale" unique_id=239770120]
 unique_name_in_owner = true
-texture = SubResource("AtlasTexture_g1bxb")
+texture = ExtResource("3_ng2y2")
+hframes = 6
+frame = 3
 
-[node name="SpriteSticker" type="Sprite2D" parent="." unique_id=853671408]
-texture = SubResource("AtlasTexture_m0k4m")
+[node name="WhiteSheet" type="Sprite2D" parent="ImageScale" unique_id=853671408]
+texture = ExtResource("3_ng2y2")
+hframes = 6
+frame = 2
+
+[node name="SpriteGemed" type="Sprite2D" parent="ImageScale" unique_id=1641365668]
+unique_name_in_owner = true
+texture = ExtResource("3_ng2y2")
+hframes = 6
+frame = 1
+
+[node name="Key" type="Sprite2D" parent="ImageScale" unique_id=700079354]
+texture = ExtResource("3_ng2y2")
+hframes = 6
 
 [node name="StickerCollision" type="CollisionShape2D" parent="." unique_id=135357915]
-position = Vector2(13.759537, -94.85487)
-rotation = 1.0278034
+position = Vector2(-1.25, 0.25)
 shape = SubResource("RectangleShape2D_dbuik")
 
-[node name="StickerCollision2" type="CollisionShape2D" parent="." unique_id=630662160]
-position = Vector2(-13.573397, 110.76079)
-rotation = 0.2743503
-shape = SubResource("RectangleShape2D_ng2y2")
-
-[node name="StickerCollision3" type="CollisionShape2D" parent="." unique_id=1254980082]
-position = Vector2(-29.381035, 56.353844)
-rotation = 0.2743503
-shape = SubResource("RectangleShape2D_vv8ts")
-
 [node name="Area2DSocket" type="Area2D" parent="." unique_id=2125397672]
-position = Vector2(14, -94)
+position = Vector2(0, -161)
 collision_layer = 0
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DSocket" unique_id=1879461325]
 shape = SubResource("CircleShape2D_86tsd")

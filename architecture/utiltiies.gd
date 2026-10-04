@@ -27,10 +27,10 @@ enum COLLISION_LAYER {
 
 #enum EventStates { NA = 0, INIT = 1 }
 
-const PAGE_SIZE := Vector2(280,280)
+const PAGE_SIZE := Vector2(276, 570)  ##Vector2(280,280) * Vector2(1,4)
 const PAGE_SPINE := 25
 
-const STICKER_OUTLINE_TRAY = Color.DIM_GRAY
+const STICKER_OUTLINE_TRAY = Color.IVORY
 const STICKER_OUTLINE_WARNING = Color(Color.RED, .5)
 const STICKER_OUTLINE_WARNING_UI = Color.RED
 const STICKER_OUTLINE_BOOK = Color.WHITE

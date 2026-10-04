@@ -112,10 +112,10 @@ shape = SubResource("SegmentShape2D_lf0gk")
 
 [node name="CloseButton" type="Button" parent="." unique_id=623471232]
 unique_name_in_owner = true
-offset_left = -224.0
-offset_top = 191.0
-offset_right = -206.0
-offset_bottom = 222.0
+offset_left = -213.0
+offset_top = 337.0
+offset_right = -195.0
+offset_bottom = 368.0
 text = "X"
 
 [connection signal="area_entered" from="MouseStickerManager/StickerFinder" to="MouseStickerManager" method="_on_sticker_finder_area_entered"]

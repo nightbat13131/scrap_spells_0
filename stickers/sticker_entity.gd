@@ -1,12 +1,13 @@
 class_name StickerEntity extends Area2D
 
-signal fell_out_of_screen(sticker: StickerEntity)
+#signal fell_out_of_screen(sticker: StickerEntity)
 
-#signal request_drop(sticker: StickerEntity)
 signal picked_up(sticker: StickerEntity)
 
 @onready var sprite_outline: Sprite2D = %SpriteOutline
 @onready var sprite_shadow: Sprite2D = %SpriteShadow
+@onready var sprite_mouse: Sprite2D = %SpriteMouse
+
 @onready var visible_on_screen_notifier_2d: VisibleOnScreenNotifier2D = %VisibleOnScreenNotifier2D
 
 var _is_get_dragged := false : set = _set_get_dragged
@@ -94,10 +95,11 @@ func is_fully_on_spread() -> bool:
 
 func set_mouse_focus(is_focused: bool) -> void: 
 	_is_mouse_focus = is_focused
-	if _is_mouse_focus:
-		sprite_outline.set_scale(Vector2.ONE*1.2)
-	else:
-		sprite_outline.set_scale(Vector2.ONE)
+	sprite_mouse.set_visible(_is_mouse_focus)
+	#if _is_mouse_focus:
+	#	sprite_outline.set_scale(Vector2.ONE*1.2)
+	#else:
+	#	sprite_outline.set_scale(Vector2.ONE)
 	_update_status_color()
 
 func try_pickup() -> StickerEntity:  ## allows some stickers to be locked in place or have other rules

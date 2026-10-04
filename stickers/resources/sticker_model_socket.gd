@@ -18,6 +18,11 @@ func match_spell(spell: Spell): # socket_id: Utilties.StickerID, gem_id: Utiltie
 	return false
 
 func try_insert_gem(gem: StickerResource_Gem) -> bool:
+	if gem == null:
+		if _socketed_gem:
+			_socketed_gem.set_socket(null)
+	else: 
+		gem.set_socket(self)
 	_socketed_gem = gem
 	gem_changed.emit()
 	return true

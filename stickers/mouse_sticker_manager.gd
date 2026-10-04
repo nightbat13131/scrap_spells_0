@@ -85,8 +85,8 @@ func _on_action_grab() -> void:
 		return
 	if !_overlapping_stickers.is_empty():
 		_held_sticker = _overlapping_stickers[0].try_pickup()
-		if !_held_sticker.fell_out_of_screen.is_connected(_on_request_drop):
-			_held_sticker.fell_out_of_screen.connect(_on_request_drop)
+		#if !_held_sticker.fell_out_of_screen.is_connected(_on_request_drop):
+		#	_held_sticker.fell_out_of_screen.connect(_on_request_drop)
 		if _held_sticker:
 			_sticker_offset = _held_sticker.global_position - get_global_mouse_position()
 			MouseApearance.sticker_held()

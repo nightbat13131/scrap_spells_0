@@ -54,8 +54,8 @@ func _on_child_entered_tree(node: Node) -> void:
 	if node is StickerEntity:
 		if !node.picked_up.is_connected(_on_sticker_lifted):
 			node.picked_up.connect(_on_sticker_lifted)
-		if !node.fell_out_of_screen.is_connected(_on_fell_off_screen):
-			node.fell_out_of_screen.connect(_on_fell_off_screen)
+		#if !node.fell_out_of_screen.is_connected(_on_fell_off_screen):
+		#	node.fell_out_of_screen.connect(_on_fell_off_screen)
 
 func _on_child_exiting_tree(node: Node) -> void:
 	if node is StickerEntity:
