@@ -8,11 +8,11 @@
 size = Vector2(276, 570)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_khe7u"]
-distance = -140.0
+distance = -310.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_do0bi"]
 normal = Vector2(0, 1)
-distance = -140.0
+distance = -266.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_r8anl"]
 normal = Vector2(1, 0)

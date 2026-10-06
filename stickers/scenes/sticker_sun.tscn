@@ -19,17 +19,20 @@ metadata/_edit_group_ = true
 
 [node name="ImageScale" type="Node2D" parent="." unique_id=644882110]
 rotation = 0.25307274
+scale = Vector2(0.75, 0.75)
 
 [node name="SpriteShadow" type="Sprite2D" parent="ImageScale" unique_id=526457036]
 unique_name_in_owner = true
 texture = ExtResource("3_3h2hs")
 hframes = 6
+vframes = 2
 frame = 5
 
 [node name="SpriteOutline" type="Sprite2D" parent="ImageScale" unique_id=1626618487]
 unique_name_in_owner = true
 texture = ExtResource("3_3h2hs")
 hframes = 6
+vframes = 2
 frame = 4
 
 [node name="SpriteMouse" type="Sprite2D" parent="ImageScale" unique_id=1854439122]
@@ -37,22 +40,26 @@ unique_name_in_owner = true
 modulate = Color(0, 0, 0, 1)
 texture = ExtResource("3_3h2hs")
 hframes = 6
+vframes = 2
 frame = 3
 
 [node name="Background" type="Sprite2D" parent="ImageScale" unique_id=904508916]
 texture = ExtResource("3_3h2hs")
 hframes = 6
+vframes = 2
 frame = 2
 
 [node name="Sun" type="Sprite2D" parent="ImageScale" unique_id=1810460992]
 z_index = 10
 texture = ExtResource("3_3h2hs")
 hframes = 6
+vframes = 2
 
 [node name="Gem" type="Sprite2D" parent="ImageScale" unique_id=709774238]
 unique_name_in_owner = true
 texture = ExtResource("3_3h2hs")
 hframes = 6
+vframes = 2
 frame = 1
 
 [node name="StickerCollision" type="CollisionShape2D" parent="." unique_id=135357915]

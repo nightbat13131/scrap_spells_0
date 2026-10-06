@@ -57,16 +57,16 @@ position = Vector2(803, -20)
 shape = SubResource("WorldBoundaryShape2D_yr878")
 
 [node name="ScrapBook" parent="." unique_id=856058266 instance=ExtResource("1_dxppu")]
-position = Vector2(-202, 0)
+position = Vector2(-190, -44)
 
 [node name="StickerTray" parent="." unique_id=657403163 instance=ExtResource("2_1lwx6")]
-position = Vector2(395, 1)
+position = Vector2(355, 4)
 
 [node name="Robit" parent="StickerTray" unique_id=1207061736 instance=ExtResource("4_dsnr4")]
 position = Vector2(-72, -181)
 
 [node name="Key" parent="StickerTray" unique_id=116620703 instance=ExtResource("6_hqgpd")]
-position = Vector2(-48, 95)
+position = Vector2(-3, 89)
 
 [node name="Sun" parent="StickerTray" unique_id=1459052310 instance=ExtResource("7_sn377")]
 position = Vector2(81, -132)
