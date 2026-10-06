@@ -29,6 +29,7 @@ func _ready() -> void:
 	area_exited.connect(_on_area_exited)
 	_connect_children() 
 	#visible_on_screen_notifier_2d.screen_exited.connect(_screen_exited)
+	_info.set_object(self)
 	await get_tree().process_frame
 	_post_ready()
 
@@ -49,9 +50,10 @@ func move_to(global_pos) -> void:
 
 func _post_ready() -> void:
 	_update_status_color()
-	if !_info.match_object(self):
-		_info = _info.duplicate()
-		_info.set_object(self)
+	#_info.set_object(self)
+	#if !_info.match_object(self):
+		#_info = _info.duplicate()
+	#	_info.set_object(self)
 
 func _connect_children() -> void:
 	for each_child in get_children():
@@ -113,7 +115,8 @@ func release_pickup() -> void:
 	if !_area_stickertray and !_area_spreadview:
 		StickerTray.return_to_tray(self, true)
 	elif _area_spreadview:
-		_area_spreadview.try_to_stick(self)
+		pass
+		_area_spreadview.try_to_stick(self) ## moved to when overlapping to help show player when socketed better
 	_update_status_color()
 
 func _set_get_dragged(value: bool) -> void:
@@ -158,12 +161,25 @@ func __on_area_changed(area: Node2D, is_entered := true) -> void:
 		if is_entered:
 			_area_spreadview = area
 		else:
+			area.try_to_unstick(self)
 			_area_spreadview = null
 	elif area is StickerTray:
 		_area_stickertray = is_entered
 	else:
 		push_warning(area, is_entered)
+	_update_stickerbook()
 	_update_status_color() 
+
+func _update_stickerbook():
+	
+	if !_area_spreadview:
+	#	spread.try_to_stick(self)  # unstuck when set to null
+		return
+		
+	if _area_stickertray or _area_outside_spread or _area_overlappingui:
+		_area_spreadview.try_to_unstick(self)
+	else: 
+		_area_spreadview.try_to_stick(self)
 
 func _on_area_entered(area: Node2D) -> void: __on_area_changed(area, true)
 

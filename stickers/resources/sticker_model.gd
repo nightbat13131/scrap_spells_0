@@ -41,6 +41,10 @@ func get_sticker(load_with_save_values := true) -> StickerEntity:
 
 func match_object(sticker: StickerEntity) -> bool: return _object == sticker
 
+func has_object() -> bool: return _object != null
+
+func get_object() -> StickerEntity: return _object
+
 func set_object(sticker: StickerEntity) -> void:
 	if _object == sticker:
 		push_error("STicker already set matching")

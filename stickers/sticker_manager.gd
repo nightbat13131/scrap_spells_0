@@ -10,6 +10,9 @@ func get_sticker_info(stickerid: Utilties.StickerID) -> StickerResource:
 	return null
 
 func request_sticker(stickerid: Utilties.StickerID) -> StickerEntity:
+	var _info = get_sticker_info(stickerid)
+	if _info.has_object():
+		return _info.get_object()
 	var path : String = Utilties.StickerUID.get(stickerid)
 	if path: 
 		var packed_scene : PackedScene = load(path)

@@ -8,12 +8,12 @@ func _ready() -> void:
 	assert(_info is StickerResource_Socket)
 	assert(socket_area)
 	assert(sprite_gemed)
-	socket_area.set_collision_mask_value(Utilties.COLLISION_LAYER.GEM, true)
 	super._ready()
+	socket_area.set_collision_mask_value(Utilties.COLLISION_LAYER.GEM, true)
+	_info.gem_changed.connect(_on_gem_updated) # connecting during ready was somehow connecting to the wrong resource. 
 
 func _post_ready() -> void:
 	super._post_ready()
-	_info.gem_changed.connect(_on_gem_updated) # connecting during ready was somehow connecting to the wrong resource. 
 	_gem_entities_updated()
 
 func _connect_children() -> void:

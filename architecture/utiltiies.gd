@@ -35,13 +35,20 @@ const STICKER_OUTLINE_WARNING = Color(Color.RED, .5)
 const STICKER_OUTLINE_WARNING_UI = Color.RED
 const STICKER_OUTLINE_BOOK = Color.WHITE
 
-const FIRST_PAGE_TEXT = """[color="black"]My heart,
+const FIRST_PAGE_TEXT = """[color="black"]
+
+My heart,
 	I can't keep you with me, but take this peice of me with you
 		- [i][b]M[/b][/i]
 
-I don't want some journal [i]PARTING GIFT[/i] I want TO BE [b]HOME[/b][/color]
+
+[hr color="black"]
 [hr color="black" height=4]
-[hr color="black"]"""
+[hr color="black"]
+
+
+I don't want some journal [i]PARTING GIFT[/i] I want TO BE [b]HOME[/b][/color]
+"""
 
 const COVER_TEXT = """C\n O\n  V\n   E\n    R"""
 

@@ -63,7 +63,11 @@ func _before_spread_change() -> void:
 func try_to_stick(sticker: StickerEntity) -> void:
 	if _spread.try_stick(sticker):
 		sticker.set_spread(_spread.get_spread_index())
-		sticker.reparent(self, true)
+		sticker.reparent.call_deferred(self, true)
+
+func try_to_unstick(sticker: StickerEntity) -> void:
+	if _spread:
+		_spread.unstick(sticker)
 
 func _setup_collition_shape() -> void:
 	pages_collision.set_disabled(_spread == null)
@@ -101,5 +105,4 @@ func _on_child_exiting_tree(node: Node) -> void:
 	if node is StickerEntity:
 		if node.picked_up.is_connected(_on_sticker_lifted):
 			node.picked_up.disconnect(_on_sticker_lifted)
-		if _spread:
-			_spread.unstick(node)
+			try_to_unstick(node)

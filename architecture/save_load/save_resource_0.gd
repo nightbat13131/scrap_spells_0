@@ -46,7 +46,7 @@ func _get_page_model(page_number: int) -> PageModel:
 	if page_number == 1:
 		page.set_page_text(Utilties.FIRST_PAGE_TEXT)
 	else: 
-		page.set_page_text("""[color="blue"]Page[/color]""")
+		page.set_page_text(" ") # """[color="blue"]_[/color]"""
 	return page
 
 func set_scrapbook_model(scrapbook: ScrapBookModel) -> void:

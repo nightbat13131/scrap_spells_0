@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://yh4s84b5wq7m" path="res://assets/images/sticker_tray.png" id="2_6hmat"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1lwx6"]
-size = Vector2(325, 550)
+size = Vector2(267, 509)
 
 [node name="StickerTray" type="Area2D" unique_id=657403163]
 collision_layer = 0
@@ -19,6 +19,7 @@ texture = ExtResource("2_6hmat")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1651960677]
 unique_name_in_owner = true
+position = Vector2(-1.5, -1.5)
 shape = SubResource("RectangleShape2D_1lwx6")
 
 [node name="CloseButton" type="Button" parent="." unique_id=1067702089]
