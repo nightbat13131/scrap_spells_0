@@ -6,10 +6,9 @@ const TWEEN_DURATION = .5
 @onready var sprite_cover: Sprite2D = %Cover
 @onready var spread_view: SpreadView = %SpreadView
 
-
-
 func _ready() -> void:
 	_on_page_turn.call_deferred()
+	_set_is_open(_is_open)
 
 var _animation_timer : SceneTreeTimer
 

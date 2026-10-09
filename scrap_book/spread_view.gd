@@ -16,6 +16,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	set_collision_layer_value(Utilties.COLLISION_LAYER.STICKER_PAPER, true)
+	apply_spread(_spread)
 
 func apply_spread(spread: SpreadModel) -> void:
 	_before_spread_change() 

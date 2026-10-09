@@ -3,7 +3,7 @@ class_name ScrapBookView extends Node2D
 var _model : ScrapBookModel
 var _last_spread : SpreadModel
 var _next_spread : SpreadModel
-var _is_open := true: set = _set_is_open
+var _is_open := false: set = _set_is_open
 
 func is_animation_active() -> bool: return false
 

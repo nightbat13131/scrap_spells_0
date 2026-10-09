@@ -7,6 +7,9 @@ class_name Page extends Node2D
 
 var _page : PageModel
 
+func _ready() -> void: 
+	apply_page(null)
+
 func apply_page(page: PageModel) -> void:
 	_page = page
 	set_visible(_page != null)

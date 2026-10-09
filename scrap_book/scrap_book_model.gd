@@ -6,7 +6,7 @@ signal close_book
 signal spell_updated
 
 var _spread_number := 0: set = _set_spread_num
-var _is_open := true : set = _set_is_open, get = is_open
+var _is_open := false : set = _set_is_open, get = is_open
 var _spreads : Array[SpreadModel]
 
 static var _instance : ScrapBookModel
@@ -26,8 +26,9 @@ static func get_model() -> ScrapBookModel:
 func get_spreads() -> Array[SpreadModel]: return _spreads
 
 func get_current_spread() -> SpreadModel: 
-	if _spreads.size() > _spread_number:
-		return _spreads[_spread_number]
+	if _is_open:
+		if _spreads.size() > _spread_number:
+			return _spreads[_spread_number]
 	return null
 
 func _set_spread_num(num: int) -> void:
@@ -75,13 +76,6 @@ func _get_active_spell() -> StickerResource_Socket:
 	if !is_open() or !get_current_spread():
 		return null
 	return get_current_spread().get_active_spell()
-	
 
-#func _from_save(data: SaveResource) -> void:
-	#if data == null:
-		#data = SaveResource.get_save()
-	#var paper_count := data.get_paper_count()
-	#for index in range(paper_count +1 ):
-		#_spreads.append(data.get_spread_model(index))
 
 #endregion

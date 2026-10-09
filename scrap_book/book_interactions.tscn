@@ -5,11 +5,14 @@
 [ext_resource type="PackedScene" uid="uid://bec25qjnm4apa" path="res://sticker_tray/sticker_tray.tscn" id="2_1lwx6"]
 [ext_resource type="Script" uid="uid://48keawa14s5n" path="res://scrap_book/area_overlapping_ui.gd" id="3_sn377"]
 [ext_resource type="Script" uid="uid://bfee2hak2offx" path="res://debugs/debug_save_load.gd" id="4_lf0gk"]
+[ext_resource type="PackedScene" uid="uid://cdwq4dms4b3nm" path="res://stickers/scenes/sticker_key_0.tscn" id="5_hqgpd"]
 [ext_resource type="Script" uid="uid://bwsecoun8nkod" path="res://stickers/mouse_sticker_manager.gd" id="5_lf0gk"]
 [ext_resource type="Resource" uid="uid://btwynxqbkmr87" path="res://architecture/guide/sticker_mover.tres" id="6_4tg7h"]
+[ext_resource type="PackedScene" uid="uid://d2yd6npmdglv0" path="res://stickers/scenes/sticker_sun.tscn" id="6_sn377"]
 [ext_resource type="Resource" uid="uid://csjc3wn7ljh4j" path="res://architecture/guide/select_sticker.tres" id="7_ud3vi"]
 [ext_resource type="Resource" uid="uid://d3go1ue010rcl" path="res://architecture/guide/release_sticker.tres" id="8_5457m"]
 [ext_resource type="Resource" uid="uid://t0d0qvadrqhl" path="res://architecture/guide/rotate_sticker.tres" id="9_ivea3"]
+[ext_resource type="Texture2D" uid="uid://ceispvps43fq2" path="res://assets/images/tool_wand.svg" id="11_6tawh"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sn377"]
 distance = -140.0
@@ -59,6 +62,12 @@ position = Vector2(-190, -44)
 [node name="StickerTray" parent="." unique_id=657403163 instance=ExtResource("2_1lwx6")]
 position = Vector2(355, 4)
 
+[node name="Key2" parent="StickerTray" unique_id=1207061736 instance=ExtResource("5_hqgpd")]
+position = Vector2(-15, 106)
+
+[node name="Sun2" parent="StickerTray" unique_id=1160045268 instance=ExtResource("6_sn377")]
+position = Vector2(-50, -163)
+
 [node name="DebugSave" type="Node2D" parent="." unique_id=1267136343]
 visible = false
 position = Vector2(-517, -333)
@@ -101,10 +110,10 @@ shape = SubResource("SegmentShape2D_lf0gk")
 [node name="CloseButton" type="Button" parent="." unique_id=623471232]
 unique_name_in_owner = true
 offset_left = -213.0
-offset_top = 337.0
+offset_top = 303.0
 offset_right = -195.0
-offset_bottom = 368.0
-text = "X"
+offset_bottom = 334.0
+icon = ExtResource("11_6tawh")
 
 [connection signal="area_entered" from="MouseStickerManager/StickerFinder" to="MouseStickerManager" method="_on_sticker_finder_area_entered"]
 [connection signal="area_exited" from="MouseStickerManager/StickerFinder" to="MouseStickerManager" method="_on_sticker_finder_area_exited"]

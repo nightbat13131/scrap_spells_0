@@ -4,15 +4,17 @@ class_name BookControl extends Control
 @onready var flip_book_right: Button = %FlipBook_Right
 @onready var inspect_book: Button = %InspectBook
 
-@onready var left_spacer: Control = %LeftSpacer
+
+@onready var inside_left: TextureRect = %InsideLeft
+@onready var inside_right: TextureRect = %InsideRight
 @onready var cover_outside: TextureRect = %CoverOutside
-@onready var cover_inside: TextureRect = %CoverInside
 @onready var page_left: TextureRect = %PageLeft
 @onready var page_right: TextureRect = %PageRight
-@onready var back_inside: TextureRect = %BackInside
-@onready var right_spacer: Control = %RightSpacer
+@onready var page_left_blank: TextureRect = %PageLeftBlank
+@onready var page_right_blank: TextureRect = %PageRightBlank
 
-@onready var _book_parts : Array[Control] = [cover_outside, cover_inside, page_left, page_right, back_inside]
+
+@onready var _book_parts : Array[Control] = [cover_outside, inside_right, page_left, page_right, inside_left, page_left_blank, page_right_blank]
 @onready var _notification_texture: TextureRect = %Notification
 var _notification_on := false : set = _set_notification_on
 
@@ -36,6 +38,7 @@ func _ready() -> void:
 	_update_spread.call_deferred()
 	_set_notification_on(false)
 	_model.spell_updated.connect(_on_spell_update)
+	_on_spell_update()
 
 func _process(_delta: float) -> void:
 	if _notification_on:
@@ -56,17 +59,17 @@ func _update_spread() -> void:
 	if !_model.is_open():
 		_shows = [cover_outside]
 	else:
+		_shows.append(inside_left)
+		_shows.append(inside_right)
 		if _spread: # first loads null
-		
 			if _spread.get_left_page():
 				_shows.append(page_left)
 			else:
-				_shows.append(cover_inside)
+				_shows.append(page_left_blank)
 			if _spread.get_right_page():
 				_shows.append(page_right)
-			else: 
-				_shows.append(back_inside)
-			
+			else:
+				_shows.append(page_right_blank)
 	for each in _book_parts:
 		if _shows.has(each):
 			each.show()

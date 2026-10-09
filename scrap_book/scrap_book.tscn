@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://28ph827gtwev" path="res://scrap_book/scrap_book_view_1.gd" id="2_yjnuq"]
 [ext_resource type="PackedScene" uid="uid://b482cahy713vn" path="res://scrap_book/spread_view.tscn" id="3_hbeyj"]
 [ext_resource type="Texture2D" uid="uid://cmy0wlkwkdf1b" path="res://assets/images/book_0.png" id="3_m73lt"]
+[ext_resource type="Texture2D" uid="uid://55hbewrgtusx" path="res://assets/images/tracking_vertical_left.svg" id="5_66end"]
+[ext_resource type="Texture2D" uid="uid://tl7p7xs0b5pq" path="res://assets/images/tracking_vertical_right.svg" id="6_bprli"]
 
 [node name="ScrapBook" type="Node2D" unique_id=856058266]
 
@@ -39,7 +41,6 @@ unique_name_in_owner = true
 
 [node name="Cover" type="Sprite2D" parent="ScrapBookView" unique_id=1985565558]
 unique_name_in_owner = true
-visible = false
 texture = ExtResource("3_m73lt")
 hframes = 3
 
@@ -50,20 +51,20 @@ anchors_preset = 0
 [node name="Left" type="Button" parent="Control" unique_id=629969341]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = -332.0
-offset_top = 316.0
-offset_right = -306.0
-offset_bottom = 347.0
-text = " < "
+offset_left = -343.0
+offset_top = 310.0
+offset_right = -303.0
+offset_bottom = 350.0
+icon = ExtResource("5_66end")
 
 [node name="Right" type="Button" parent="Control" unique_id=114955626]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 309.0
-offset_top = 314.0
-offset_right = 335.0
-offset_bottom = 345.0
-text = " > "
+offset_left = 304.0
+offset_top = 310.0
+offset_right = 344.0
+offset_bottom = 350.0
+icon = ExtResource("6_bprli")
 
 [node name="Toggle" type="Button" parent="Control" unique_id=734385934]
 unique_name_in_owner = true
