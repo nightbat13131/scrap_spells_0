@@ -22,7 +22,6 @@
 [ext_resource type="Resource" uid="uid://bv03jf18pgo6b" path="res://map/room1/r1_window_zoom.tres" id="9_4orxc"]
 [ext_resource type="Script" uid="uid://driduwhwv36l4" path="res://map/entity_loot_item.gd" id="9_6pcc3"]
 [ext_resource type="Resource" uid="uid://dafx31rh2also" path="res://clickable/r1e_drawr_loot.tres" id="10_6pcc3"]
-[ext_resource type="Texture2D" uid="uid://cdctv6n7ubqxt" path="res://assets/images/stickers_1.png" id="10_e1ate"]
 [ext_resource type="Resource" uid="uid://da207n1i03x1y" path="res://map/room1/r1_wall_hatch.tres" id="10_ntgq4"]
 [ext_resource type="Resource" uid="uid://b50rqrxx0rj8v" path="res://clickable/r1e_loot_sticker_sun.tres" id="11_0qiqn"]
 [ext_resource type="Resource" uid="uid://cytr5emj3a523" path="res://map/room1/r1_hatch_zoom.tres" id="11_jjv41"]
@@ -43,17 +42,14 @@
 [ext_resource type="Texture2D" uid="uid://b580lob1tingg" path="res://assets/images/key_sticker.png" id="27_epiv6"]
 [ext_resource type="Script" uid="uid://blrog0y7xyr7h" path="res://architecture/camera/camera_3d_enhanced.gd" id="30_1ncnd"]
 [ext_resource type="Texture2D" uid="uid://dqvbt0r8s6q6a" path="res://assets/images/hook.png" id="31_h63qo"]
-[ext_resource type="Material" uid="uid://c54isspipni86" path="res://architecture/camera/spell_sample_material.tres" id="31_ojwi4"]
 [ext_resource type="Resource" uid="uid://yy6kucaihqaa" path="res://map/room1/r1_door_open.tres" id="39_e2dlh"]
+[ext_resource type="Material" uid="uid://bj6t4snifkvgt" path="res://assets/3d/shared_spell.material" id="41_0scvm"]
+[ext_resource type="PackedScene" uid="uid://de2gam7blmqff" path="res://assets/3d/key_0.glb" id="42_0scvm"]
 
 [sub_resource type="Resource" id="Resource_e2dlh"]
 script = ExtResource("3_o7l3u")
 _link_to = ExtResource("12_ake51")
 metadata/_custom_type_script = "uid://bs2sqv4mli5hm"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_g1bxb"]
-atlas = ExtResource("10_e1ate")
-region = Rect2(372, 368, 136, 232)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_86tsd"]
 radius = 0.057128906
@@ -172,23 +168,22 @@ metadata/_custom_type_script = "uid://bs2sqv4mli5hm"
 size = Vector3(0.2526245, 0.30791473, 0.36021423)
 
 [sub_resource type="SphereMesh" id="SphereMesh_axj8b"]
-material = ExtResource("31_ojwi4")
+material = ExtResource("41_0scvm")
 radius = 0.1
 height = 0.2
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8qede"]
-emission_shape_scale = Vector3(0, 0, 0)
 direction = Vector3(1, 1, 1)
 spread = 180.0
 flatness = 0.5
 initial_velocity_max = 0.099999994
 gravity = Vector3(0, 0, 0)
 use_scale_3d = true
-scale_3d_min = Vector3(0.05, 0.05, 0.05)
-scale_3d_max = Vector3(0.1, 0.1, 0.1)
+scale_3d_min = Vector3(0.01, 0.01, 0.01)
+scale_3d_max = Vector3(0.03, 0.03, 0.03)
 
 [sub_resource type="SphereMesh" id="SphereMesh_qvtik"]
-material = ExtResource("31_ojwi4")
+material = ExtResource("41_0scvm")
 
 [sub_resource type="Resource" id="Resource_vqn2q"]
 script = ExtResource("3_o7l3u")
@@ -313,8 +308,12 @@ spell_resource = ExtResource("5_6gs64")
 [node name="Hint_KeySun" type="Sprite3D" parent="RoomStuff/door_0" unique_id=1561716901]
 unique_name_in_owner = true
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.0028348, 0.8247307, 0.2723844)
-pixel_size = 0.0004
-texture = SubResource("AtlasTexture_g1bxb")
+modulate = Color(1, 0.8666667, 0.22352941, 1)
+pixel_size = 0.0002
+texture = ExtResource("27_epiv6")
+hframes = 6
+vframes = 2
+frame = 7
 
 [node name="ClickEvent_KeySpell" type="Area3D" parent="RoomStuff/door_0" unique_id=58271652]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0455837, 0.8614502, 0.28125)
@@ -337,20 +336,20 @@ _spell = ExtResource("5_6gs64")
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.02901268, -0.048102558, 0)
 mesh = SubResource("PrismMesh_qvtik")
 
-[node name="WallThing" type="MeshInstance3D" parent="RoomStuff" unique_id=1042081595]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6116111, 0.82182825, -1.9310914)
+[node name="Godot" type="MeshInstance3D" parent="RoomStuff" unique_id=1042081595]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.047644, 1.0694941, -0.033895373)
 mesh = SubResource("SphereMesh_86tsd")
 script = ExtResource("9_6pcc3")
 event_loot = ExtResource("3_np2o1")
 metadata/_edit_group_ = true
 
-[node name="Area3D_Mousable" type="Area3D" parent="RoomStuff/WallThing" unique_id=554070186]
+[node name="Area3D_Mousable" type="Area3D" parent="RoomStuff/Godot" unique_id=554070186]
 script = ExtResource("7_wf3jw")
 _event = ExtResource("3_np2o1")
-_view_dependency = ExtResource("10_ntgq4")
+_view_dependency = ExtResource("39_e2dlh")
 metadata/_custom_type_script = "uid://c3t7jmtmwswwn"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomStuff/WallThing/Area3D_Mousable" unique_id=508344732]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomStuff/Godot/Area3D_Mousable" unique_id=508344732]
 shape = SubResource("SphereShape3D_fhoj7")
 
 [node name="curtains" type="Node3D" parent="RoomStuff" unique_id=404283779]
@@ -611,16 +610,22 @@ shape = SubResource("BoxShape3D_g8r6x")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51752937, 1.2490469, -3.7974443)
 script = ExtResource("30_1ncnd")
 spell_sampler = NodePath("SpellCenter")
-spell_sample_material = ExtResource("31_ojwi4")
+spell_sample_material = ExtResource("41_0scvm")
 
 [node name="SpellCenter" type="Node3D" parent="Camera3D" unique_id=2014867082]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24963427, 0, -1.2329655)
 
+[node name="key_0" parent="Camera3D/SpellCenter" unique_id=289311912 instance=ExtResource("42_0scvm")]
+transform = Transform3D(-4.371139e-09, 0, -0.1, 0, 0.1, 0, 0.1, 0, -4.371139e-09, -0.047190577, 0.00094377995, -0.015911102)
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D/SpellCenter" unique_id=699436055]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.047190577, 0.00094377995, 0)
+visible = false
 mesh = SubResource("SphereMesh_axj8b")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="Camera3D/SpellCenter" unique_id=1816516248]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.047190577, 0.03403735, -0.01565075)
 process_material = SubResource("ParticleProcessMaterial_8qede")
 draw_pass_1 = SubResource("SphereMesh_qvtik")
 
