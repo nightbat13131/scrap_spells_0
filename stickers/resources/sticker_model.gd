@@ -19,7 +19,7 @@ var _local_rotation : float
 
 var _object : StickerEntity
 
-func match_id(id: int) -> bool: return sticker_ID == id
+func match_id(id: Utilties.StickerID) -> bool: return sticker_ID == id
 
 func get_dict() -> Dictionary:
 	var out : Dictionary = {}

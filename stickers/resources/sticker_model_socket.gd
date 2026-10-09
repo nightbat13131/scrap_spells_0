@@ -2,8 +2,6 @@ class_name StickerResource_Socket extends StickerResource
 
 var _socketed_gem: StickerResource_Gem
 
-
-
 func get_gem_color() -> Color:
 	if is_spell():
 		return get_gem_info().get_gem_color()
@@ -12,9 +10,9 @@ func get_gem_color() -> Color:
 func is_spell() -> bool: return _socketed_gem != null
 
 func match_spell(spell: Spell): # socket_id: Utilties.StickerID, gem_id: Utilties.StickerID) -> bool:
-	if self == spell.socket:
+	if match_id(spell.socket.sticker_ID):
 		if _socketed_gem:
-			return _socketed_gem == spell.socket
+			return _socketed_gem.match_id(spell.gem.sticker_ID)
 	return false
 
 func try_insert_gem(gem: StickerResource_Gem) -> bool:

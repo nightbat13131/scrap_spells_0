@@ -37,8 +37,7 @@ func _on_input_event(_camera: Node, event: InputEvent, _event_position: Vector3,
 		if _spell_dependency:
 			if !_spell_dependency.is_equipted():
 				return
-		if event.is_pressed():
-			triggered.emit(self)
+		triggered.emit(self)
 
 ## useful on inheritance 
 func _on_view_change(_is_focused: bool) -> void: __uppdate_usabilty(_is_focused)

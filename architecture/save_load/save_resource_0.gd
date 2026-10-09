@@ -88,7 +88,7 @@ func _stickers_from_list_sticker_dicts(list: Array[Dictionary]) -> Array[Sticker
 	for sticker_dict in list:
 		sticker_info = StickerManager_AL.get_sticker_info(sticker_dict.get(STICKER_ID, Utilties.StickerID.NA) )
 		if sticker_info:
-			sticker_info = sticker_info.duplicate()
+			#sticker_info = sticker_info.duplicate()
 			_position = JSON.to_native( sticker_dict.get(LOCAL_POSITION, {"args":[40.0,40.0],"type":"Vector2"}) )
 			_rotation = sticker_dict.get(LOCAL_ROTATION, 1.0)
 			sticker_info.set_saved_values(_position, _rotation)
