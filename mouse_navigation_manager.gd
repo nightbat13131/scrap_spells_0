@@ -76,8 +76,10 @@ static func sticker_released() -> void:
 
 static func get_active_spell() -> StickerResource_Socket:
 	if _instance:
-		return _instance._active_spell
+		return _instance._get_active_spell()
 	return null
+
+func _get_active_spell() -> StickerResource_Socket: return _active_spell
 
 static func reqeuset_spell_drop(spell: Spell) -> void:
 	if _instance:

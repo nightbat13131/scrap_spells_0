@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://cmwecrd28prqk" path="res://sticker_tray/sticker_tray.gd" id="1_pmxlv"]
 [ext_resource type="Texture2D" uid="uid://yh4s84b5wq7m" path="res://assets/images/sticker_tray.png" id="2_6hmat"]
+[ext_resource type="PackedScene" uid="uid://cdwq4dms4b3nm" path="res://stickers/scenes/sticker_key_0.tscn" id="3_8smp7"]
+[ext_resource type="PackedScene" uid="uid://d2yd6npmdglv0" path="res://stickers/scenes/sticker_sun.tscn" id="4_eos45"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1lwx6"]
 size = Vector2(267, 509)
@@ -38,3 +40,9 @@ offset_top = -350.0
 offset_right = -85.0
 offset_bottom = -319.0
 text = "from save"
+
+[node name="Key" parent="." unique_id=1207061736 instance=ExtResource("3_8smp7")]
+position = Vector2(-15, 106)
+
+[node name="Sun" parent="." unique_id=182202255 instance=ExtResource("4_eos45")]
+position = Vector2(-50, -163)

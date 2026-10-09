@@ -42,12 +42,12 @@ static func spell_selected(spell: StickerResource_Socket) -> void:
 		_instance._spell_selected(spell)
 
 func _spell_selected(spell: StickerResource_Socket) -> void:
-	print("Select spell ", spell)
+	#print("Select spell ", spell)
 	if spell:
 		if spell.is_spell():
 			if spell_sample_material:
 				spell_sampler.show()
-				spell_sample_material.set_albedo(spell.get_gem_color())
+				spell_sample_material.set_albedo(Color( spell.get_gem_color(), .75))
 				return
 	spell_sampler.hide()
 

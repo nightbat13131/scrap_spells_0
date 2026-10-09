@@ -50,7 +50,6 @@ vframes = 2
 frame = 2
 
 [node name="Sun" type="Sprite2D" parent="ImageScale" unique_id=1810460992]
-z_index = 10
 texture = ExtResource("3_3h2hs")
 hframes = 6
 vframes = 2

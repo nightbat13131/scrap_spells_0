@@ -31,6 +31,8 @@ func _ready() -> void:
 	__uppdate_usabilty() 
 
 func _on_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
+	if !event.is_pressed():
+		return
 	if _is_usable():
 		if _spell_dependency:
 			if !_spell_dependency.is_equipted():
@@ -61,7 +63,6 @@ func _is_usable() -> bool:
 	#if _spell_dependency: # not here because equipting is not detetable to refresh useable
 	#	prints("spell check A", self)
 	#	if !_spell_dependency.is_equipted():
-
 			#return false
 	return true
 

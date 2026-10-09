@@ -32,12 +32,15 @@
 [ext_resource type="Resource" uid="uid://234ixh4uyy4q" path="res://map/room1/r1_door_knob_zoom.tres" id="14_2b6r3"]
 [ext_resource type="PackedScene" uid="uid://ccc3jc5xk0clw" path="res://assets/3d/tower_0.glb" id="15_np2o1"]
 [ext_resource type="Script" uid="uid://kksaog2m6y2x" path="res://map/room_camera_manager.gd" id="16_fhoj7"]
+[ext_resource type="Texture2D" uid="uid://jpnn4iv85dvn" path="res://assets/images/sun_sticker.png" id="18_5srrm"]
 [ext_resource type="Resource" uid="uid://d2eankcych3b3" path="res://clickable/nav_link_r1_door_zoom.tres" id="19_on0u5"]
+[ext_resource type="Texture2D" uid="uid://dq3gv6d8u5506" path="res://assets/images/window_art.png" id="20_epiv6"]
 [ext_resource type="Resource" uid="uid://ban73hafkrpch" path="res://usables/usable_hook.tres" id="23_h63qo"]
 [ext_resource type="Resource" uid="uid://8pctja347vky" path="res://clickable/r1e_loot_sticker_key.tres" id="23_ybqlh"]
 [ext_resource type="Texture2D" uid="uid://bvxw2q7s8op0d" path="res://assets/images/navigation_icons/navigation_e.svg" id="24_ntgq4"]
 [ext_resource type="Texture2D" uid="uid://cdgyu727exp0u" path="res://assets/images/navigation_icons/navigation_w.svg" id="25_jjv41"]
 [ext_resource type="Texture2D" uid="uid://h14h3qph8x6v" path="res://assets/images/navigation_icons/rotate_cw.svg" id="26_jjv41"]
+[ext_resource type="Texture2D" uid="uid://b580lob1tingg" path="res://assets/images/key_sticker.png" id="27_epiv6"]
 [ext_resource type="Script" uid="uid://blrog0y7xyr7h" path="res://architecture/camera/camera_3d_enhanced.gd" id="30_1ncnd"]
 [ext_resource type="Texture2D" uid="uid://dqvbt0r8s6q6a" path="res://assets/images/hook.png" id="31_h63qo"]
 [ext_resource type="Material" uid="uid://c54isspipni86" path="res://architecture/camera/spell_sample_material.tres" id="31_ojwi4"]
@@ -77,10 +80,6 @@ size = Vector3(0.1, 1.245, 0.456)
 [sub_resource type="BoxShape3D" id="BoxShape3D_yvuh7"]
 size = Vector3(0.36376953, 1.2471924, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_86tsd"]
-atlas = ExtResource("10_e1ate")
-region = Rect2(-2, 48, 132, 138)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_8qede"]
 size = Vector3(0.1, 0.15, 0.15)
 
@@ -101,10 +100,6 @@ radius = 0.1
 
 [sub_resource type="BoxMesh" id="BoxMesh_86tsd"]
 size = Vector3(1, 0.07324219, 0.9296875)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_axj8b"]
-atlas = ExtResource("10_e1ate")
-region = Rect2(0, 262, 175, 338)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2wkef"]
 size = Vector3(0.2652588, 0.5168457, 0.11328125)
@@ -331,7 +326,6 @@ metadata/_custom_type_script = "uid://c3t7jmtmwswwn"
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RoomStuff/door_0/ClickEvent_KeySpell" unique_id=390531046]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.007183075, -0.009147555)
 shape = SubResource("CapsuleShape3D_86tsd")
 
 [node name="KeySunSpell" type="Node3D" parent="RoomStuff/door_0/ClickEvent_KeySpell" unique_id=1228403287]
@@ -395,9 +389,12 @@ metadata/_edit_group_ = true
 shape = SubResource("BoxShape3D_yvuh7")
 
 [node name="Sprite3D_Sun" type="Sprite3D" parent="RoomStuff/curtains" unique_id=1182445668]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17329979, 0.42553163, -0.18152976)
+transform = Transform3D(-4.371139e-08, 0, -1, -0.556409, 0.83090854, 2.4321409e-08, 0.83090854, 0.556409, -3.6320163e-08, -0.17329979, -0.00076150894, -0.155837)
 pixel_size = 0.001
-texture = SubResource("AtlasTexture_86tsd")
+texture = ExtResource("18_5srrm")
+hframes = 6
+vframes = 2
+frame = 6
 script = ExtResource("9_6pcc3")
 event_loot = ExtResource("11_0qiqn")
 
@@ -410,6 +407,12 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RoomStuff/curtains/Sprite3D_Sun/ClickEvent_LootStickerSun" unique_id=519591922]
 shape = SubResource("BoxShape3D_8qede")
+
+[node name="Sprite3D" type="Sprite3D" parent="RoomStuff/curtains" unique_id=287587811]
+transform = Transform3D(1, 0, 0, 0, 0.9966032, 0.082353696, 0, -0.082353696, 0.9966032, -0.17916179, -0.11317766, 0.07084632)
+pixel_size = 0.0005
+axis = 0
+texture = ExtResource("20_epiv6")
 
 [node name="hatch" type="Node3D" parent="RoomStuff" unique_id=701322450]
 transform = Transform3D(1, 0, 0, 0, 0.7071067, -0.7071067, 0, 0.7071067, 0.7071067, 0.03835073, 2.772839, -2.0341272)
@@ -450,19 +453,22 @@ mesh = SubResource("BoxMesh_86tsd")
 
 [node name="Sprite3D_Key" type="Sprite3D" parent="RoomStuff/hatch/hatchdoor" unique_id=827482596]
 transform = Transform3D(1, 0, 0, 0, -4.3711392e-08, -1.0000001, 0, 1.0000001, -4.3711392e-08, 0, 0.043047905, 0.0640769)
-pixel_size = 0.0015
-texture = SubResource("AtlasTexture_axj8b")
+pixel_size = 0.001
+texture = ExtResource("27_epiv6")
+hframes = 6
+vframes = 2
+frame = 6
 script = ExtResource("9_6pcc3")
 event_loot = ExtResource("23_ybqlh")
 
-[node name="ClickEvent" type="Area3D" parent="RoomStuff/hatch/hatchdoor/Sprite3D_Key" unique_id=805220580]
+[node name="ClickEvent_LootKey" type="Area3D" parent="RoomStuff/hatch/hatchdoor/Sprite3D_Key" unique_id=805220580]
 script = ExtResource("7_wf3jw")
 _event = ExtResource("23_ybqlh")
 _view_dependency = ExtResource("11_jjv41")
 _event_dependency = ExtResource("7_2b6r3")
 metadata/_custom_type_script = "uid://c3t7jmtmwswwn"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomStuff/hatch/hatchdoor/Sprite3D_Key/ClickEvent" unique_id=1543507108]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomStuff/hatch/hatchdoor/Sprite3D_Key/ClickEvent_LootKey" unique_id=1543507108]
 transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0.0038452148, 0.004761219, 0.02343738)
 shape = SubResource("BoxShape3D_2wkef")
 
