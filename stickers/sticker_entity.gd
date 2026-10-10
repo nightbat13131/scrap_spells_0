@@ -30,6 +30,8 @@ func _ready() -> void:
 	_connect_children() 
 	#visible_on_screen_notifier_2d.screen_exited.connect(_screen_exited)
 	_info.set_object(self)
+	sprite_mouse.set_z_index(10)
+	set_mouse_focus(false)
 	await get_tree().process_frame
 	_post_ready()
 

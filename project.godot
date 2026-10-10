@@ -52,4 +52,4 @@ theme/custom="uid://bmx3ux6e0b8g1"
 [rendering]
 
 rendering_device/driver.windows="d3d12"
-environment/defaults/default_clear_color=Color(0.3691491, 0.058116682, 0.15300775, 1)
+environment/defaults/default_clear_color=Color(0.20941457, 0.019821594, 0.07474453, 1)

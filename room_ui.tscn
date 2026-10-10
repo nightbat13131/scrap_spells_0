@@ -393,7 +393,7 @@ texture = ExtResource("5_7b5bc")
 
 [node name="HeldTextureRect" type="TextureRect" parent="CanvasLayer_Mouse/MouseNavigationManager" unique_id=2146306456]
 unique_name_in_owner = true
-offset_left = 32.0
-offset_top = 37.0
-offset_right = 72.0
-offset_bottom = 77.0
+offset_left = -33.0
+offset_top = 22.0
+offset_right = -33.0
+offset_bottom = 22.0

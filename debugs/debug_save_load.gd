@@ -4,7 +4,7 @@ var a : SaveResource
 
 func _init() -> void:
 	a = SaveResource.get_save()
-	FileManager.load_from_file()
+	#FileManager.load_from_file()
 
 func _ready() -> void:
 	#a = SaveResource.get_save()

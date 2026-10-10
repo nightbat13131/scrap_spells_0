@@ -94,7 +94,11 @@ outer_radius = 0.07
 [sub_resource type="SphereShape3D" id="SphereShape3D_axj8b"]
 radius = 0.1
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_22s6u"]
+albedo_color = Color(0, 1, 0.23333335, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_86tsd"]
+material = SubResource("StandardMaterial3D_22s6u")
 size = Vector3(1, 0.07324219, 0.9296875)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2wkef"]
@@ -618,7 +622,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24963427, 0, -1.2329655)
 
 [node name="key_0" parent="Camera3D/SpellCenter" unique_id=289311912 instance=ExtResource("42_0scvm")]
-transform = Transform3D(-4.371139e-09, 0, -0.1, 0, 0.1, 0, 0.1, 0, -4.371139e-09, -0.047190577, 0.00094377995, -0.015911102)
+transform = Transform3D(-4.371139e-09, 0, -0.1, 0, 0.1, 0, 0.1, 0, -4.371139e-09, -0.02164641, 0.00094377995, -0.015911102)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D/SpellCenter" unique_id=699436055]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.047190577, 0.00094377995, 0)
